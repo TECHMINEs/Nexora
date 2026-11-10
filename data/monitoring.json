@@ -1,0 +1,23 @@
+{
+  "thresholds": [
+    { "facilityId": "fac-wb-metal", "signal": "rain24hMm", "unit": "mm/24 h", "watchAt": 100, "alertAt": 200, "incidentAt": null, "sourceId": "S-IMD-RAIN", "assumptionIds": ["ASM-22"] },
+    { "facilityId": "fac-wb-metal", "signal": "windKmh", "unit": "km/h", "watchAt": 62, "alertAt": 118, "incidentAt": null, "sourceId": "S-IMD-CYCLONE", "assumptionIds": ["ASM-22"] },
+    { "facilityId": "fac-vz-polymer", "signal": "tankTempC", "unit": "°C", "watchAt": 20, "alertAt": 24, "incidentAt": null, "sourceId": "S-CUST-SCADA-B", "assumptionIds": ["ASM-22"] },
+    { "facilityId": "fac-vz-polymer", "signal": "vapourPpm", "unit": "ppm", "watchAt": 10, "alertAt": 25, "incidentAt": 50, "sourceId": "S-CUST-SCADA-B", "assumptionIds": ["ASM-22"] },
+    { "facilityId": "fac-vz-polymer", "signal": "windKmh", "unit": "km/h", "watchAt": 62, "alertAt": 118, "incidentAt": null, "sourceId": "S-IMD-CYCLONE", "assumptionIds": ["ASM-22"] }
+  ],
+  "advisories": [
+    { "id": "ADV-A-7d", "facilityId": "fac-wb-metal", "window": "7d", "text": "Review the mitigation backlog: drainage upgrade is overdue and equipment elevation is accepted. Confirm critical-supplier stock cover of at least 5 days.", "ledgerEntryIds": ["m-a-02", "m-a-01", "m-a-03"], "section": "§46" },
+    { "id": "ADV-A-72h", "facilityId": "fac-wb-metal", "window": "72h", "text": "Inspect the MCC panel and pumps, verify generator fuel for 12 h autonomy, move raw stock off the ground floor.", "ledgerEntryIds": ["m-a-04", "c-a-08"], "section": "§46" },
+    { "id": "ADV-A-24h", "facilityId": "fac-wb-metal", "window": "24h", "text": "Secure roof sheets and outdoor items, brief shift emergency roles, prepare controlled shutdown of the CNC line.", "ledgerEntryIds": ["m-a-06", "c-a-05"], "section": "§46" },
+    { "id": "ADV-A-6h", "facilityId": "fac-wb-metal", "window": "6h", "text": "Execute controlled shutdown and isolate the MCC panel. Follow official instructions.", "ledgerEntryIds": [], "section": "§46" },
+    { "id": "ADV-A-1h", "facilityId": "fac-wb-metal", "window": "1h", "text": "Follow official emergency instructions, account for all staff, do not re-energise flooded equipment.", "ledgerEntryIds": ["c-a-05"], "section": "§46" },
+    { "id": "ADV-A-post", "facilityId": "fac-wb-metal", "window": "post_event", "text": "Record damage, downtime and response timings in the Resilience Ledger and start the outcome review.", "ledgerEntryIds": [], "section": "§46, §6.15" },
+    { "id": "ADV-B-7d", "facilityId": "fac-vz-polymer", "window": "7d", "text": "Review inhibitor dosing and the tank temperature log during idle storage; vapour detector calibration is overdue.", "ledgerEntryIds": ["m-b-02", "c-b-08", "c-b-09"], "section": "§46" },
+    { "id": "ADV-B-72h", "facilityId": "fac-vz-polymer", "window": "72h", "text": "Verify refrigeration redundancy and alarm set-points; brief night-shift emergency roles.", "ledgerEntryIds": ["m-b-01", "c-b-06", "m-b-04"], "section": "§46" },
+    { "id": "ADV-B-24h", "facilityId": "fac-vz-polymer", "window": "24h", "text": "Move tank temperature checks to hourly, pre-stage inhibitor and notify the district control-room liaison.", "ledgerEntryIds": ["c-b-10"], "section": "§46" },
+    { "id": "ADV-B-6h", "facilityId": "fac-vz-polymer", "window": "6h", "text": "Start the emergency inhibitor step in the site SOP and prepare the community warning. Follow official instructions.", "ledgerEntryIds": ["m-b-02", "m-b-03"], "section": "§46" },
+    { "id": "ADV-B-1h", "facilityId": "fac-vz-polymer", "window": "1h", "text": "Sound the siren, notify the community and evacuate per the emergency plan. Follow official instructions.", "ledgerEntryIds": ["c-b-03", "c-b-10"], "section": "§46" },
+    { "id": "ADV-B-post", "facilityId": "fac-vz-polymer", "window": "post_event", "text": "Log the release timeline, response timings and community impact; begin the regulatory and outcome review.", "ledgerEntryIds": [], "section": "§46, §6.15" }
+  ]
+}

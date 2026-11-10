@@ -1,0 +1,33 @@
+{
+  "modules": [
+    { "id": "6.1", "title": "Facility Onboarding", "section": "§6.1", "routes": ["/facility/[id]"] },
+    { "id": "6.2", "title": "Exposure Engine", "section": "§6.2", "routes": ["/facility/[id]/risk"] },
+    { "id": "6.3", "title": "Vulnerability Engine", "section": "§6.3", "routes": ["/facility/[id]/risk"] },
+    { "id": "6.4", "title": "Cascade / Dependency Engine", "section": "§6.4", "routes": ["/facility/[id]/scenarios"] },
+    { "id": "6.5", "title": "Scenario Simulator", "section": "§6.5", "routes": ["/facility/[id]/scenarios"] },
+    { "id": "6.6", "title": "Financial Exposure Engine", "section": "§6.6", "routes": ["/facility/[id]/scenarios", "/facility/[id]/insurance"] },
+    { "id": "6.7", "title": "Mitigation Optimiser", "section": "§6.7", "routes": ["/facility/[id]/mitigation"] },
+    { "id": "6.8", "title": "Resilience Ledger", "section": "§6.8", "routes": ["/facility/[id]/ledger"] },
+    { "id": "6.9", "title": "Preparedness & BCP", "section": "§6.9", "routes": ["/lifecycle", "/facility/[id]"] },
+    { "id": "6.10", "title": "Drill & Testing", "section": "§6.10", "routes": ["/lifecycle"] },
+    { "id": "6.11", "title": "Emergency Accessibility", "section": "§6.11", "routes": ["/facility/[id]/accessibility"] },
+    { "id": "6.12", "title": "Monitoring", "section": "§6.12", "routes": ["/facility/[id]/monitoring", "/replay"] },
+    { "id": "6.13", "title": "Insurance Adequacy", "section": "§6.13", "routes": ["/facility/[id]/insurance"] },
+    { "id": "6.14", "title": "Portfolio Intelligence", "section": "§6.14", "routes": ["/"] },
+    { "id": "6.15", "title": "Outcome Learning", "section": "§6.15", "routes": ["/replay", "/facility/[id]/report"] }
+  ],
+  "screens": [
+    { "route": "/", "title": "Portfolio", "dossierScreen": "01", "modules": ["6.14"] },
+    { "route": "/facility/[id]", "title": "Facility overview", "dossierScreen": "02", "modules": ["6.1", "6.9"] },
+    { "route": "/facility/[id]/risk", "title": "Risk explorer", "dossierScreen": "03", "modules": ["6.2", "6.3"] },
+    { "route": "/facility/[id]/scenarios", "title": "Scenario studio", "dossierScreen": "04", "modules": ["6.5", "6.6", "6.4"] },
+    { "route": "/facility/[id]/mitigation", "title": "Mitigation plan", "dossierScreen": "05", "modules": ["6.7"] },
+    { "route": "/facility/[id]/ledger", "title": "Resilience Ledger", "dossierScreen": "06", "modules": ["6.8"] },
+    { "route": "/facility/[id]/insurance", "title": "Insurance adequacy", "dossierScreen": "07", "modules": ["6.13", "6.6"] },
+    { "route": "/facility/[id]/accessibility", "title": "Accessibility", "dossierScreen": "08", "modules": ["6.11"] },
+    { "route": "/facility/[id]/monitoring", "title": "Monitoring", "dossierScreen": "09", "modules": ["6.12"] },
+    { "route": "/facility/[id]/report", "title": "Evidence / report", "dossierScreen": "10", "modules": ["6.15"] },
+    { "route": "/replay", "title": "Replay console", "dossierScreen": "Kit", "modules": ["6.12", "6.15"] },
+    { "route": "/lifecycle", "title": "Lifecycle and event state machine", "dossierScreen": "Kit (Deck s7, s10)", "modules": ["6.9", "6.10"] }
+  ]
+}

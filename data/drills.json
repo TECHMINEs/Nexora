@@ -1,0 +1,6 @@
+[
+  { "id": "d-a-01", "facilityId": "fac-wb-metal", "type": "Evacuation drill", "lastRun": "2026-03-14", "intervalDays": 180, "plannedMinutes": 8, "actualMinutes": 13, "participantsPlanned": 120, "participantsActual": 104, "gaps": ["Night shift not drilled", "Assembly-point headcount took 5 min"], "sourceId": "S-CUST-ASSET-A", "section": "§6.10, §26" },
+  { "id": "d-a-02", "facilityId": "fac-wb-metal", "type": "Flood tabletop exercise", "lastRun": null, "intervalDays": 365, "plannedMinutes": 60, "actualMinutes": null, "participantsPlanned": 12, "participantsActual": null, "gaps": ["Never run"], "sourceId": "S-CUST-ASSET-A", "section": "§6.10" },
+  { "id": "d-b-01", "facilityId": "fac-vz-polymer", "type": "Fire evacuation drill", "lastRun": "2026-08-20", "intervalDays": 180, "plannedMinutes": 6, "actualMinutes": 7.5, "participantsPlanned": 90, "participantsActual": 86, "gaps": ["Two contractors unaccounted for 3 min"], "sourceId": "S-CUST-ASSET-B", "section": "§6.10" },
+  { "id": "d-b-02", "facilityId": "fac-vz-polymer", "type": "Community 3 km evacuation drill", "lastRun": null, "intervalDays": 365, "plannedMinutes": 45, "actualMinutes": null, "participantsPlanned": 400, "participantsActual": null, "gaps": ["Never run; district coordination pending"], "sourceId": "S-CUST-ASSET-B", "section": "§3.8, §6.10" }
+]
