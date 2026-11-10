@@ -1,0 +1,43 @@
+[
+  { "facilityId": "fac-wb-metal", "hazard": "flood", "hazardClass": "hydromet", "label": "Flood / urban inundation", "intensity": 0.70, "intensityBasis": "Historical inundation footprint and 24 h rainfall P95 band (§7.2, §9)", "criticality": 5,
+    "drivers": [
+      { "id": "d-a-fl-1", "variable": "Floor elevation", "failureCondition": "Below or near expected water level", "weightLabel": "High", "conditionScore": 0.8, "evidenceSource": "Site/DEM + customer", "section": "§40" },
+      { "id": "d-a-fl-2", "variable": "Critical equipment elevation", "failureCondition": "Critical assets on ground floor", "weightLabel": "High", "conditionScore": 1.0, "evidenceSource": "Customer/photo", "section": "§40" },
+      { "id": "d-a-fl-3", "variable": "Drainage capacity", "failureCondition": "Known repeat accumulation", "weightLabel": "Medium/High", "conditionScore": 0.7, "evidenceSource": "Facility assessment", "section": "§40" },
+      { "id": "d-a-fl-4", "variable": "Pump readiness", "failureCondition": "Pump test overdue; no backup power to pump", "weightLabel": "Medium/High", "conditionScore": 0.5, "evidenceSource": "Customer", "section": "§40" }
+    ],
+    "sourceIds": ["S-IMD-RAIN", "S-CWC-FLOOD", "S-CUST-ASSET-A"], "assumptionIds": ["ASM-05", "ASM-06", "ASM-07"], "section": "§9, §26, §40" },
+  { "facilityId": "fac-wb-metal", "hazard": "cyclone", "hazardClass": "hydromet", "label": "Cyclone (wind and rain)", "intensity": 0.60, "intensityBasis": "Very severe cyclonic storm band, 155-165 km/h at landfall (§3.1)", "criticality": 4,
+    "drivers": [
+      { "id": "d-a-cy-1", "variable": "Roof vulnerability", "failureCondition": "Older, lightweight or poorly secured roof", "weightLabel": "High", "conditionScore": 0.6, "evidenceSource": "Assessment/inspection", "section": "§40" },
+      { "id": "d-a-cy-2", "variable": "Outdoor assets", "failureCondition": "Loose equipment, signage or material", "weightLabel": "Medium", "conditionScore": 0.5, "evidenceSource": "Checklist/photo", "section": "§40" }
+    ],
+    "sourceIds": ["S-IMD-CYCLONE", "S-CUST-ASSET-A"], "assumptionIds": ["ASM-05", "ASM-06", "ASM-07"], "section": "§3.1, §40" },
+  { "facilityId": "fac-wb-metal", "hazard": "power", "hazardClass": "infrastructure", "label": "Power disruption", "intensity": 0.50, "intensityBasis": "Outage-frequency proxy, estimated (§39)", "criticality": 5,
+    "drivers": [
+      { "id": "d-a-pw-1", "variable": "Backup autonomy", "failureCondition": "12 h fuel against a 48 h target", "weightLabel": "High", "conditionScore": 0.5, "evidenceSource": "Customer", "section": "§40" },
+      { "id": "d-a-pw-2", "variable": "Grid dependency", "failureCondition": "Power dependency rated 5 of 5", "weightLabel": "High", "conditionScore": 1.0, "evidenceSource": "Customer", "section": "§7.4" }
+    ],
+    "sourceIds": ["S-CUST-ASSET-A", "S-ASSUMPTION"], "assumptionIds": ["ASM-05", "ASM-06", "ASM-07"], "section": "§26, §39" },
+  { "facilityId": "fac-vz-polymer", "hazard": "toxic_release", "hazardClass": "chemical_industrial", "label": "Toxic release (monomer vapour)", "intensity": 0.80, "intensityBasis": "MAH-class inventory, 1,800 t in refrigerated storage (KD §35.5)", "criticality": 5,
+    "drivers": [
+      { "id": "d-b-tx-1", "variable": "Vapour detection", "failureCondition": "Detector calibration overdue", "weightLabel": "High", "conditionScore": 0.6, "evidenceSource": "Inspection", "section": "KD §70" },
+      { "id": "d-b-tx-2", "variable": "Tank temperature control", "failureCondition": "Monitoring implemented, not verified", "weightLabel": "High", "conditionScore": 0.4, "evidenceSource": "Customer", "section": "KD §35.5" },
+      { "id": "d-b-tx-3", "variable": "Inhibitor management", "failureCondition": "No inhibitor level record", "weightLabel": "High", "conditionScore": 1.0, "evidenceSource": "Customer", "section": "KD §35.5" },
+      { "id": "d-b-tx-4", "variable": "Community warning", "failureCondition": "Siren verified; community protocol missing", "weightLabel": "Medium", "conditionScore": 0.2, "evidenceSource": "Document", "section": "KD §3.8, §70" }
+    ],
+    "sourceIds": ["S-SDMA-INDUSTRIAL", "S-CUST-ASSET-B"], "assumptionIds": ["ASM-05", "ASM-06", "ASM-07", "ASM-23"], "section": "KD §35.5, §70" },
+  { "facilityId": "fac-vz-polymer", "hazard": "fire", "hazardClass": "chemical_industrial", "label": "Fire / explosion", "intensity": 0.60, "intensityBasis": "Process block with flammable monomer (§39)", "criticality": 5,
+    "drivers": [
+      { "id": "d-b-fi-1", "variable": "Detection", "failureCondition": "Missing or untested detection", "weightLabel": "High", "conditionScore": 0.1, "evidenceSource": "Inspection", "section": "§40" },
+      { "id": "d-b-fi-2", "variable": "Suppression", "failureCondition": "Missing or untested systems", "weightLabel": "High", "conditionScore": 0.1, "evidenceSource": "Inspection", "section": "§40" },
+      { "id": "d-b-fi-3", "variable": "Emergency role coverage", "failureCondition": "Untrained or uncovered shift", "weightLabel": "Medium/High", "conditionScore": 0.6, "evidenceSource": "HR/training", "section": "§40" }
+    ],
+    "sourceIds": ["S-CUST-ASSET-B"], "assumptionIds": ["ASM-05", "ASM-06", "ASM-07", "ASM-23"], "section": "§39, §40" },
+  { "facilityId": "fac-vz-polymer", "hazard": "cyclone", "hazardClass": "hydromet", "label": "Cyclone (coastal wind and surge)", "intensity": 0.55, "intensityBasis": "Coastal cyclone exposure band (KD)", "criticality": 3,
+    "drivers": [
+      { "id": "d-b-cy-1", "variable": "Roof vulnerability", "failureCondition": "Metal-sheet warehouse roof", "weightLabel": "High", "conditionScore": 0.4, "evidenceSource": "Assessment/inspection", "section": "§40" },
+      { "id": "d-b-cy-2", "variable": "Outdoor assets", "failureCondition": "Loose drums and IBCs in yard", "weightLabel": "Medium", "conditionScore": 0.6, "evidenceSource": "Checklist/photo", "section": "§40" }
+    ],
+    "sourceIds": ["S-IMD-CYCLONE", "S-CUST-ASSET-B"], "assumptionIds": ["ASM-05", "ASM-06", "ASM-07", "ASM-23"], "section": "§40" }
+]

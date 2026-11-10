@@ -1,0 +1,111 @@
+[
+  {
+    "id": "fac-wb-metal",
+    "name": "Metal-components factory, West Bengal",
+    "archetype": "Physical MSME / factory (dossier worked example §26, §62)",
+    "state": "West Bengal", "district": "Howrah (illustrative flood-prone ward)", "pincode": "711000",
+    "lat": 22.59, "lon": 88.31, "geocodeConfidence": 0.93,
+    "builtUpAreaSqft": 25000, "floorCount": 1, "constructionType": "Steel portal frame, brick infill", "yearBuilt": 2004, "roofType": "Metal sheet", "basement": false,
+    "headcountTotal": 180, "headcountPeakShift": 120, "shiftPattern": "Day 120 / Night 60",
+    "revenuePerDay": 1000000, "contributionMargin": 0.30, "mtpdDays": 2, "rtoDays": 2,
+    "power": { "gridDependency": 5, "generatorKva": 250, "fuelAutonomyHours": 12 },
+    "accessRoutes": 2, "primaryIncident": "medical", "requiredCapabilities": ["ALS", "fire"],
+    "criticalSupplier": { "id": "sup-a-steel", "name": "Steel-coil supplier (single critical)", "leadTimeDays": 9, "bufferDays": 5, "dependencyShare": 0.6, "singleSource": true, "route": "NH-16 corridor" },
+    "hazardousInventory": null,
+    "maxExposureBiDays": 90, "maxExposureExtraExpense": 5000000,
+    "replayCaseId": "amphan-2020",
+    "checklist": [
+      { "domain": "Identity", "status": "pass", "note": "Address geocoded, confidence 0.93" },
+      { "domain": "Geometry", "status": "pass", "note": "Point and schematic footprint captured" },
+      { "domain": "Assets", "status": "pass", "note": "7 assets with value, criticality and zone" },
+      { "domain": "Operations", "status": "pass", "note": "2 critical processes with RTO and MTPD" },
+      { "domain": "Utilities", "status": "pass", "note": "Grid dependency 5/5; 250 kVA DG; 12 h fuel" },
+      { "domain": "People", "status": "partial", "note": "Night-shift fire warden unassigned" },
+      { "domain": "Suppliers", "status": "pass", "note": "1 single-source critical supplier flagged" },
+      { "domain": "Hazards", "status": "pass", "note": "Flood, cyclone and power profiles sourced" },
+      { "domain": "Vulnerability", "status": "pass", "note": "Adaptive drivers answered" },
+      { "domain": "Scenarios", "status": "pass", "note": "3 scenarios with visible assumptions" },
+      { "domain": "Financial", "status": "pass", "note": "Revenue and contribution basis declared" },
+      { "domain": "Insurance", "status": "pass", "note": "Policy schedule extracted, confidence 0.92" },
+      { "domain": "Mitigation", "status": "pass", "note": "6 actions with owner and due date" },
+      { "domain": "Verification", "status": "partial", "note": "1 of 4 committed actions verified; 2 of 4 evidence-backed" },
+      { "domain": "Accessibility", "status": "partial", "note": "P50 only; 7 observations, below P90 minimum" },
+      { "domain": "Monitoring", "status": "pass", "note": "Rainfall and wind thresholds configured" },
+      { "domain": "Report", "status": "pass", "note": "Exportable with source appendix" }
+    ],
+    "schematic": {
+      "viewBox": [100, 60],
+      "facility": { "x": 52, "y": 22, "w": 12, "h": 9 },
+      "zones": [
+        { "hazard": "flood", "label": "Historical inundation footprint (schematic)", "points": [[0, 30], [40, 27], [60, 33], [62, 60], [0, 60]] },
+        { "hazard": "cyclone", "label": "Cyclone wind band covers whole site (schematic)", "points": [[0, 0], [100, 0], [100, 60], [0, 60]] }
+      ],
+      "roads": [
+        { "id": "rd-a-primary", "label": "Primary road", "kind": "primary", "points": [[0, 20], [100, 20]] },
+        { "id": "rd-a-secondary", "label": "Secondary road", "kind": "secondary", "points": [[50, 0], [50, 60]] }
+      ],
+      "pois": [
+        { "id": "poi-a-hosp", "label": "District hospital, ALS ambulance base", "kind": "hospital", "at": [78, 8], "resourceId": "r-a-als" },
+        { "id": "poi-a-fire", "label": "Municipal fire station", "kind": "fire_station", "at": [12, 8], "resourceId": "r-a-fire" }
+      ],
+      "note": "Schematic drawing, not a real map (Deck s11)"
+    },
+    "sourceIds": ["S-CUST-ASSET-A", "S-CUST-FIN-A"], "assumptionIds": ["ASM-02", "ASM-03", "ASM-04"], "section": "§26, §62"
+  },
+  {
+    "id": "fac-vz-polymer",
+    "name": "Polymer intermediates plant, Visakhapatnam corridor",
+    "archetype": "Industrial hazardous-materials facility (KD archetype from §35.5, §70)",
+    "state": "Andhra Pradesh", "district": "Visakhapatnam (illustrative industrial estate)", "pincode": "530000",
+    "lat": 17.72, "lon": 83.20, "geocodeConfidence": 0.90,
+    "builtUpAreaSqft": 60000, "floorCount": 2, "constructionType": "RCC process block, steel tank farm", "yearBuilt": 1997, "roofType": "RCC process block; metal-sheet warehouse", "basement": false,
+    "headcountTotal": 240, "headcountPeakShift": 90, "shiftPattern": "3 × 8 h continuous (90 / 80 / 70)",
+    "revenuePerDay": 1500000, "contributionMargin": 0.25, "mtpdDays": 1, "rtoDays": 1,
+    "power": { "gridDependency": 5, "generatorKva": 500, "fuelAutonomyHours": 24 },
+    "accessRoutes": 1, "primaryIncident": "hazmat", "requiredCapabilities": ["ALS", "fire", "hazmat"],
+    "criticalSupplier": { "id": "sup-b-monomer", "name": "Monomer supplier via port (single source)", "leadTimeDays": 21, "bufferDays": 10, "dependencyShare": 0.8, "singleSource": true, "route": "Port road" },
+    "hazardousInventory": { "material": "Styrene-class monomer (illustrative)", "quantityTonnes": 1800, "storage": "Refrigerated atmospheric tank, 1 × 2,000 t", "exclusionRadiusKm": 3, "communityPopulationInZone": 18000 },
+    "maxExposureBiDays": 90, "maxExposureExtraExpense": 5000000,
+    "replayCaseId": "vizag-release-2020",
+    "checklist": [
+      { "domain": "Identity", "status": "pass", "note": "Address geocoded, confidence 0.90" },
+      { "domain": "Geometry", "status": "pass", "note": "Process block, tank farm and warehouse captured" },
+      { "domain": "Assets", "status": "pass", "note": "6 assets incl. hazardous inventory" },
+      { "domain": "Operations", "status": "pass", "note": "2 critical processes with RTO and MTPD" },
+      { "domain": "Utilities", "status": "pass", "note": "Grid dependency 5/5; 500 kVA DG; 24 h fuel" },
+      { "domain": "People", "status": "partial", "note": "Night-shift hazmat responder untrained" },
+      { "domain": "Suppliers", "status": "pass", "note": "Single-source monomer supplier flagged" },
+      { "domain": "Hazards", "status": "partial", "note": "Industrial hazard register dated Dec 2025" },
+      { "domain": "Vulnerability", "status": "pass", "note": "Adaptive drivers answered" },
+      { "domain": "Scenarios", "status": "pass", "note": "3 scenarios with visible assumptions" },
+      { "domain": "Financial", "status": "pass", "note": "Revenue and contribution basis declared" },
+      { "domain": "Insurance", "status": "partial", "note": "Pollution exclusion wording needs adviser review" },
+      { "domain": "Mitigation", "status": "pass", "note": "7 actions with owner and due date" },
+      { "domain": "Verification", "status": "partial", "note": "2 of 3 committed actions evidence-backed" },
+      { "domain": "Accessibility", "status": "pass", "note": "26 partner observations; P50/P90/P95 available" },
+      { "domain": "Monitoring", "status": "pass", "note": "Tank temperature, vapour and wind thresholds configured" },
+      { "domain": "Report", "status": "pass", "note": "Exportable with source appendix" }
+    ],
+    "schematic": {
+      "viewBox": [100, 60],
+      "facility": { "x": 40, "y": 24, "w": 16, "h": 12 },
+      "zones": [
+        { "hazard": "toxic_release", "label": "3 km exclusion radius (schematic, §3.8)", "points": [[68, 30], [62.1, 44.1], [48, 50], [33.9, 44.1], [28, 30], [33.9, 15.9], [48, 10], [62.1, 15.9]] },
+        { "hazard": "fire", "label": "Process block fire zone", "points": [[38, 22], [58, 22], [58, 38], [38, 38]] },
+        { "hazard": "cyclone", "label": "Coastal wind and surge band (schematic)", "points": [[0, 46], [100, 42], [100, 60], [0, 60]] }
+      ],
+      "roads": [
+        { "id": "rd-b-access", "label": "Single access road (industrial estate)", "kind": "primary", "points": [[48, 36], [48, 56]] },
+        { "id": "rd-b-estate", "label": "Estate road", "kind": "secondary", "points": [[0, 56], [100, 56]] }
+      ],
+      "pois": [
+        { "id": "poi-b-a", "label": "Resource A base (BLS ambulance)", "kind": "ambulance_base", "at": [20, 10], "resourceId": "r-b-a" },
+        { "id": "poi-b-b", "label": "Resource B base (ALS ambulance)", "kind": "hospital", "at": [84, 12], "resourceId": "r-b-b" },
+        { "id": "poi-b-c", "label": "Resource C base (fire tender, hazmat)", "kind": "fire_station", "at": [72, 54], "resourceId": "r-b-c" },
+        { "id": "poi-b-comm", "label": "Residential cluster (aggregate)", "kind": "community", "at": [28, 40], "resourceId": null }
+      ],
+      "note": "Schematic drawing, not a real map"
+    },
+    "sourceIds": ["S-CUST-ASSET-B", "S-CUST-FIN-B"], "assumptionIds": ["ASM-23", "ASM-03", "ASM-04"], "section": "KD §35.5, §70; fields §37"
+  }
+]

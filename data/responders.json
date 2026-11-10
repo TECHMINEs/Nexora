@@ -1,0 +1,7 @@
+[
+  { "id": "r-a-als", "facilityId": "fac-wb-metal", "label": "Ambulance (ALS), district hospital base", "type": "ambulance", "capabilities": ["BLS", "ALS"], "distanceKm": 2.8, "currentTravelEstimateMin": 11.0, "currentEstimateSourceId": "S-OSM-ROADS", "sourceId": "S-PARTNER-EMS-HWH", "section": "KD §45" },
+  { "id": "r-a-fire", "facilityId": "fac-wb-metal", "label": "Fire tender, municipal station", "type": "fire_tender", "capabilities": ["fire"], "distanceKm": 6.5, "currentTravelEstimateMin": 17.5, "currentEstimateSourceId": "S-OSM-ROADS", "sourceId": "S-PARTNER-EMS-HWH", "section": "KD §45" },
+  { "id": "r-b-a", "facilityId": "fac-vz-polymer", "label": "Resource A: ambulance (BLS)", "type": "ambulance", "capabilities": ["BLS"], "distanceKm": 3.1, "currentTravelEstimateMin": 9.2, "currentEstimateSourceId": "S-OSM-ROADS", "sourceId": "S-PARTNER-EMS-VZG", "section": "§74.1" },
+  { "id": "r-b-b", "facilityId": "fac-vz-polymer", "label": "Resource B: ambulance (ALS)", "type": "ambulance", "capabilities": ["BLS", "ALS"], "distanceKm": 4.0, "currentTravelEstimateMin": 8.1, "currentEstimateSourceId": "S-OSM-ROADS", "sourceId": "S-PARTNER-EMS-VZG", "section": "§74.1" },
+  { "id": "r-b-c", "facilityId": "fac-vz-polymer", "label": "Resource C: fire tender (hazmat)", "type": "fire_tender", "capabilities": ["fire", "hazmat"], "distanceKm": 5.2, "currentTravelEstimateMin": 14.3, "currentEstimateSourceId": "S-OSM-ROADS", "sourceId": "S-PARTNER-EMS-VZG", "section": "§74.1" }
+]

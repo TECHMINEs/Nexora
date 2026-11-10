@@ -1,0 +1,24 @@
+[
+  { "id": "pol-a-01", "facilityId": "fac-wb-metal", "insurerLabel": "Illustrative insurer", "policyType": "Fire and allied perils with STFI and BI (illustrative)", "perilsCovered": ["fire_explosion", "stfi"], "renewalDate": "2027-01-05",
+    "sections": [
+      { "coverageClass": "building", "covered": true, "sumInsured": 55000000, "deductible": 500000, "perilSublimits": [], "biTimeExcessDays": null, "biIndemnityMonths": null, "biBasisPerDay": null },
+      { "coverageClass": "machinery", "covered": true, "sumInsured": 40000000, "deductible": 500000, "perilSublimits": [], "biTimeExcessDays": null, "biIndemnityMonths": null, "biBasisPerDay": null },
+      { "coverageClass": "stock", "covered": true, "sumInsured": 10000000, "deductible": 200000, "perilSublimits": [{ "peril": "stfi", "limit": 8000000 }], "biTimeExcessDays": null, "biIndemnityMonths": null, "biBasisPerDay": null },
+      { "coverageClass": "bi", "covered": true, "sumInsured": 7500000, "deductible": 0, "perilSublimits": [], "biTimeExcessDays": 3, "biIndemnityMonths": 3, "biBasisPerDay": 300000 },
+      { "coverageClass": "extra_expense", "covered": true, "sumInsured": 1000000, "deductible": 0, "perilSublimits": [], "biTimeExcessDays": null, "biIndemnityMonths": null, "biBasisPerDay": null },
+      { "coverageClass": "contingent_bi", "covered": false, "sumInsured": 0, "deductible": 0, "perilSublimits": [], "biTimeExcessDays": null, "biIndemnityMonths": null, "biBasisPerDay": null }
+    ],
+    "exclusions": ["Contingent business interruption (supplier premises) not covered", "Business interruption requires insured physical damage; utility failure without damage is not an insured peril", "Storm, tempest, flood and inundation (STFI) sublimit on stock: Rs 80 L"],
+    "extractionConfidence": 0.92, "requiresAdviserReview": true, "sourceId": "S-CUST-POLICY-A", "assumptionIds": ["ASM-26", "ASM-03"], "section": "§43.1, §62" },
+  { "id": "pol-b-01", "facilityId": "fac-vz-polymer", "insurerLabel": "Illustrative insurer", "policyType": "Fire and allied perils with STFI and BI (illustrative)", "perilsCovered": ["fire_explosion", "stfi"], "renewalDate": "2027-03-31",
+    "sections": [
+      { "coverageClass": "building", "covered": true, "sumInsured": 50000000, "deductible": 1000000, "perilSublimits": [], "biTimeExcessDays": null, "biIndemnityMonths": null, "biBasisPerDay": null },
+      { "coverageClass": "machinery", "covered": true, "sumInsured": 90000000, "deductible": 1000000, "perilSublimits": [], "biTimeExcessDays": null, "biIndemnityMonths": null, "biBasisPerDay": null },
+      { "coverageClass": "stock", "covered": true, "sumInsured": 20000000, "deductible": 500000, "perilSublimits": [], "biTimeExcessDays": null, "biIndemnityMonths": null, "biBasisPerDay": null },
+      { "coverageClass": "bi", "covered": true, "sumInsured": 20000000, "deductible": 0, "perilSublimits": [], "biTimeExcessDays": 7, "biIndemnityMonths": 6, "biBasisPerDay": 375000 },
+      { "coverageClass": "extra_expense", "covered": true, "sumInsured": 2500000, "deductible": 0, "perilSublimits": [], "biTimeExcessDays": null, "biIndemnityMonths": null, "biBasisPerDay": null },
+      { "coverageClass": "contingent_bi", "covered": false, "sumInsured": 0, "deductible": 0, "perilSublimits": [], "biTimeExcessDays": null, "biIndemnityMonths": null, "biBasisPerDay": null }
+    ],
+    "exclusions": ["Gradual pollution and contamination clean-up excluded", "Toxic release without fire or explosion is not an insured peril", "Contingent business interruption not covered"],
+    "extractionConfidence": 0.88, "requiresAdviserReview": true, "sourceId": "S-CUST-POLICY-B", "assumptionIds": ["ASM-26", "ASM-23"], "section": "KD §43, §73" }
+]
