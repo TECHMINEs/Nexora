@@ -25,12 +25,12 @@ export function CascadeGraph({ cascade }: CascadeGraphProps): JSX.Element {
           {spof.map((s) => (
             <div
               key={s.nodeId}
-              className="flex items-center gap-2 p-2 rounded-md border border-rose-500/40 bg-rose-950/40 text-rose-950 text-xs font-medium"
+              className="flex items-center gap-2 p-2 rounded-md border border-red-500/40 bg-red-950/40 text-red-950 text-xs font-medium"
             >
-              <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+              <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
               <div>
                 <span className="font-bold">{s.label}</span>
-                <span className="font-mono text-[10px] text-rose-400 ml-1">
+                <span className="font-mono text-[10px] text-red-400 ml-1">
                   ({(s.share * 100).toFixed(1)}% chains, {s.chainCount} paths)
                 </span>
               </div>
@@ -59,7 +59,7 @@ export function CascadeGraph({ cascade }: CascadeGraphProps): JSX.Element {
                 <span className="font-semibold text-ink">Pathway #{idx + 1}</span>
                 <div className="flex items-center gap-1.5 font-mono">
                   {c.compound && (
-                    <Badge variant="outline" className="border-orange-500/40 text-orange-400 bg-orange-950/40 text-[10px]">
+                    <Badge variant="outline" className="border-stroke text-white bg-panel-2 text-[10px]">
                       Compound Cyclone-Grid
                     </Badge>
                   )}
@@ -88,7 +88,7 @@ export function CascadeGraph({ cascade }: CascadeGraphProps): JSX.Element {
       </div>
 
       {compoundChains.length > 0 && (
-        <div className="p-3 bg-orange-950/40/50 border border-orange-500/40 rounded-md text-xs text-orange-950">
+        <div className="p-3 bg-panel-2/50 border border-stroke rounded-md text-xs text-white">
           <span className="font-semibold">Compound Pathways Identified: </span>
           {compoundChains.length} sequence(s) intersect utility dependencies spanning &ge; 5 infrastructure nodes.
         </div>

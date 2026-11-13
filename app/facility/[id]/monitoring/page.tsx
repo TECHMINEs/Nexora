@@ -47,7 +47,7 @@ export default function MonitoringPage({
             Operational translation of authoritative regional signals into facility-specific readiness windows.
           </p>
         </div>
-        <Button asChild size="sm" className="bg-brand-500 hover:bg-brand-700 text-white text-xs h-8">
+        <Button asChild size="sm" className="bg-brand-500 hover:bg-brand-500 text-black font-display font-bold uppercase tracking-wider text-xs h-8">
           <Link href="/replay" className="flex items-center gap-1.5">
             <PlayCircle className="w-4 h-4" />
             <span>Open Replay Console</span>
@@ -64,7 +64,7 @@ export default function MonitoringPage({
           <span className="font-semibold text-muted-foreground uppercase text-[10px] tracking-wider">
             Replay Engine State:
           </span>
-          <Badge className="bg-brand-500 text-white font-mono text-xs">
+          <Badge className="bg-brand-500 text-black font-mono text-xs">
             {replayStatus.state}
           </Badge>
           <span className="text-muted-foreground">

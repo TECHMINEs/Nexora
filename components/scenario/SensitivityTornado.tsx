@@ -57,11 +57,11 @@ export function SensitivityTornado({ result }: SensitivityTornadoProps): JSX.Ele
                 'Loss Swing Range',
               ]}
             />
-            <Bar dataKey="swing" fill="#00FFFF" radius={0}>
+            <Bar dataKey="swing" fill="#FFFFFF" radius={0}>
               {chartData.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
-                  fill={entry.outside ? '#FF5F1F' : '#00FFFF'}
+                  fill={entry.outside ? '#FF2626' : '#FFFFFF'}
                 />
               ))}
             </Bar>
@@ -75,7 +75,7 @@ export function SensitivityTornado({ result }: SensitivityTornadoProps): JSX.Ele
           {result.ranking.map((r, i) => `${i + 1}. ${driverLabels[r]}`).join(' > ')}
         </div>
         {chartData.some((d) => d.outside) && (
-          <p className="text-amber-400 text-[10px] pt-1">
+          <p className="text-white text-[10px] pt-1">
             Highlighted drivers contain baseline scenario values outside standard §42.1 test bounds.
           </p>
         )}

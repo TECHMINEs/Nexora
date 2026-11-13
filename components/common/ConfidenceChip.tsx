@@ -19,9 +19,9 @@ export function ConfidenceChip({
   const formatted = formatConfidence(confidence);
 
   const tierClasses = {
-    strong: 'bg-emerald-950/40 text-emerald-400 border-emerald-500/40 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800',
-    fair: 'bg-amber-950/40 text-amber-400 border-amber-500/40 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-800',
-    weak: 'bg-rose-950/40 text-rose-400 border-rose-500/40 dark:bg-rose-950/40 dark:text-rose-400 dark:border-rose-800',
+    strong: 'bg-green-950/40 text-green-400 border-green-500/40 dark:bg-green-950/40 dark:text-green-400 dark:border-green-800',
+    fair: 'bg-panel-2 text-white border-stroke dark:bg-panel-2 dark:text-white dark:border-stroke',
+    weak: 'bg-red-950/40 text-red-400 border-red-500/40 dark:bg-red-950/40 dark:text-red-400 dark:border-red-800',
   }[tier];
 
   return (

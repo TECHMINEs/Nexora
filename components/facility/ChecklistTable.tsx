@@ -60,9 +60,9 @@ export function ChecklistTable({
             {items.map((item) => {
               const link = getDomainLink(item.domain);
               const statusBadge = {
-                pass: <Badge className="bg-emerald-950/40 text-emerald-400 border-emerald-500/40">Pass</Badge>,
-                partial: <Badge className="bg-amber-950/40 text-amber-400 border-amber-500/40">Partial</Badge>,
-                fail: <Badge className="bg-rose-950/40 text-rose-400 border-rose-500/40">Fail</Badge>,
+                pass: <Badge className="bg-green-950/40 text-green-400 border-green-500/40">Pass</Badge>,
+                partial: <Badge className="bg-panel-2 text-white border-stroke">Partial</Badge>,
+                fail: <Badge className="bg-red-950/40 text-red-400 border-red-500/40">Fail</Badge>,
               }[item.status];
 
               return (

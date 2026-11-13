@@ -21,7 +21,7 @@ export function PolicyScheduleCard({ policy }: PolicyScheduleCardProps): JSX.Ele
               Insurer: {policy.insurerLabel} &bull; Renewal: {policy.renewalDate}
             </p>
           </div>
-          <Badge variant="outline" className="border-amber-400 text-amber-400 bg-amber-950/40 font-semibold text-[10px]">
+          <Badge variant="outline" className="border-stroke text-white bg-panel-2 font-semibold text-[10px]">
             Requires Adviser Review
           </Badge>
         </div>
@@ -56,7 +56,7 @@ export function PolicyScheduleCard({ policy }: PolicyScheduleCardProps): JSX.Ele
         {/* Exclusions */}
         <div className="space-y-1.5 pt-2 border-t border-line/60">
           <span className="font-semibold text-ink flex items-center gap-1.5">
-            <AlertCircle className="w-3.5 h-3.5 text-rose-600" />
+            <AlertCircle className="w-3.5 h-3.5 text-red-600" />
             Key Clauses & Exclusions Extracted
           </span>
           <ul className="list-disc pl-4 space-y-1 text-muted-foreground text-[11px]">

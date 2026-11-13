@@ -36,9 +36,9 @@ export function IncidentSelector({
       <div className="p-2.5 bg-canvas rounded border border-line/70 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           {selection.selectedResourceId ? (
-            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+            <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0" />
           ) : (
-            <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+            <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
           )}
           <div>
             <span className="text-muted-foreground">Selected Unit: </span>

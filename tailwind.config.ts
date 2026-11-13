@@ -17,6 +17,11 @@ const config: Config = {
     },
     extend: {
       colors: {
+        // TECHMINES portfolio tokens (techmines.github.io)
+        panel: { DEFAULT: '#0E0E0E', 2: '#171717' },
+        stroke: '#4D4D4D',
+        dim: '#A9A9A9',
+        body: '#E2E2E2',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -41,7 +46,7 @@ const config: Config = {
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
-          500: '#FF5F1F',
+          500: '#A9A9A9',
           700: '#C2410C',
         },
         popover: {
@@ -54,16 +59,16 @@ const config: Config = {
         },
         // Dark-theme brand scale: low shades are deep red tints (surfaces), high shades are bright
         // reds (text) so legacy light-theme pairings like bg-brand-50 + text-brand-900 stay legible.
-        brand: { 50: '#140000', 100: '#1F0303', 200: '#7F1D1D', 300: '#991B1B', 500: '#FF0000', 700: '#FF3B3B', 900: '#FF6B6B' },
-        canvas: '#000000', ink: '#FFFFFF', line: 'rgba(255, 0, 0, 0.25)',
-        band: { high: '#FF0000', medium: '#FF5F1F', low: '#39FF14', unknown: '#777777' },
-        conf: { strong: '#39FF14', fair: '#FF5F1F', weak: '#FF0000' },
-        gap: { protected: '#00FFFF', exposed: '#FF0000' },
+        brand: { 50: '#140000', 100: '#1F0303', 200: '#2E2E2E', 300: '#991B1B', 500: '#FF2626', 700: '#FF3B3B', 900: '#FF6B6B' },
+        canvas: '#000000', ink: '#FFFFFF', line: '#2E2E2E',
+        band: { high: '#FF2626', medium: '#A9A9A9', low: '#39FF14', unknown: '#777777' },
+        conf: { strong: '#39FF14', fair: '#A9A9A9', weak: '#FF2626' },
+        gap: { protected: '#FFFFFF', exposed: '#FF2626' },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['JetBrains Mono', 'ui-monospace', 'monospace'],
-        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'],
+        display: ['var(--font-chakra)', '"Chakra Petch"', '"Arial Narrow"', 'sans-serif'],
+        sans: ['var(--font-plex)', '"IBM Plex Sans"', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-jetbrains)', '"JetBrains Mono"', 'ui-monospace', 'Menlo', 'monospace'],
       },
     },
   },

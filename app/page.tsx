@@ -151,7 +151,7 @@ export default function PortfolioPage(): JSX.Element {
                         <TrackedCell tracked={row.accessibility} kind="score100" facilityId={row.facilityId} />
                       </div>
                       {row.accessPartial && (
-                        <span className="text-[10px] text-amber-400 font-medium">
+                        <span className="text-[10px] text-white font-medium">
                           Partial: reliability needs n ≥ 6
                         </span>
                       )}
@@ -214,9 +214,9 @@ export default function PortfolioPage(): JSX.Element {
                   ];
                 }}
               />
-              <Bar dataKey="gapRupees" fill="#FF0000" radius={0}>
+              <Bar dataKey="gapRupees" fill="#FF2626" radius={0}>
                 {chartData.map((_entry, index) => (
-                  <Cell key={`cell-${index}`} fill="#FF0000" stroke="#FF5F1F" strokeWidth={1} />
+                  <Cell key={`cell-${index}`} fill="#FF2626" stroke="#A9A9A9" strokeWidth={1} />
                 ))}
               </Bar>
             </BarChart>

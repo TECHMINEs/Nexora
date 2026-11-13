@@ -21,7 +21,7 @@ export function ScenarioControls({
         <div className="flex items-center gap-2">
           <span className="font-semibold text-ink">Stress Testing Sliders</span>
           {override && (
-            <Badge variant="outline" className="border-accent-500 text-accent-700 bg-orange-950/40 font-mono text-[10px]">
+            <Badge variant="outline" className="border-accent-500 text-accent-700 bg-panel-2 font-mono text-[10px]">
               Override Active
             </Badge>
           )}

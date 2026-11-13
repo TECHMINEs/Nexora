@@ -184,7 +184,7 @@ export default function EvidenceReportPage({
             </span>
             <Badge
               variant="outline"
-              className={isPostMortem ? 'border-emerald-500/40 text-emerald-400' : 'text-muted-foreground'}
+              className={isPostMortem ? 'border-green-500/40 text-green-400' : 'text-muted-foreground'}
             >
               {isPostMortem ? 'Post-Mortem Validated' : 'Pending Replay Post-Mortem'}
             </Badge>
@@ -209,7 +209,7 @@ export default function EvidenceReportPage({
               <span className="text-muted-foreground text-[11px] block">Post-Disaster Recalibrated</span>
               <div className="flex items-center gap-1">
                 <TrackedCell tracked={outcome.recalibrated} kind="inr" facilityId={facilityId} />
-                <span className="font-mono text-[10px] text-emerald-400">
+                <span className="font-mono text-[10px] text-green-400">
                   ({(outcome.recalibratedError * 100).toFixed(1)}%)
                 </span>
               </div>

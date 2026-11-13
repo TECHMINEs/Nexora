@@ -13,7 +13,7 @@ export default function NotFound(): JSX.Element {
           The requested resilience dossier does not exist or is not configured in this demonstration.
         </p>
       </div>
-      <Button asChild className="bg-brand-500 hover:bg-brand-700 text-white">
+      <Button asChild className="bg-brand-500 hover:bg-brand-500 text-black font-display font-bold uppercase tracking-wider">
         <Link href="/">Back to Portfolio Intelligence</Link>
       </Button>
     </div>

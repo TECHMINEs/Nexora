@@ -39,13 +39,13 @@ export function ThresholdTable({
                   {th.signal}
                 </TableCell>
                 <TableCell className="text-muted-foreground">{th.unit}</TableCell>
-                <TableCell className="font-mono text-amber-400 bg-amber-950/40/40">
+                <TableCell className="font-mono text-white bg-panel-2/40">
                   &ge; {th.watchAt} {th.unit}
                 </TableCell>
-                <TableCell className="font-mono text-orange-400 bg-orange-950/40/40">
+                <TableCell className="font-mono text-white bg-panel-2/40">
                   &ge; {th.alertAt} {th.unit}
                 </TableCell>
-                <TableCell className="font-mono text-rose-400 bg-rose-950/40/40">
+                <TableCell className="font-mono text-red-400 bg-red-950/40/40">
                   {th.incidentAt !== null ? `≥ ${th.incidentAt} ${th.unit}` : 'Site Intersection'}
                 </TableCell>
                 <TableCell className="text-right font-mono font-bold">
@@ -54,9 +54,9 @@ export function ThresholdTable({
                       variant="outline"
                       className={
                         isIncident
-                          ? 'border-rose-400 bg-rose-950/40 text-rose-400 font-bold'
+                          ? 'border-red-400 bg-red-950/40 text-red-400 font-bold'
                           : isAlert
-                          ? 'border-orange-400 bg-orange-950/40 text-orange-400 font-bold'
+                          ? 'border-stroke bg-panel-2 text-white font-bold'
                           : 'border-line text-ink'
                       }
                     >

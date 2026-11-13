@@ -177,11 +177,11 @@ export default function FacilityOverviewPage({
 
           {/* People Exposure Card (Only for facilities with hazardous inventory) */}
           {facility.hazardousInventory && (
-            <Card className="bg-card border-line shadow-sm border-amber-500/40 bg-amber-950/40/20">
-              <CardHeader className="pb-3 border-b border-amber-500/40/60">
+            <Card className="bg-card border-line shadow-sm border-stroke bg-panel-2/20">
+              <CardHeader className="pb-3 border-b border-stroke/60">
                 <div className="flex items-center gap-1.5">
-                  <ShieldAlert className="w-4 h-4 text-amber-400" />
-                  <CardTitle className="text-sm font-bold text-amber-950">People & Community Exposure</CardTitle>
+                  <ShieldAlert className="w-4 h-4 text-white" />
+                  <CardTitle className="text-sm font-bold text-white">People & Community Exposure</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="pt-3 space-y-2 text-xs">
@@ -195,11 +195,11 @@ export default function FacilityOverviewPage({
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">Exclusion Radius:</span>
-                  <Badge variant="outline" className="border-amber-400 text-amber-400 font-mono">
+                  <Badge variant="outline" className="border-stroke text-white font-mono">
                     {facility.hazardousInventory.exclusionRadiusKm} km
                   </Badge>
                 </div>
-                <div className="flex items-center justify-between pt-1 border-t border-amber-500/40/50">
+                <div className="flex items-center justify-between pt-1 border-t border-stroke/50">
                   <span className="text-muted-foreground">Community Population in Zone:</span>
                   <span className="font-bold text-band-high font-mono">
                     {facility.hazardousInventory.communityPopulationInZone.toLocaleString('en-IN')}

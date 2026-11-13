@@ -17,17 +17,17 @@ export function SchematicMap({
   const hazardColor = (hazard: string) => {
     switch (hazard) {
       case 'flood':
-        return { fill: 'rgba(56, 189, 248, 0.25)', stroke: '#00FFFF' };
+        return { fill: 'rgba(255, 255, 255, 0.10)', stroke: '#FFFFFF' };
       case 'toxic_release':
-        return { fill: 'rgba(239, 68, 68, 0.25)', stroke: '#b91c1c' };
+        return { fill: 'rgba(255, 38, 38, 0.25)', stroke: '#FF2626' };
       case 'cyclone':
-        return { fill: 'rgba(168, 85, 247, 0.15)', stroke: '#FF5F1F' };
+        return { fill: 'rgba(169, 169, 169, 0.12)', stroke: '#A9A9A9' };
       case 'fire':
-        return { fill: 'rgba(249, 115, 22, 0.25)', stroke: '#c2410c' };
+        return { fill: 'rgba(255, 38, 38, 0.10)', stroke: '#F5141F' };
       case 'power':
-        return { fill: 'rgba(234, 179, 8, 0.20)', stroke: '#a16207' };
+        return { fill: 'rgba(255, 255, 255, 0.05)', stroke: '#4D4D4D' };
       default:
-        return { fill: 'rgba(100, 116, 139, 0.2)', stroke: '#7F1D1D' };
+        return { fill: 'rgba(77, 77, 77, 0.2)', stroke: '#2E2E2E' };
     }
   };
 
@@ -42,7 +42,7 @@ export function SchematicMap({
           {/* Grid lines */}
           <defs>
             <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#1A0000" strokeWidth="0.5" />
+              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#171717" strokeWidth="0.5" />
             </pattern>
           </defs>
           <rect width={vbW} height={vbH} fill="url(#grid)" />
@@ -84,7 +84,7 @@ export function SchematicMap({
                 key={road.id}
                 points={pts}
                 fill="none"
-                stroke={road.kind === 'primary' ? '#7F1D1D' : '#A3A3A3'}
+                stroke={road.kind === 'primary' ? '#4D4D4D' : '#2E2E2E'}
                 strokeWidth={road.kind === 'primary' ? '2.5' : '1.5'}
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -98,8 +98,8 @@ export function SchematicMap({
             y={layout.facility.y}
             width={layout.facility.w}
             height={layout.facility.h}
-            fill="#00FFFF"
-            stroke="#DC2626"
+            fill="#FFFFFF"
+            stroke="#F5141F"
             strokeWidth="1"
             rx="1"
           />
@@ -128,7 +128,7 @@ export function SchematicMap({
                   cx={poi.at[0]}
                   cy={poi.at[1]}
                   r={isSelected ? 3.5 : 2.5}
-                  fill={isSelected ? '#FF5F1F' : '#008B8B'}
+                  fill={isSelected ? '#FF2626' : '#4D4D4D'}
                   stroke="#FFFFFF"
                   strokeWidth="0.75"
                 />

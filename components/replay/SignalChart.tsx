@@ -40,10 +40,10 @@ export function SignalChart({
   );
 
   const signalColors: Record<string, string> = {
-    rain24hMm: '#00FFFF',
-    windKmh: '#FF5F1F',
-    tankTempC: '#c2410c',
-    vapourPpm: '#b91c1c',
+    rain24hMm: '#FFFFFF',
+    windKmh: '#A9A9A9',
+    tankTempC: '#FF2626',
+    vapourPpm: '#C40F18',
   };
 
   return (
@@ -71,13 +71,13 @@ export function SignalChart({
               <ReferenceLine
                 key={`alert-${th.signal}`}
                 y={th.alertAt}
-                stroke="#c2410c"
+                stroke="#FF2626"
                 strokeDasharray="3 3"
                 label={{
                   value: `${th.signal} Alert (≥${th.alertAt})`,
                   position: 'top',
                   fontSize: 9,
-                  fill: '#c2410c',
+                  fill: '#FF2626',
                 }}
               />
             ))}
@@ -87,7 +87,7 @@ export function SignalChart({
                 key={sig}
                 type="monotone"
                 dataKey={sig}
-                stroke={signalColors[sig] ?? '#00FFFF'}
+                stroke={signalColors[sig] ?? '#FFFFFF'}
                 strokeWidth={2}
                 dot={{ r: 3 }}
                 activeDot={{ r: 5 }}

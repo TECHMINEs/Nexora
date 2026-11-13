@@ -23,13 +23,13 @@ export function AlertQualityChecks({ checks }: AlertQualityChecksProps): JSX.Ele
               <TableCell className="font-semibold text-ink">{c.label}</TableCell>
               <TableCell className="text-center">
                 {c.pass ? (
-                  <Badge variant="outline" className="border-emerald-500/40 text-emerald-400 bg-emerald-950/40 text-[10px] inline-flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                  <Badge variant="outline" className="border-green-500/40 text-green-400 bg-green-950/40 text-[10px] inline-flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3 text-green-600" />
                     <span>Pass</span>
                   </Badge>
                 ) : (
-                  <Badge variant="outline" className="border-rose-500/40 text-rose-400 bg-rose-950/40 text-[10px] inline-flex items-center gap-1">
-                    <XCircle className="w-3 h-3 text-rose-600" />
+                  <Badge variant="outline" className="border-red-500/40 text-red-400 bg-red-950/40 text-[10px] inline-flex items-center gap-1">
+                    <XCircle className="w-3 h-3 text-red-600" />
                     <span>Fail</span>
                   </Badge>
                 )}

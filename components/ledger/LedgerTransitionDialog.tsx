@@ -86,8 +86,8 @@ export function LedgerTransitionDialog({
 
         <form onSubmit={handleSubmit} className="space-y-4 pt-2">
           {errorMsg && (
-            <div className="p-3 bg-rose-950/40 border border-rose-500/40 rounded-md text-rose-400 text-xs flex items-start gap-2">
-              <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+            <div className="p-3 bg-red-950/40 border border-red-500/40 rounded-md text-red-400 text-xs flex items-start gap-2">
+              <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
               <span>{errorMsg}</span>
             </div>
           )}
@@ -244,7 +244,7 @@ export function LedgerTransitionDialog({
             <Button
               type="submit"
               size="sm"
-              className="bg-brand-500 hover:bg-brand-700 text-white text-xs h-8"
+              className="bg-brand-500 hover:bg-brand-500 text-black font-display font-bold uppercase tracking-wider text-xs h-8"
             >
               Submit Transition
             </Button>

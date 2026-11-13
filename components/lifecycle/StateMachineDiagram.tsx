@@ -30,13 +30,13 @@ export function StateMachineDiagram({
                 isCurrent
                   ? 'border-brand-500 bg-brand-50 shadow-md ring-2 ring-brand-500'
                   : isVisited
-                  ? 'border-emerald-500/40 bg-emerald-950/40/50'
+                  ? 'border-green-500/40 bg-green-950/40/50'
                   : 'border-line bg-card opacity-60'
               )}
             >
               <div className="flex items-center justify-between">
                 <span className="font-mono text-[10px] text-muted-foreground">0{idx + 1}</span>
-                {isVisited && <ShieldCheck className="w-3 h-3 text-emerald-600" />}
+                {isVisited && <ShieldCheck className="w-3 h-3 text-green-600" />}
               </div>
 
               <div className="font-bold text-xs font-mono text-ink tracking-tight">

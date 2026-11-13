@@ -58,7 +58,7 @@ export function SideNav({ activeFacilityId }: SideNavProps): JSX.Element {
                 className={cn(
                   'flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-xs font-medium transition-colors',
                   active
-                    ? 'bg-brand-500 text-white font-semibold shadow-sm'
+                    ? 'bg-brand-500 text-black font-semibold'
                     : 'text-muted-foreground hover:text-ink hover:bg-canvas'
                 )}
               >
@@ -85,7 +85,7 @@ export function SideNav({ activeFacilityId }: SideNavProps): JSX.Element {
                 className={cn(
                   'flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-xs font-medium transition-colors',
                   active
-                    ? 'bg-brand-500 text-white font-semibold shadow-sm'
+                    ? 'bg-brand-500 text-black font-semibold'
                     : 'text-muted-foreground hover:text-ink hover:bg-canvas'
                 )}
               >

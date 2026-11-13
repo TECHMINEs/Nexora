@@ -164,7 +164,7 @@ function LedgerContent({ facilityId }: { facilityId: FacilityId }): JSX.Element 
                 <Button
                   size="sm"
                   onClick={() => setDialogOpen(true)}
-                  className="bg-brand-500 hover:bg-brand-700 text-white text-xs h-8 self-start sm:self-auto"
+                  className="bg-brand-500 hover:bg-brand-500 text-black font-display font-bold uppercase tracking-wider text-xs h-8 self-start sm:self-auto"
                 >
                   Execute Transition
                 </Button>

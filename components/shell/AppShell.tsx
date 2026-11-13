@@ -23,11 +23,11 @@ export function AppShell({ children }: AppShellProps): JSX.Element {
     : 'fac-wb-metal';
 
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white">
+    <div className="min-h-screen flex flex-col text-white">
       <DemoBanner />
 
       {/* Top bar on small screens */}
-      <header className="md:hidden flex items-center justify-between gap-2 p-3 bg-black border-b border-red-900/40 no-print">
+      <header className="md:hidden flex items-center justify-between gap-2 p-3 bg-black border-b border-line no-print">
         <div className="flex items-center gap-2 shrink-0">
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
@@ -35,14 +35,14 @@ export function AppShell({ children }: AppShellProps): JSX.Element {
                 <Menu className="w-4 h-4" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="p-0 w-64 bg-black border-r border-red-900/50">
+            <SheetContent side="left" className="p-0 w-64 bg-black border-r border-line">
               <SideNav activeFacilityId={activeFacilityId} />
             </SheetContent>
           </Sheet>
           <div className="flex items-center gap-2">
-            <Image src="/techmines-logo.jpg" alt="TECHMINES logo" width={24} height={24} className="w-6 h-6 object-cover" />
-            <span className="font-mono font-bold text-sm tracking-tight text-white">
-              NEXORA <span className="text-[#FF0000]">PLASMA</span>
+            <Image src="/logo-mark.svg" alt="Nexora logo" width={28} height={28} className="w-7 h-7" unoptimized />
+            <span className="font-display font-bold text-base tracking-[0.03em] uppercase text-white">
+              NEX<span className="text-[#FF2626]">ORA</span>
             </span>
           </div>
         </div>
@@ -53,20 +53,15 @@ export function AppShell({ children }: AppShellProps): JSX.Element {
 
       <div className="flex-1 flex">
         {/* Desktop Sidebar 240px */}
-        <aside className="hidden md:flex flex-col sticky top-11 h-[calc(100dvh-2.75rem)] w-[240px] shrink-0 bg-black border-r border-red-900/40 no-print">
-          <div className="p-4 border-b border-red-900/40 flex items-center gap-3">
-            <div className="w-10 h-10 bg-black border border-[#FF0000] p-1 flex items-center justify-center shadow-[0_0_12px_rgba(255,0,0,0.5)] flex-shrink-0">
-              <Image src="/techmines-logo.jpg" alt="TECHMINES logo" width={40} height={40} className="w-full h-full object-cover" />
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="font-mono font-black text-base text-white tracking-wider block leading-tight">
-                  NEX<span className="text-[#FF0000]">ORA</span>
-                </span>
-                <span className="bg-[#FF0000] text-black text-[8px] font-black px-1 uppercase font-mono">PLASMA</span>
-              </div>
-              <span className="text-[10px] uppercase font-mono text-[#00FFFF] tracking-wider block">
-                Resilience Engine
+        <aside className="hidden md:flex flex-col sticky top-11 h-[calc(100dvh-2.75rem)] w-[240px] shrink-0 bg-black/80 backdrop-blur-xl border-r border-line no-print">
+          <div className="p-4 border-b border-line flex items-center gap-3">
+            <Image src="/logo-mark.svg" alt="Nexora logo" width={40} height={40} className="w-10 h-10 flex-shrink-0" unoptimized />
+            <div className="grid leading-none">
+              <span className="font-display font-bold text-xl tracking-[0.03em] text-white uppercase">
+                Nex<span className="text-[#FF2626]">ora</span>
+              </span>
+              <span className="mt-1 text-[10px] font-mono font-bold tracking-[0.22em] text-[#FF2626] uppercase">
+                By TECHMINES
               </span>
             </div>
           </div>
@@ -76,12 +71,12 @@ export function AppShell({ children }: AppShellProps): JSX.Element {
 
           <div className="p-2 border-t border-neutral-900 text-[10px] text-neutral-500 font-mono flex justify-between bg-black">
             <span>Clock: Oct 7, 2026</span>
-            <span className="text-[#FF5F1F]">risk-v0.3.1</span>
+            <span className="text-white">risk-v0.3.1</span>
           </div>
         </aside>
 
         {/* Main Content Area: max-width 1200px */}
-        <main className="flex-1 min-w-0 bg-black">
+        <main className="flex-1 min-w-0">
           <div className="max-w-[1200px] mx-auto p-4 md:p-6 lg:p-8 space-y-6">
             {children}
           </div>

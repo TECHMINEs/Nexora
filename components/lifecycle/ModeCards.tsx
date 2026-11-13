@@ -73,7 +73,7 @@ export function ModeCards({ facilityId, current }: ModeCardsProps): JSX.Element 
                     )}
                   />
                   {isActive && (
-                    <span className="text-[10px] font-bold font-mono uppercase px-1.5 py-0.5 rounded bg-brand-500 text-white">
+                    <span className="text-[10px] font-bold font-mono uppercase px-1.5 py-0.5 rounded bg-brand-500 text-black">
                       Active
                     </span>
                   )}
