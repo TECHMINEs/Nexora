@@ -55,14 +55,14 @@ export function ResourceTable({ stats }: ResourceTableProps): JSX.Element {
                 {st.totalP90 !== null ? (
                   `${st.totalP90.toFixed(2)} min`
                 ) : (
-                  <span className="text-amber-400 text-[10px] italic">Insufficient (n &lt; 6)</span>
+                  <span className="text-white text-[10px] italic">Insufficient (n &lt; 6)</span>
                 )}
               </TableCell>
               <TableCell className="font-mono text-ink">
                 {st.totalP95 !== null ? (
                   `${st.totalP95.toFixed(2)} min`
                 ) : (
-                  <span className="text-amber-400 text-[10px] italic">Insufficient (n &lt; 10)</span>
+                  <span className="text-white text-[10px] italic">Insufficient (n &lt; 10)</span>
                 )}
               </TableCell>
               <TableCell className="text-right">

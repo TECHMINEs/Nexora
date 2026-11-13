@@ -18,13 +18,13 @@ export function LedgerTable({
   });
 
   const stateColors: Record<LedgerState, string> = {
-    recommended: 'bg-[#0a0a0a] text-neutral-200 border-red-900/40',
-    accepted: 'bg-cyan-950/40 text-cyan-400 border-cyan-500/40',
-    in_procurement: 'bg-orange-950/40 text-orange-400 border-orange-500/40',
-    implemented: 'bg-amber-950/40 text-amber-400 border-amber-500/40',
-    verified: 'bg-emerald-950/40 text-emerald-400 border-emerald-500/40',
-    drift_detected: 'bg-rose-950/40 text-rose-400 border-rose-500/40',
-    retired: 'bg-[#0a0a0a] text-neutral-400 border-red-900/40 line-through',
+    recommended: 'bg-[#0a0a0a] text-neutral-200 border-line',
+    accepted: 'bg-panel-2 text-white border-stroke',
+    in_procurement: 'bg-panel-2 text-white border-stroke',
+    implemented: 'bg-panel-2 text-white border-stroke',
+    verified: 'bg-green-950/40 text-green-400 border-green-500/40',
+    drift_detected: 'bg-red-950/40 text-red-400 border-red-500/40',
+    retired: 'bg-[#0a0a0a] text-neutral-400 border-line line-through',
   };
 
   return (

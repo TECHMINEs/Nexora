@@ -159,7 +159,7 @@ export function AssumptionDrawer({
                     </div>
 
                     {src!.knownLimitations && (
-                      <p className="text-amber-400 dark:text-amber-400 bg-amber-950/40 dark:bg-amber-950/30 p-2 rounded text-[11px]">
+                      <p className="text-white dark:text-white bg-panel-2 dark:bg-panel-2 p-2 rounded text-[11px]">
                         <span className="font-semibold">Known limitations: </span>
                         {src!.knownLimitations}
                       </p>

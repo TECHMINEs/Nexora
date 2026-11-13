@@ -54,28 +54,28 @@ export function BcpPanel({ bcp }: BcpPanelProps): JSX.Element {
               {bcp.roles.map((r, idx) => (
                 <TableRow
                   key={idx}
-                  className={!r.assigned ? 'bg-rose-950/40/70 font-medium' : undefined}
+                  className={!r.assigned ? 'bg-red-950/40/70 font-medium' : undefined}
                 >
                   <TableCell className="font-medium text-ink">{r.role}</TableCell>
                   <TableCell className="text-muted-foreground">{r.shift}</TableCell>
                   <TableCell className="text-center">
                     {r.assigned ? (
-                      <Badge variant="outline" className="border-emerald-500/40 text-emerald-400 bg-emerald-950/40 text-[10px]">
+                      <Badge variant="outline" className="border-green-500/40 text-green-400 bg-green-950/40 text-[10px]">
                         Assigned
                       </Badge>
                     ) : (
-                      <Badge variant="outline" className="border-rose-400 text-rose-400 bg-rose-950/40 font-bold text-[10px]">
+                      <Badge variant="outline" className="border-red-400 text-red-400 bg-red-950/40 font-bold text-[10px]">
                         Unassigned (Gap)
                       </Badge>
                     )}
                   </TableCell>
                   <TableCell className="text-center">
                     {r.trained ? (
-                      <Badge variant="outline" className="border-emerald-500/40 text-emerald-400 bg-emerald-950/40 text-[10px]">
+                      <Badge variant="outline" className="border-green-500/40 text-green-400 bg-green-950/40 text-[10px]">
                         Trained
                       </Badge>
                     ) : (
-                      <Badge variant="outline" className="border-amber-500/40 text-amber-400 bg-amber-950/40 text-[10px]">
+                      <Badge variant="outline" className="border-stroke text-white bg-panel-2 text-[10px]">
                         Pending Training
                       </Badge>
                     )}

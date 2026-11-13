@@ -22,7 +22,7 @@ export function OutcomePanel({
             variant="outline"
             className={
               reached
-                ? 'border-emerald-400 bg-emerald-950/40 text-emerald-400'
+                ? 'border-green-400 bg-green-950/40 text-green-400'
                 : 'border-line text-muted-foreground'
             }
           >
@@ -53,7 +53,7 @@ export function OutcomePanel({
                 <span className="text-muted-foreground text-[11px] block">Post-Event Recalibrated</span>
                 <div className="flex items-center gap-1">
                   <TrackedCell tracked={outcome.recalibrated} kind="inr" facilityId={replayCase.facilityId} />
-                  <span className="font-mono text-[10px] text-emerald-400">
+                  <span className="font-mono text-[10px] text-green-400">
                     ({(outcome.recalibratedError * 100).toFixed(1)}%)
                   </span>
                 </div>

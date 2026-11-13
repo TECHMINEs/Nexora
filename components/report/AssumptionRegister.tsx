@@ -21,7 +21,7 @@ export function AssumptionRegister({ assumptions }: AssumptionRegisterProps): JS
         </TableHeader>
         <TableBody>
           {assumptions.map((asm) => (
-            <TableRow key={asm.id} id={asm.id} className="scroll-mt-16 target:bg-amber-950/40">
+            <TableRow key={asm.id} id={asm.id} className="scroll-mt-16 target:bg-panel-2">
               <TableCell className="font-mono font-bold text-brand-900">
                 <a href={`#${asm.id}`} className="hover:underline">
                   {asm.id}

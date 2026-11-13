@@ -21,7 +21,7 @@ export function SourceRegister({ rows }: SourceRegisterProps): JSX.Element {
         </TableHeader>
         <TableBody>
           {rows.map(({ source, result }) => (
-            <TableRow key={source.id} className={result.gated ? 'bg-rose-950/40/60' : undefined}>
+            <TableRow key={source.id} className={result.gated ? 'bg-red-950/40/60' : undefined}>
               <TableCell className="font-mono font-bold text-brand-900">
                 {source.id}
               </TableCell>
@@ -36,11 +36,11 @@ export function SourceRegister({ rows }: SourceRegisterProps): JSX.Element {
               <TableCell className="capitalize text-muted-foreground">{source.authority}</TableCell>
               <TableCell>
                 {result.gated ? (
-                  <Badge variant="outline" className="border-rose-400 bg-rose-950/40 text-rose-400 font-bold text-[10px]">
+                  <Badge variant="outline" className="border-red-400 bg-red-950/40 text-red-400 font-bold text-[10px]">
                     Licence uncertain: not production-ready
                   </Badge>
                 ) : (
-                  <Badge variant="outline" className="border-emerald-500/40 bg-emerald-950/40 text-emerald-400 text-[10px]">
+                  <Badge variant="outline" className="border-green-500/40 bg-green-950/40 text-green-400 text-[10px]">
                     Established
                   </Badge>
                 )}

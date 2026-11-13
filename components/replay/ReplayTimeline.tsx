@@ -48,7 +48,7 @@ export function ReplayTimeline({
             size="sm"
             onClick={() => onStep(1)}
             disabled={stepIndex >= steps.length - 1}
-            className="bg-brand-500 hover:bg-brand-700 text-white h-8 text-xs flex items-center gap-1"
+            className="bg-brand-500 hover:bg-brand-500 text-black font-display font-bold uppercase tracking-wider h-8 text-xs flex items-center gap-1"
           >
             <SkipForward className="w-3.5 h-3.5" />
             <span>Step Forward</span>
@@ -81,7 +81,7 @@ export function ReplayTimeline({
                 isCurrent
                   ? 'border-brand-500 bg-brand-50 shadow-sm ring-1 ring-brand-500'
                   : isPassed
-                  ? 'border-emerald-500/40 bg-emerald-950/40/40'
+                  ? 'border-green-500/40 bg-green-950/40/40'
                   : 'border-line/70 bg-canvas opacity-70'
               )}
             >
@@ -97,9 +97,9 @@ export function ReplayTimeline({
                   className={cn(
                     'text-[9px] px-1 py-0 font-mono font-semibold',
                     logEntry.to === 'INCIDENT'
-                      ? 'border-rose-400 bg-rose-950/40 text-rose-400'
+                      ? 'border-red-400 bg-red-950/40 text-red-400'
                       : logEntry.to === 'ALERT'
-                      ? 'border-orange-400 bg-orange-950/40 text-orange-400'
+                      ? 'border-stroke bg-panel-2 text-white'
                       : 'border-line text-ink'
                   )}
                 >

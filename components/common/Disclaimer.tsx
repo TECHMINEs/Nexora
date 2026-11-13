@@ -18,8 +18,8 @@ export function Disclaimer({ variant }: DisclaimerProps): JSX.Element {
 
   if (variant === 'official_source') {
     return (
-      <Alert className="bg-amber-950/40/70 border-amber-500/40 text-xs py-2 text-amber-950">
-        <AlertCircle className="w-4 h-4 text-amber-400" />
+      <Alert className="bg-panel-2/70 border-stroke text-xs py-2 text-white">
+        <AlertCircle className="w-4 h-4 text-white" />
         <AlertDescription className="leading-relaxed font-medium">
           {OFFICIAL_SOURCE_NOTICE}
         </AlertDescription>

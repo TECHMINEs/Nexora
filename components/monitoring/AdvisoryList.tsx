@@ -39,14 +39,14 @@ export function AdvisoryList({
                     key={adv.id}
                     className={`p-3 rounded-lg border text-xs space-y-2 transition-colors ${
                       isFired
-                        ? 'bg-amber-950/40/60 border-amber-500/40 text-amber-950 shadow-sm'
+                        ? 'bg-panel-2/60 border-stroke text-white shadow-sm'
                         : 'bg-card border-line/70 text-muted-foreground opacity-75'
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1.5 font-mono text-[11px]">
                         {isFired ? (
-                          <BellRing className="w-3.5 h-3.5 text-amber-600 animate-pulse" />
+                          <BellRing className="w-3.5 h-3.5 text-white animate-pulse" />
                         ) : (
                           <CheckCircle className="w-3.5 h-3.5 text-muted-foreground" />
                         )}
@@ -56,7 +56,7 @@ export function AdvisoryList({
                         variant="outline"
                         className={`text-[10px] uppercase font-mono ${
                           isFired
-                            ? 'border-amber-400 bg-amber-950/40 text-amber-400 font-bold'
+                            ? 'border-stroke bg-panel-2 text-white font-bold'
                             : 'border-line text-muted-foreground'
                         }`}
                       >

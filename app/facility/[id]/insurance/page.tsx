@@ -51,8 +51,8 @@ export default function InsuranceAdequacyPage({
 
       {/* Uninsured Peril Alert */}
       {!active.perilCovered && (
-        <Alert className="bg-rose-950/40 border-rose-500/40 text-rose-950 text-xs">
-          <AlertTriangle className="w-4 h-4 text-rose-600" />
+        <Alert className="bg-red-950/40 border-red-500/40 text-red-950 text-xs">
+          <AlertTriangle className="w-4 h-4 text-red-600" />
           <AlertTitle className="font-bold">Uninsured Hazard Peril Detected</AlertTitle>
           <AlertDescription>
             Scenario peril ({active.peril}) is not a covered peril in the extracted commercial schedule; the full scenario loss is shown as a potential protection gap.

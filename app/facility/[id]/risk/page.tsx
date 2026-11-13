@@ -81,8 +81,8 @@ export default function RiskExplorerPage({
       </div>
 
       {isLowConfidence && (
-        <Alert className="bg-amber-950/40 border-amber-500/40 text-amber-950 text-xs">
-          <AlertTriangle className="w-4 h-4 text-amber-400" />
+        <Alert className="bg-panel-2 border-stroke text-white text-xs">
+          <AlertTriangle className="w-4 h-4 text-white" />
           <AlertTitle className="font-semibold">Low confidence risk assessment</AlertTitle>
           <AlertDescription>
             The confidence for {selectedRisk.label} is below 0.50. Inspect the contributing data sources in the assumption drawer to review limitations.

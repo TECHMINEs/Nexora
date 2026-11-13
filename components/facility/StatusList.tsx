@@ -60,7 +60,7 @@ export function StatusList({ model }: StatusListProps): JSX.Element {
                   Potential Gap
                 </Badge>
               ) : (
-                <Badge variant="outline" className="border-band-low text-band-low bg-emerald-950/40 text-[11px]">
+                <Badge variant="outline" className="border-band-low text-band-low bg-green-950/40 text-[11px]">
                   Adequate
                 </Badge>
               )}

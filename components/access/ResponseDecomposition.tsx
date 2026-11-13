@@ -43,9 +43,9 @@ export function ResponseDecomposition({ stats }: ResponseDecompositionProps): JS
               ]}
             />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '4px' }} />
-            <Bar dataKey="dispatch" name="Dispatch Triage" fill="#39FF14" stackId="a" />
-            <Bar dataKey="mobilise" name="Crew Mobilisation" fill="#FF5F1F" stackId="a" />
-            <Bar dataKey="travel" name="Road Transit" fill="#00FFFF" stackId="a" />
+            <Bar dataKey="dispatch" name="Dispatch Triage" fill="#A9A9A9" stackId="a" />
+            <Bar dataKey="mobilise" name="Crew Mobilisation" fill="#FFFFFF" stackId="a" />
+            <Bar dataKey="travel" name="Road Transit" fill="#FF2626" stackId="a" />
           </BarChart>
         </ResponsiveContainer>
       </div>

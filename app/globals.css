@@ -3,78 +3,276 @@
 @tailwind utilities;
 
 /* ============================================================================
-   Nexora - "Sharp Edged Plasma" Unified Theme
-   Deepest Black #000000 | Brightest Red #FF0000 | Cyber Accents | Strictly Sharp Corners
+   TECHMINES shared theme — mirrors the portfolio at techmines.github.io (dark).
+   Black, white and greys with ONE red. Chakra Petch / IBM Plex Sans / JetBrains Mono.
+   Source of truth: brand/tm-theme.css in the workspace. Edit there, then copy the
+   block into each project so all five stay identical.
    ============================================================================ */
 
-*, *::before, *::after {
-  border-radius: 0px !important;
-  box-sizing: border-box;
+:root {
+  --tm-bg:        #000000;
+  --tm-bg-2:      #080808;
+  --tm-panel:     #0E0E0E;
+  --tm-panel-2:   #171717;
+  --tm-line:      #2E2E2E;
+  --tm-stroke:    #4D4D4D;
+  --tm-text:      #FFFFFF;
+  --tm-body:      #E2E2E2;
+  --tm-dim:       #A9A9A9;
+  --tm-red:       #FF2626;
+  --tm-red-2:     #F5141F;
+  --tm-on-red:    #000000;
+  --tm-green:     #39FF14;
+  --tm-grid:      rgba(255, 255, 255, 0.07);
+  --tm-glow:      rgba(255, 38, 38, 0.55);
+  --tm-lift:      0 0 0 1px var(--tm-red), 0 18px 50px -12px var(--tm-glow);
+
+  --tm-font-display: 'Chakra Petch', 'Arial Narrow', sans-serif;
+  --tm-font-body:    'IBM Plex Sans', system-ui, sans-serif;
+  --tm-font-mono:    'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --tm-ease:         cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  color-scheme: dark;
 }
 
+/* Sharp corners everywhere, on purpose */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+html {
+  background: var(--tm-bg);
+}
+
+/* The body stays see-through so the fixed backdrop below shows behind every page */
+body {
+  background: transparent !important;
+  color: var(--tm-body);
+  font-family: var(--tm-font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--tm-font-display);
+  color: var(--tm-text);
+  letter-spacing: 0.01em;
+}
+
+button {
+  font-family: var(--tm-font-display);
+  letter-spacing: 0.04em;
+}
+
+code, pre, kbd, samp {
+  font-family: var(--tm-font-mono);
+}
+
+::selection {
+  background: var(--tm-red);
+  color: var(--tm-on-red);
+}
+
+:focus-visible {
+  outline: 3px solid var(--tm-red);
+  outline-offset: 2px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--tm-red) !important;
+  box-shadow: 0 0 0 1px var(--tm-red) !important;
+}
+
+select option {
+  background: var(--tm-bg);
+  color: var(--tm-text);
+}
+
+/* ---- Backdrop: faint grid that fades at the edges, plus red light drifting on both sides */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body::before {
+  background-image:
+    linear-gradient(var(--tm-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--tm-grid) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 55% 35%, #000 20%, transparent 85%);
+  mask-image: radial-gradient(ellipse 90% 80% at 55% 35%, #000 20%, transparent 85%);
+}
+
+body::after {
+  background:
+    radial-gradient(42vw 42vw at 112% -8%, rgba(255, 38, 38, 0.34), transparent 70%),
+    radial-gradient(42vw 42vw at -14% 108%, rgba(245, 20, 31, 0.30), transparent 70%);
+  animation: tm-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes tm-drift {
+  to { transform: translate3d(0, 6vh, 0) scale(1.12); }
+}
+
+/* ---- Scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--tm-stroke) var(--tm-bg);
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--tm-bg); }
+::-webkit-scrollbar-thumb { background: var(--tm-line); border: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--tm-red); box-shadow: none; }
+
+/* ---- Buttons: outlined by default, lift with a hard red shadow on hover */
+.tm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.3rem;
+  border: 2px solid var(--tm-text);
+  background: transparent;
+  color: var(--tm-text);
+  font-family: var(--tm-font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s var(--tm-ease), box-shadow 0.2s var(--tm-ease), background-color 0.2s ease, color 0.2s ease;
+}
+
+.tm-btn:hover:not(:disabled) {
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--tm-red);
+}
+
+.tm-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tm-btn--solid {
+  background: linear-gradient(120deg, var(--tm-red), var(--tm-red-2));
+  border-color: transparent;
+  color: var(--tm-on-red);
+  box-shadow: 0 10px 30px -10px var(--tm-glow);
+}
+
+.tm-btn--solid:hover:not(:disabled) {
+  box-shadow: 5px 5px 0 var(--tm-text);
+}
+
+/* ---- Cards: slightly see-through panel, red edge and glow on hover */
+.tm-card {
+  border: 1px solid var(--tm-line);
+  background: color-mix(in srgb, var(--tm-panel) 74%, transparent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  transition: transform 0.3s var(--tm-ease), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tm-card:hover {
+  border-color: var(--tm-red);
+  box-shadow: var(--tm-lift);
+}
+
+/* ---- Small mono label, as used above each portfolio section */
+.tm-label {
+  font-family: var(--tm-font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tm-dim);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after { animation: none; }
+  .tm-btn, .tm-card { transition: none; }
+  .tm-btn:hover:not(:disabled) { transform: none; }
+}
+
+/* ---- Brand bar and footer (shared across every project) */
+.tm-brandbar,
+.tm-brandfooter {
+  background: color-mix(in srgb, var(--tm-bg) 80%, transparent);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+/* Underlined link with a red arrow, as on the portfolio */
+.tm-textlink {
+  text-decoration: underline;
+  text-decoration-color: var(--tm-red);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+.tm-textlink::after {
+  content: " \2197";
+  color: var(--tm-red);
+}
+
+/* Next.js apps load the three brand fonts with next/font (self-hosted); point the
+   shared tokens at the variables it generates. */
+:root {
+  --tm-font-display: var(--font-chakra), 'Chakra Petch', 'Arial Narrow', sans-serif;
+  --tm-font-body:    var(--font-plex), 'IBM Plex Sans', system-ui, sans-serif;
+  --tm-font-mono:    var(--font-jetbrains), 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+/* ---------------------------------------------------------------------------
+   Nexora: shadcn/Radix variables mapped onto the shared TECHMINES tokens
+   --------------------------------------------------------------------------- */
 @layer base {
   :root {
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
-    --card: 0 0% 3%;
+    --card: 0 0% 5.5%;
     --card-foreground: 0 0% 100%;
-    --popover: 0 0% 3%;
+    --popover: 0 0% 5.5%;
     --popover-foreground: 0 0% 100%;
-    --primary: 0 100% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 16 100% 56%;
-    --secondary-foreground: 0 0% 0%;
-    --muted: 0 0% 8%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 180 100% 50%;
-    --accent-foreground: 0 0% 0%;
-    --destructive: 0 100% 50%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 100% 50% / 0.28;
-    --input: 0 100% 50% / 0.28;
-    --ring: 0 100% 50%;
+    --primary: 0 100% 57.5%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 0 0% 66%;
+    --accent: 0 0% 9%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 100% 57.5%;
+    --destructive-foreground: 0 0% 0%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 100% 57.5%;
     --radius: 0px;
   }
-}
 
-@layer base {
   * { @apply border-border; }
-  body {
-    background-color: #000000 !important;
-    color: #FFFFFF !important;
-    font-family: 'Inter', system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    background-image: 
-      radial-gradient(circle at 0% 0%, rgba(255, 0, 0, 0.15) 0%, transparent 40%),
-      radial-gradient(circle at 100% 100%, rgba(255, 95, 31, 0.1) 0%, transparent 40%),
-      #000000;
-    background-attachment: fixed;
-    scrollbar-width: thin;
-    scrollbar-color: #FF0000 #000000;
-  }
-  h1, h2, h3, h4 { @apply font-mono font-bold tracking-tight; }
 }
 
-/* Chrome scrollbar */
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: #000000; }
-::-webkit-scrollbar-thumb { background: #FF0000; border: 1px solid #7F1D1D; }
-::-webkit-scrollbar-thumb:hover { background: #FF5F1F; box-shadow: 0 0 10px #FF0000; }
-
-/* Sharp High-Contrast Cards */
+/* Cards: slightly see-through panel so the backdrop reads through, as on the portfolio */
 .bg-card {
-  background-color: #050505 !important;
-  border: 1px solid rgba(255, 0, 0, 0.25) !important;
-}
-
-/* Glowing borders on focus/hover */
-input:focus, select:focus, textarea:focus {
-  outline: none !important;
-  border-color: #FF0000 !important;
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.6) !important;
+  background: color-mix(in srgb, var(--tm-panel) 82%, transparent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
 }
 
 @media print {
+  body::before,
+  body::after { display: none; }
   .no-print { display: none !important; }
   .demo-banner { display: block !important; }
   @page { margin: 14mm; }

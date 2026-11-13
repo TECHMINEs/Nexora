@@ -27,11 +27,11 @@ export function SourceBadge({ sourceId, className }: SourceBadgeProps): JSX.Elem
   }
 
   const authorityColor = {
-    official: 'border-cyan-500/40 bg-cyan-950/40 text-cyan-400 dark:bg-cyan-950/40 dark:text-cyan-300 dark:border-cyan-800',
-    partner: 'border-orange-500/40 bg-orange-950/40 text-orange-400 dark:bg-orange-950/40 dark:text-orange-300 dark:border-orange-800',
-    customer: 'border-red-900/40 bg-[#0a0a0a] text-neutral-200 dark:bg-[#050505] dark:text-neutral-300 dark:border-red-900/40',
-    open: 'border-teal-500/40 bg-teal-950/40 text-teal-400 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800',
-    estimated: 'border-orange-500/40 bg-orange-950/40 text-orange-400 dark:bg-orange-950/40 dark:text-orange-300 dark:border-orange-800',
+    official: 'border-stroke bg-panel-2 text-white dark:bg-panel-2 dark:text-white dark:border-stroke',
+    partner: 'border-stroke bg-panel-2 text-white dark:bg-panel-2 dark:text-white dark:border-stroke',
+    customer: 'border-line bg-[#0a0a0a] text-neutral-200 dark:bg-[#050505] dark:text-neutral-300 dark:border-line',
+    open: 'border-stroke bg-panel-2 text-white dark:bg-panel-2 dark:text-white dark:border-stroke',
+    estimated: 'border-stroke bg-panel-2 text-white dark:bg-panel-2 dark:text-white dark:border-stroke',
   }[source.authority];
 
   return (
@@ -45,7 +45,7 @@ export function SourceBadge({ sourceId, className }: SourceBadgeProps): JSX.Elem
     >
       <span className="font-mono text-[10px] font-semibold">{source.id}</span>
       {source.licence === 'uncertain' && (
-        <span className="rounded bg-rose-950/40 px-1 text-[9px] font-bold text-rose-400 uppercase dark:bg-rose-900/60 dark:text-rose-300">
+        <span className="rounded bg-red-950/40 px-1 text-[9px] font-bold text-red-400 uppercase dark:bg-red-900/60 dark:text-red-300">
           Gated
         </span>
       )}

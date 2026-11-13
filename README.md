@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/techmines-logo.jpg" alt="TECHMINES" width="96" />
+<a href="https://techmines.github.io/"><img src="public/logo-lockup.svg" alt="Nexora by TECHMINES" height="84" /></a>
 
 # Nexora
 

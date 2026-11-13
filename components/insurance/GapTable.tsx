@@ -38,11 +38,11 @@ export function GapTable({ gap, facilityId }: GapTableProps): JSX.Element {
               </TableCell>
               <TableCell>
                 {row.covered ? (
-                  <Badge variant="outline" className="border-emerald-500/40 text-emerald-400 bg-emerald-950/40 text-[10px]">
+                  <Badge variant="outline" className="border-green-500/40 text-green-400 bg-green-950/40 text-[10px]">
                     Covered
                   </Badge>
                 ) : (
-                  <Badge variant="outline" className="border-rose-500/40 text-rose-400 bg-rose-950/40 text-[10px]">
+                  <Badge variant="outline" className="border-red-500/40 text-red-400 bg-red-950/40 text-[10px]">
                     Not Covered
                   </Badge>
                 )}

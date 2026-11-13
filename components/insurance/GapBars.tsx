@@ -40,14 +40,14 @@ export function GapBars({ gap }: GapBarsProps): JSX.Element {
           <Bar
             dataKey="usable"
             name="Usable Insurance Protection"
-            fill="#00FFFF"
+            fill="#FFFFFF"
             stackId="stack"
           />
           <Bar
             dataKey="gap"
             name="Potential Protection Gap"
-            fill="#FF0000"
-            stroke="#FF5F1F"
+            fill="#FF2626"
+            stroke="#A9A9A9"
             strokeWidth={1}
             stackId="stack"
           />

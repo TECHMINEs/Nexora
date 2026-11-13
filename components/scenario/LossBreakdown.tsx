@@ -54,11 +54,11 @@ export function LossBreakdown({ view, facilityId }: LossBreakdownProps): JSX.Ele
               ]}
             />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }} />
-            <Bar dataKey="physical" name="Physical Damage" fill="#DC2626" stackId="a" />
-            <Bar dataKey="inventory" name="Inventory Loss" fill="#00FFFF" stackId="a" />
-            <Bar dataKey="bi" name="Business Interruption" fill="#39FF14" stackId="a" />
-            <Bar dataKey="extra" name="Extra Expense & Cleanup" fill="#FF5F1F" stackId="a" />
-            <Bar dataKey="supply" name="Supply-Chain Loss" fill="#E5E5E5" stackId="a" />
+            <Bar dataKey="physical" name="Physical Damage" fill="#FF2626" stackId="a" />
+            <Bar dataKey="inventory" name="Inventory Loss" fill="#FFFFFF" stackId="a" />
+            <Bar dataKey="bi" name="Business Interruption" fill="#A9A9A9" stackId="a" />
+            <Bar dataKey="extra" name="Extra Expense & Cleanup" fill="#757575" stackId="a" />
+            <Bar dataKey="supply" name="Supply-Chain Loss" fill="#C40F18" stackId="a" />
           </BarChart>
         </ResponsiveContainer>
       </div>

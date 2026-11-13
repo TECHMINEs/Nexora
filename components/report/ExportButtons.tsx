@@ -37,7 +37,7 @@ export function ExportButtons({ model }: ExportButtonsProps): JSX.Element {
       <Button
         size="sm"
         onClick={handleDownload}
-        className="bg-brand-500 hover:bg-brand-700 text-white text-xs h-8 flex items-center gap-1.5"
+        className="bg-brand-500 hover:bg-brand-500 text-black font-display font-bold uppercase tracking-wider text-xs h-8 flex items-center gap-1.5"
       >
         <Download className="w-3.5 h-3.5" />
         <span>Export JSON</span>

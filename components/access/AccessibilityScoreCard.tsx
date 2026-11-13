@@ -30,7 +30,7 @@ export function AccessibilityScoreCard({
             </span>
             <BandBadge band={result.band} />
             {result.partial && (
-              <Badge variant="outline" className="border-amber-400 text-amber-400 bg-amber-950/40 text-[10px]">
+              <Badge variant="outline" className="border-stroke text-white bg-panel-2 text-[10px]">
                 Partial: reliability excluded
               </Badge>
             )}
