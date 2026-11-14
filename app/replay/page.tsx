@@ -59,18 +59,22 @@ export default function ReplayConsolePage(): JSX.Element {
       <Disclaimer variant="official_source" />
 
       {/* Case Evidence Summary Header */}
-      <div className="p-4 bg-card border border-line rounded-lg shadow-sm space-y-2 text-xs">
-        <div className="flex items-center justify-between pb-1 border-b border-line/60">
+      <div className="p-4 sm:p-5 bg-card border border-line shadow-sm space-y-3 text-sm">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-line/60">
           <span className="font-bold text-ink">{currentCase.title}</span>
-          <span className="font-mono text-[11px] text-muted-foreground">
-            T0 Landfall: {currentCase.eventDate} ({currentCase.t0})
+          <span className="font-mono text-xs text-muted-foreground">
+            Event T0: {currentCase.eventDate} ({currentCase.t0})
           </span>
         </div>
-        <p className="text-muted-foreground leading-relaxed">{currentCase.whyChosen}</p>
-        <p className="text-[11px] text-brand-900 bg-brand-50 p-2 rounded border border-brand-200">
-          <span className="font-semibold">Empirical Field Validation: </span>
-          {currentCase.evidenceSummary}
+        <p className="text-brand-900 bg-brand-50 p-3 border border-brand-200 leading-relaxed" title={currentCase.evidenceSummary}>
+          <span className="font-semibold">Recorded context: </span>
+          {currentCase.evidenceSummary.replace(/\s*\([^)]*§[^)]*\)/g, '')}
         </p>
+        <details className="text-xs text-muted-foreground">
+          <summary className="cursor-pointer text-brand-400">Case selection &amp; source references</summary>
+          <p className="mt-2 leading-relaxed">{currentCase.whyChosen}</p>
+          <p className="mt-1 font-mono">Source reference: {currentCase.section}</p>
+        </details>
       </div>
 
       {/* Replay Stepper Timeline */}

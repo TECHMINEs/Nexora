@@ -16,7 +16,7 @@ export function RiskTable({
 }: RiskTableProps): JSX.Element {
   return (
     <div className="border border-line rounded-md overflow-hidden bg-card">
-      <Table>
+      <Table className="min-w-[1100px]">
         <TableHeader className="bg-canvas">
           <TableRow>
             <TableHead className="text-xs">Hazard</TableHead>
@@ -26,7 +26,7 @@ export function RiskTable({
             <TableHead className="text-xs">Criticality (C)</TableHead>
             <TableHead className="text-xs">Mitigation (M)</TableHead>
             <TableHead className="text-xs">Risk Index (R)</TableHead>
-            <TableHead className="text-xs">Rnorm (0-100)</TableHead>
+            <TableHead className="text-xs">Normalized risk /100</TableHead>
             <TableHead className="text-xs">Band</TableHead>
             <TableHead className="text-xs">Verified Controls</TableHead>
           </TableRow>

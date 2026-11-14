@@ -39,7 +39,7 @@ export function BcpPanel({ bcp }: BcpPanelProps): JSX.Element {
 
       {/* Emergency Role Coverage */}
       <div className="space-y-2">
-        <span className="font-semibold text-ink block">Shift Emergency Role Coverage (§40)</span>
+        <span className="font-semibold text-ink block">Emergency role coverage by shift</span>
         <div className="border border-line rounded-md overflow-hidden bg-card">
           <Table>
             <TableHeader className="bg-canvas">

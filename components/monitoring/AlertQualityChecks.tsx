@@ -12,7 +12,7 @@ export function AlertQualityChecks({ checks }: AlertQualityChecksProps): JSX.Ele
       <Table>
         <TableHeader className="bg-canvas">
           <TableRow>
-            <TableHead className="text-xs">Quality Criterion (§46.1)</TableHead>
+            <TableHead className="text-xs">Quality criterion</TableHead>
             <TableHead className="text-xs text-center">Result</TableHead>
             <TableHead className="text-xs">Verification Details</TableHead>
           </TableRow>

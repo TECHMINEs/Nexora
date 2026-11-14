@@ -16,7 +16,7 @@ export function SourceRegister({ rows }: SourceRegisterProps): JSX.Element {
             <TableHead className="text-xs">Authority</TableHead>
             <TableHead className="text-xs">Licence Status</TableHead>
             <TableHead className="text-xs">Data Age</TableHead>
-            <TableHead className="text-xs text-right">Provenance Score (§72.1)</TableHead>
+            <TableHead className="text-xs text-right">Provenance score</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

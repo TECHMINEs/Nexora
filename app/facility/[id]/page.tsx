@@ -40,7 +40,7 @@ export default function FacilityOverviewPage({
       </div>
 
       {/* KPI Strip */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <Metric
           label="Data Completeness"
           tracked={completeness}
@@ -77,8 +77,8 @@ export default function FacilityOverviewPage({
       </div>
 
       {/* Identity & Operations Summary */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
+      <div className="grid grid-cols-1 2xl:grid-cols-3 gap-6">
+        <div className="2xl:col-span-2 min-w-0 space-y-6">
           <SectionCard
             title="Facility Layout & Hazard Zones"
             moduleIds={modules}
@@ -108,7 +108,7 @@ export default function FacilityOverviewPage({
           </SectionCard>
         </div>
 
-        <div className="space-y-6">
+        <div className="min-w-0 space-y-6">
           {/* Deck-style Status Snapshot */}
           <SectionCard
             title="Resilience Snapshot"
@@ -135,42 +135,42 @@ export default function FacilityOverviewPage({
               <CardTitle className="text-sm font-bold text-ink">Operational Identity</CardTitle>
             </CardHeader>
             <CardContent className="pt-3 space-y-2.5 text-xs">
-              <div className="flex items-center justify-between">
+              <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] items-start gap-3">
                 <span className="text-muted-foreground flex items-center gap-1.5">
                   <Users className="w-3.5 h-3.5 text-muted-foreground" />
                   Headcount
                 </span>
-                <span className="font-semibold text-ink">
+                <span className="font-semibold text-ink text-right break-words">
                   {facility.headcountTotal} total ({facility.headcountPeakShift} peak shift)
                 </span>
               </div>
-              <div className="flex items-center justify-between">
+              <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] items-start gap-3">
                 <span className="text-muted-foreground flex items-center gap-1.5">
                   <Zap className="w-3.5 h-3.5 text-muted-foreground" />
                   Grid Power & DG
                 </span>
-                <span className="font-semibold text-ink">
+                <span className="font-semibold text-ink text-right break-words">
                   {facility.power.generatorKva} kVA ({facility.power.fuelAutonomyHours} h autonomy)
                 </span>
               </div>
-              <div className="flex items-center justify-between">
+              <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] items-start gap-3">
                 <span className="text-muted-foreground flex items-center gap-1.5">
                   <Truck className="w-3.5 h-3.5 text-muted-foreground" />
                   Critical Supplier
                 </span>
-                <span className="font-semibold text-ink truncate max-w-[180px]" title={facility.criticalSupplier.name}>
+                <span className="font-semibold text-ink text-right break-words" title={facility.criticalSupplier.name}>
                   {facility.criticalSupplier.name} ({facility.criticalSupplier.leadTimeDays}d lead, {facility.criticalSupplier.bufferDays}d buffer)
                 </span>
               </div>
-              <div className="flex items-center justify-between">
+              <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] items-start gap-3">
                 <span className="text-muted-foreground">MTPD / RTO</span>
-                <span className="font-semibold text-ink">
+                <span className="font-semibold text-ink text-right break-words">
                   {facility.mtpdDays} day(s) / {facility.rtoDays} day(s)
                 </span>
               </div>
-              <div className="flex items-center justify-between">
+              <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] items-start gap-3">
                 <span className="text-muted-foreground">Access Routes</span>
-                <span className="font-semibold text-ink">{facility.accessRoutes} designated route(s)</span>
+                <span className="font-semibold text-ink text-right break-words">{facility.accessRoutes} designated route(s)</span>
               </div>
             </CardContent>
           </Card>

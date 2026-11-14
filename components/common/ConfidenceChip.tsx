@@ -33,8 +33,7 @@ export function ConfidenceChip({
         className
       )}
     >
-      <span className="h-1.5 w-1.5 rounded-full bg-current opacity-75" />
-      <span>{formatted}</span>
+      <span>Confidence {Math.round(confidence * 100)}%</span>
       {showLabel && (
         <span className="text-[10px] uppercase tracking-wider opacity-80">
           {tier}

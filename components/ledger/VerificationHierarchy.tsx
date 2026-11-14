@@ -20,7 +20,7 @@ export function VerificationHierarchy({ highlight }: VerificationHierarchyProps)
   return (
     <div className="space-y-2 text-xs">
       <div className="flex items-center justify-between text-muted-foreground font-semibold">
-        <span>§44.1 Evidence Verification Hierarchy</span>
+        <span>Evidence verification methods</span>
         <span className="font-mono text-[10px]">Confidence Scale</span>
       </div>
 

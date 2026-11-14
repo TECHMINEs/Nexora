@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 import { formatINR, coverageClassLabel } from '@/lib/format';
 import type { GapBarsProps } from '@/lib/types';
 
@@ -13,12 +13,19 @@ export function GapBars({ gap }: GapBarsProps): JSX.Element {
   }));
 
   return (
-    <div className="h-64 w-full pt-1">
+    <div className="min-w-0 space-y-3">
+      <div className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-neutral-300" aria-label="Insurance chart legend">
+        <span><span className="text-white">■</span> Usable protection</span>
+        <span><span className="text-[#FF2626]">■</span> Potential gap</span>
+        <span>Amounts in ₹ crore</span>
+      </div>
+      <div className="w-full overflow-x-auto" role="region" aria-label="Insurance gap chart, scroll horizontally on small screens">
+      <div className="h-72 min-w-[540px]">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={chartData}
           layout="vertical"
-          margin={{ top: 10, right: 20, left: 120, bottom: 5 }}
+          margin={{ top: 10, right: 22, left: 8, bottom: 12 }}
         >
           <XAxis
             type="number"
@@ -29,14 +36,13 @@ export function GapBars({ gap }: GapBarsProps): JSX.Element {
             type="category"
             dataKey="name"
             tick={{ fontSize: 11, fill: '#FFFFFF' }}
-            width={110}
+            width={150}
           />
           <Tooltip
             formatter={(val: unknown) => [
               formatINR(typeof val === 'number' ? val : Number(val) || 0),
             ]}
           />
-          <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }} />
           <Bar
             dataKey="usable"
             name="Usable Insurance Protection"
@@ -53,6 +59,8 @@ export function GapBars({ gap }: GapBarsProps): JSX.Element {
           />
         </BarChart>
       </ResponsiveContainer>
+      </div>
+      </div>
     </div>
   );
 }

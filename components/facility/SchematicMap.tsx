@@ -2,7 +2,7 @@
 
 import React from 'react';
 import type { SchematicMapProps } from '@/lib/types';
-import { cn } from '@/lib/utils';
+import { hazardLabel } from '@/lib/format';
 
 export function SchematicMap({
   layout,
@@ -12,6 +12,7 @@ export function SchematicMap({
   caption,
 }: SchematicMapProps): JSX.Element {
   const [vbW, vbH] = layout.viewBox;
+  const visiblePois = layout.pois.filter((poi) => showResponders || !poi.resourceId);
 
   // Hazard styling
   const hazardColor = (hazard: string) => {
@@ -32,12 +33,14 @@ export function SchematicMap({
   };
 
   return (
-    <div className="flex flex-col gap-1.5 w-full">
-      <div className="relative w-full aspect-[5/3] bg-card border border-line rounded-lg overflow-hidden shadow-inner flex items-center justify-center p-2">
+    <div className="flex min-w-0 flex-col gap-3 w-full">
+      <div className="relative w-full aspect-[5/3] min-h-[220px] bg-[#080808] border border-line overflow-hidden shadow-inner flex items-center justify-center p-3">
         <svg
           viewBox={`0 0 ${vbW} ${vbH}`}
           className="w-full h-full select-none"
           preserveAspectRatio="xMidYMid meet"
+          role="img"
+          aria-label="Illustrative facility schematic with hazard zones, roads, site footprint and response points"
         >
           {/* Grid lines */}
           <defs>
@@ -54,6 +57,7 @@ export function SchematicMap({
             const pts = zone.points.map((p) => p.join(',')).join(' ');
             return (
               <g key={`zone-${idx}`} opacity={isHighlighted ? 1 : 0.25}>
+                <title>{zone.label}</title>
                 <polygon
                   points={pts}
                   fill={style.fill}
@@ -61,17 +65,6 @@ export function SchematicMap({
                   strokeWidth="0.75"
                   strokeDasharray={zone.hazard === 'cyclone' ? '2,2' : undefined}
                 />
-                {zone.points[0] && (
-                  <text
-                    x={zone.points[0][0] + 1}
-                    y={zone.points[0][1] + 3}
-                    fontSize="2.5"
-                    fill={style.stroke}
-                    className="font-mono font-semibold"
-                  >
-                    {zone.label}
-                  </text>
-                )}
               </g>
             );
           })}
@@ -108,22 +101,19 @@ export function SchematicMap({
             y={layout.facility.y + layout.facility.h / 2 + 1}
             textAnchor="middle"
             fontSize="2.8"
-            fill="#FFFFFF"
+            fill="#000000"
             className="font-bold font-sans"
           >
-            FACILITY
+            SITE
           </text>
 
           {/* POIs / Responders */}
-          {layout.pois.map((poi) => {
+          {visiblePois.map((poi) => {
             const isSelected = selectedResourceId !== null && poi.resourceId === selectedResourceId;
-            if (!showResponders && poi.resourceId) return null;
 
             return (
-              <g
-                key={poi.id}
-                className={cn('transition-all', isSelected && 'scale-125 origin-center')}
-              >
+              <g key={poi.id}>
+                <title>{poi.label}</title>
                 <circle
                   cx={poi.at[0]}
                   cy={poi.at[1]}
@@ -132,28 +122,26 @@ export function SchematicMap({
                   stroke="#FFFFFF"
                   strokeWidth="0.75"
                 />
-                <text
-                  x={poi.at[0]}
-                  y={poi.at[1] - 3.5}
-                  textAnchor="middle"
-                  fontSize="2.2"
-                  fill="#FFFFFF"
-                  className={cn('font-medium', isSelected && 'font-bold fill-accent-700')}
-                >
-                  {poi.label}
-                </text>
               </g>
             );
           })}
         </svg>
       </div>
 
-      <div className="flex items-center justify-between text-[11px] text-muted-foreground px-1">
-        <span>{caption}</span>
-        <span className="font-mono text-[10px] bg-canvas px-1.5 py-0.5 rounded border">
-          {layout.note}
-        </span>
+      <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-muted-foreground" aria-label="Schematic legend">
+        {layout.zones.map((zone, idx) => (
+          <span key={`${zone.hazard}-${idx}`} title={zone.label} className="inline-flex items-center gap-2">
+            <span className="h-2.5 w-2.5 border" style={{ borderColor: hazardColor(zone.hazard).stroke, background: hazardColor(zone.hazard).fill }} />
+            {hazardLabel(zone.hazard)} zone
+          </span>
+        ))}
+        <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 bg-white" />Facility footprint</span>
+        {visiblePois.length > 0 && <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-[#FF2626]" />Response / community points</span>}
       </div>
+      {visiblePois.length > 0 && <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-neutral-300">
+        {visiblePois.map((poi) => <span key={poi.id} className={poi.resourceId === selectedResourceId ? 'font-semibold text-[#FF2626]' : ''}>{poi.label}</span>)}
+      </div>}
+      <p className="text-xs leading-relaxed text-muted-foreground" title={layout.note}>{caption}. Illustrative schematic, not a geographic map.</p>
     </div>
   );
 }

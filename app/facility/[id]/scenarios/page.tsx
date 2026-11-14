@@ -66,7 +66,7 @@ export default function ScenarioStudioPage({
           />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
           <Metric
             label="Residual Scenario Loss"
             tracked={residual.total}
@@ -138,7 +138,7 @@ export default function ScenarioStudioPage({
       </SectionCard>
 
       {/* Sensitivity Tornado & Cascade Pathways */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6">
         <SectionCard
           title="Sensitivity Tornado Analysis"
           moduleIds={['6.5']}

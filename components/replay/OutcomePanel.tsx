@@ -16,7 +16,7 @@ export function OutcomePanel({
       <CardHeader className="pb-3 border-b border-line/60">
         <div className="flex items-center justify-between">
           <CardTitle className="text-sm font-bold text-ink">
-            Outcome Learning & Recalibration (§6.15)
+            Outcome Learning &amp; Recalibration
           </CardTitle>
           <Badge
             variant="outline"

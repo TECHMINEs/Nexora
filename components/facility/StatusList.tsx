@@ -20,7 +20,7 @@ export function StatusList({ model }: StatusListProps): JSX.Element {
   return (
     <div className="space-y-3">
       <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground pb-1 border-b border-line">
-        Resilience Status Snapshot (Deck style)
+        Resilience status at a glance
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">

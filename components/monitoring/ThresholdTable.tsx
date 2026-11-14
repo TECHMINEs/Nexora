@@ -5,6 +5,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge';
 import type { ThresholdTableProps, SignalReading } from '@/lib/types';
 
+const signalNames: Record<string, string> = {
+  rain24hMm: '24-hour rainfall',
+  windKmh: 'Wind speed',
+  tankTempC: 'Tank temperature',
+  vapourPpm: 'Vapour concentration',
+};
+
 export function ThresholdTable({
   thresholds,
   latest,
@@ -16,7 +23,7 @@ export function ThresholdTable({
 
   return (
     <div className="border border-line rounded-md overflow-hidden bg-card text-xs">
-      <Table>
+      <Table className="min-w-[820px]">
         <TableHeader className="bg-canvas">
           <TableRow>
             <TableHead className="text-xs">Monitored Telemetry Signal</TableHead>
@@ -35,8 +42,8 @@ export function ThresholdTable({
 
             return (
               <TableRow key={th.signal}>
-                <TableCell className="font-semibold text-ink font-mono">
-                  {th.signal}
+                <TableCell className="font-semibold text-ink">
+                  {signalNames[th.signal] ?? th.signal}
                 </TableCell>
                 <TableCell className="text-muted-foreground">{th.unit}</TableCell>
                 <TableCell className="font-mono text-white bg-panel-2/40">

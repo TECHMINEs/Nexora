@@ -12,14 +12,9 @@ export function FacilityHeader({ facility }: FacilityHeaderProps): JSX.Element {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-card border-b border-line">
       <div className="space-y-0.5">
-        <div className="flex items-center gap-2">
-          <h1 className="text-xl font-bold font-display text-ink">{facility.name}</h1>
-          <span className="text-xs font-mono text-muted-foreground px-2 py-0.5 bg-canvas rounded border">
-            {facility.section}
-          </span>
-        </div>
-        <p className="text-xs text-muted-foreground">
-          {facility.archetype} &bull; {facility.district}, {facility.state}
+        <h1 className="text-xl sm:text-2xl font-bold font-display leading-snug text-ink" title={`Source reference: ${facility.section}`}>{facility.name}</h1>
+        <p className="text-sm text-muted-foreground leading-relaxed" title={facility.archetype}>
+          {facility.archetype.replace(/\s*\([^)]*§[^)]*\)/g, '')} &bull; {facility.district}, {facility.state}
         </p>
       </div>
 

@@ -9,7 +9,7 @@ import type { ResourceTableProps } from '@/lib/types';
 export function ResourceTable({ stats }: ResourceTableProps): JSX.Element {
   return (
     <div className="border border-line rounded-md overflow-hidden bg-card text-xs">
-      <Table>
+      <Table className="min-w-[1080px]">
         <TableHeader className="bg-canvas">
           <TableRow>
             <TableHead className="text-xs">Responder Unit</TableHead>

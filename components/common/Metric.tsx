@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { formatValue } from '@/lib/format';
-import { ConfidenceChip } from './ConfidenceChip';
 import { AssumptionLink } from './AssumptionLink';
 import { BandBadge } from './BandBadge';
 import type { MetricProps } from '@/lib/types';
@@ -28,24 +27,23 @@ export function Metric({
   }[size];
 
   return (
-    <div className="flex flex-col gap-1 p-3 bg-card border rounded-lg shadow-sm">
-      <div className="flex items-center justify-between gap-2">
-        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+    <div className="flex min-w-0 flex-col gap-2 p-4 bg-card border border-line shadow-sm">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide leading-snug">
           {label}
         </span>
         {band && <BandBadge band={band} />}
       </div>
 
-      <div className="flex items-baseline justify-between gap-2 my-0.5">
-        <span className={cn('text-ink tracking-tight', valueSizeClass)}>
-          {formatted}
+      <div className="my-1 min-w-0" title={`Data confidence: ${Math.round(tracked.confidence * 100)}%. Open sources and assumptions for details.`}>
+        <span className={cn('text-ink tracking-tight tabular-nums break-words', valueSizeClass)}>
+          {formatted}{kind === 'score100' && <span className="ml-1 text-sm font-medium text-muted-foreground">/100</span>}
         </span>
-        <ConfidenceChip confidence={tracked.confidence} />
       </div>
 
-      <div className="flex items-center justify-between text-xs pt-1 border-t border-line/60">
-        <span className="text-[11px] text-muted-foreground truncate" title={caption || tracked.section}>
-          {caption || tracked.section}
+      <div className="flex flex-wrap items-center justify-between gap-2 text-xs pt-2 border-t border-line/60">
+        <span className="min-w-0 text-xs text-muted-foreground leading-snug" title={caption || tracked.section}>
+          {caption || 'Review the source and assumptions'}
         </span>
         <AssumptionLink
           assumptionIds={tracked.assumptionIds}

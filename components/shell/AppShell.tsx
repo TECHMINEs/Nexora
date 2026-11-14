@@ -26,7 +26,7 @@ export function AppShell({ children }: AppShellProps): JSX.Element {
       <DemoBanner />
 
       {/* Top bar on small screens */}
-      <header className="md:hidden flex items-center justify-between gap-2 p-3 bg-black border-b border-line no-print">
+      <header className="lg:hidden flex items-center justify-between gap-2 p-3 bg-black border-b border-line no-print">
         <div className="flex items-center gap-2 shrink-0">
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
@@ -62,8 +62,8 @@ export function AppShell({ children }: AppShellProps): JSX.Element {
       </header>
 
       <div className="flex-1 flex">
-        {/* Desktop Sidebar 240px */}
-        <aside className="hidden md:flex flex-col sticky top-11 h-[calc(100dvh-2.75rem)] w-[240px] shrink-0 bg-black/80 backdrop-blur-xl border-r border-line no-print">
+        {/* Keep the navigation drawer on medium screens so analysis panels have room. */}
+        <aside className="hidden lg:flex flex-col sticky top-11 h-[calc(100dvh-2.75rem)] w-[260px] shrink-0 bg-black/80 backdrop-blur-xl border-r border-line no-print">
           <div className="p-4 border-b border-line flex items-center gap-3">
             <img
               src="/Nexora/logo-mark.svg"
@@ -91,14 +91,14 @@ export function AppShell({ children }: AppShellProps): JSX.Element {
           </div>
 
           <div className="p-2 border-t border-neutral-900 text-[10px] text-neutral-500 font-mono flex justify-between bg-black">
-            <span>Clock: Oct 7, 2026</span>
+            <span>Synthetic facilities</span>
             <span className="text-white">risk-v0.3.1</span>
           </div>
         </aside>
 
-        {/* Main Content Area: max-width 1200px */}
+        {/* Analysis canvas */}
         <main className="flex-1 min-w-0">
-          <div className="max-w-[1200px] mx-auto p-4 md:p-6 lg:p-8 space-y-6">
+          <div className="max-w-[1500px] mx-auto p-4 sm:p-6 xl:p-8 space-y-7">
             {children}
           </div>
         </main>

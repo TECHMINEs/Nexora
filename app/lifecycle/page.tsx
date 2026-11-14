@@ -38,7 +38,7 @@ export default function LifecyclePage(): JSX.Element {
             <ModuleTag id="6.10" />
           </div>
           <p className="text-xs text-muted-foreground">
-            The four operating modes (Deck s7) and the seven-state emergency escalation protocol with assigned role owners (Deck s10).
+            Four operating modes and a seven-state emergency escalation protocol with assigned role owners.
           </p>
         </div>
 
@@ -122,7 +122,7 @@ export default function LifecyclePage(): JSX.Element {
 
       {/* State Machine Transition Diagram */}
       <SectionCard
-        title="Command Event State Machine (Deck s10)"
+        title="Command Event State Machine"
         moduleIds={['6.9']}
         section="Deck s10"
         description="The seven sequential event states and designated role owners. Current state reflects active replay position."
@@ -135,7 +135,7 @@ export default function LifecyclePage(): JSX.Element {
 
       {/* Four Operating Modes */}
       <SectionCard
-        title="Continuous Operational Modes (Deck s7)"
+        title="Continuous Operational Modes"
         moduleIds={['6.9']}
         section="Deck s7"
         description="Four operating phases across pre-disaster planning, active hazard mitigation, emergency response, and recovery learning."

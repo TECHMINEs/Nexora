@@ -26,19 +26,21 @@ export function SensitivityTornado({ result }: SensitivityTornadoProps): JSX.Ele
 
   return (
     <div className="space-y-3">
-      <div className="flex items-center justify-between text-xs font-semibold text-muted-foreground pb-1">
-        <span>§42.1 Sensitivity Bands (Loss Swing Ranking)</span>
+      <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-muted-foreground pb-1">
+        <span>Loss swing by input driver</span>
         <span className="font-mono text-[11px] text-ink">
           Loss Envelope: {formatINR(result.envelope.min)} &minus; {formatINR(result.envelope.max)}
         </span>
       </div>
 
-      <div className="h-44 w-full">
+      <p className="text-xs text-muted-foreground">Bars show the range in modelled loss when each input changes. Red marks a baseline outside the tested range.</p>
+      <div className="w-full overflow-x-auto" role="region" aria-label="Sensitivity chart, scroll horizontally on small screens">
+      <div className="h-56 min-w-[540px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={chartData}
             layout="vertical"
-            margin={{ top: 5, right: 30, left: 140, bottom: 5 }}
+            margin={{ top: 5, right: 24, left: 8, bottom: 10 }}
           >
             <XAxis
               type="number"
@@ -49,7 +51,7 @@ export function SensitivityTornado({ result }: SensitivityTornadoProps): JSX.Ele
               type="category"
               dataKey="name"
               tick={{ fontSize: 11, fill: '#FFFFFF' }}
-              width={130}
+              width={160}
             />
             <Tooltip
               formatter={(val: unknown) => [
@@ -68,6 +70,7 @@ export function SensitivityTornado({ result }: SensitivityTornadoProps): JSX.Ele
           </BarChart>
         </ResponsiveContainer>
       </div>
+      </div>
 
       <div className="space-y-1 text-[11px] text-muted-foreground bg-canvas p-2 rounded border border-line">
         <div className="font-semibold text-ink">Driver Dominance Hierarchy:</div>
@@ -76,7 +79,7 @@ export function SensitivityTornado({ result }: SensitivityTornadoProps): JSX.Ele
         </div>
         {chartData.some((d) => d.outside) && (
           <p className="text-white text-[10px] pt-1">
-            Highlighted drivers contain baseline scenario values outside standard §42.1 test bounds.
+            Red drivers contain baseline scenario values outside the standard sensitivity test bounds.
           </p>
         )}
       </div>

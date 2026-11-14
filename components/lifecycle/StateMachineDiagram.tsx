@@ -13,7 +13,7 @@ export function StateMachineDiagram({
   return (
     <div className="space-y-3 text-xs">
       <div className="flex items-center justify-between text-muted-foreground font-semibold pb-1">
-        <span>Operational Event State Machine (Deck s10)</span>
+        <span>Operational event states</span>
         <span className="font-mono text-[10px]">7 Discrete Command Transitions</span>
       </div>
 

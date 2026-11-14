@@ -29,7 +29,7 @@ export function LedgerTable({
 
   return (
     <div className="border border-line rounded-md overflow-hidden bg-card text-xs">
-      <Table>
+      <Table className="min-w-[900px]">
         <TableHeader className="bg-canvas">
           <TableRow>
             <TableHead className="text-xs">ID</TableHead>

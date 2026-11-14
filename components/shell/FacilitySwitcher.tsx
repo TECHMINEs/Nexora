@@ -29,7 +29,7 @@ export function FacilitySwitcher({ currentId }: FacilitySwitcherProps): JSX.Elem
         Facility:
       </span>
       <Select value={currentId} onValueChange={(val) => handleSelect(val as FacilityId)}>
-        <SelectTrigger className="w-full sm:w-[260px] min-w-0 max-w-[260px] h-8 text-xs bg-card border-line font-medium text-ink [&>span]:truncate" aria-label="Select facility">
+        <SelectTrigger className="w-[46vw] sm:w-[260px] min-w-0 max-w-[260px] h-9 text-xs bg-card border-line font-medium text-ink [&>span]:truncate" aria-label="Select facility">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>

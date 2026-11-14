@@ -42,7 +42,7 @@ export function SideNav({ activeFacilityId }: SideNavProps): JSX.Element {
   ];
 
   return (
-    <nav className="w-full flex flex-col gap-6 p-4">
+    <nav className="w-full flex flex-col gap-6 p-4" aria-label="Nexora sections">
       <div className="space-y-1">
         <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground px-2">
           Global
@@ -56,13 +56,13 @@ export function SideNav({ activeFacilityId }: SideNavProps): JSX.Element {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-xs font-medium transition-colors',
+                  'flex items-center gap-3 px-3 py-2 rounded-md text-sm leading-snug font-medium transition-colors',
                   active
                     ? 'bg-brand-500 text-black font-semibold'
                     : 'text-muted-foreground hover:text-ink hover:bg-canvas'
                 )}
               >
-                <Icon className={cn('w-4 h-4', active ? 'text-white' : 'text-muted-foreground')} />
+                <Icon className={cn('w-4 h-4 shrink-0', active ? 'text-black' : 'text-muted-foreground')} />
                 <span>{item.label}</span>
               </Link>
             );
@@ -83,13 +83,13 @@ export function SideNav({ activeFacilityId }: SideNavProps): JSX.Element {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-xs font-medium transition-colors',
+                  'flex items-center gap-3 px-3 py-2 rounded-md text-sm leading-snug font-medium transition-colors',
                   active
                     ? 'bg-brand-500 text-black font-semibold'
                     : 'text-muted-foreground hover:text-ink hover:bg-canvas'
                 )}
               >
-                <Icon className={cn('w-4 h-4', active ? 'text-white' : 'text-muted-foreground')} />
+                <Icon className={cn('w-4 h-4 shrink-0', active ? 'text-black' : 'text-muted-foreground')} />
                 <span>{item.label}</span>
               </Link>
             );

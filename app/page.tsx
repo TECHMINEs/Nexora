@@ -55,7 +55,7 @@ export default function PortfolioPage(): JSX.Element {
       </div>
 
       {/* KPI Strip */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
         <Metric
           label="Total Potential Gap"
           tracked={summary.totalGap}
@@ -106,8 +106,8 @@ export default function PortfolioPage(): JSX.Element {
         section="§6.14"
         description="Click a row to navigate directly to the facility dossier."
       >
-        <div className="rounded-md border border-line overflow-hidden">
-          <Table>
+        <div className="border border-line overflow-x-auto" role="region" aria-label="Facility resilience table, scroll horizontally on small screens">
+          <Table className="min-w-[980px]">
             <TableHeader className="bg-canvas">
               <TableRow>
                 <TableHead className="text-xs font-semibold">Facility</TableHead>
@@ -209,7 +209,7 @@ export default function PortfolioPage(): JSX.Element {
                   const item = entry as { payload?: { confidence?: number } };
                   const conf = item?.payload?.confidence ?? 0.555;
                   return [
-                    `${formatINR(num)} (conf: ${conf.toFixed(2)})`,
+                    `${formatINR(num)} (data confidence: ${Math.round(conf * 100)}%)`,
                     'Potential Protection Gap',
                   ];
                 }}

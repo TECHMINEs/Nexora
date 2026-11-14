@@ -10,7 +10,7 @@ import type { GapTableProps } from '@/lib/types';
 export function GapTable({ gap, facilityId }: GapTableProps): JSX.Element {
   return (
     <div className="border border-line rounded-md overflow-hidden bg-card text-xs">
-      <Table>
+      <Table className="min-w-[780px]">
         <TableHeader className="bg-canvas">
           <TableRow>
             <TableHead className="text-xs">Coverage Class</TableHead>
@@ -47,7 +47,7 @@ export function GapTable({ gap, facilityId }: GapTableProps): JSX.Element {
                   </Badge>
                 )}
               </TableCell>
-              <TableCell className="text-muted-foreground text-[11px] max-w-xs truncate" title={row.note}>
+              <TableCell className="text-muted-foreground text-xs max-w-xs whitespace-normal leading-relaxed" title={row.note}>
                 {row.note}
               </TableCell>
             </TableRow>

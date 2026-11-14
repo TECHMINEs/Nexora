@@ -15,16 +15,17 @@ export function ResponseDecomposition({ stats }: ResponseDecompositionProps): JS
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between text-xs font-semibold text-muted-foreground pb-1">
-        <span>Mean Response Time Decomposition (§45)</span>
+        <span>Mean response time by stage</span>
         <span className="font-mono text-[10px]">Dispatch + Mobilisation + Transit</span>
       </div>
 
-      <div className="h-48 w-full">
+      <div className="w-full overflow-x-auto" role="region" aria-label="Response time chart, scroll horizontally on small screens">
+      <div className="h-64 min-w-[520px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={chartData}
             layout="vertical"
-            margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
+            margin={{ top: 5, right: 24, left: 8, bottom: 10 }}
           >
             <XAxis
               type="number"
@@ -35,7 +36,7 @@ export function ResponseDecomposition({ stats }: ResponseDecompositionProps): JS
               type="category"
               dataKey="name"
               tick={{ fontSize: 11, fill: '#FFFFFF' }}
-              width={90}
+              width={130}
             />
             <Tooltip
               formatter={(val: unknown) => [
@@ -48,6 +49,7 @@ export function ResponseDecomposition({ stats }: ResponseDecompositionProps): JS
             <Bar dataKey="travel" name="Road Transit" fill="#FF2626" stackId="a" />
           </BarChart>
         </ResponsiveContainer>
+      </div>
       </div>
     </div>
   );

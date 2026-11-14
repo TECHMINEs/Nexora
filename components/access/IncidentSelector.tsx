@@ -29,7 +29,7 @@ export function IncidentSelector({
         </div>
 
         <span className="text-[11px] text-muted-foreground">
-          Capability-Matched Triage Selection (§74.1)
+          Selection matches the required response capabilities
         </span>
       </div>
 
