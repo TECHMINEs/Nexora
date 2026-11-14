@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="NEXORA logo">
+  <title>NEXORA</title>
+  <rect width="64" height="64" fill="#000000"/>
+  <rect x="1.5" y="1.5" width="61" height="61" fill="none" stroke="#FF2626" stroke-width="3"/>
+  <polygon points="32.00,9.00 51.92,20.50 51.92,43.50 32.00,55.00 12.08,43.50 12.08,20.50" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M24 41 L24 23 L40 41 L40 23" fill="none" stroke="#FF2626" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter"/>
+  <rect x="20.5" y="19.5" width="7" height="7" fill="#FFFFFF"/>
+  <rect x="36.5" y="37.5" width="7" height="7" fill="#FFFFFF"/>
+</svg>
