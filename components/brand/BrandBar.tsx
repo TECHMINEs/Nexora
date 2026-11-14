@@ -1,4 +1,5 @@
-import Image from 'next/image'
+'use client'
+import React from 'react'
 
 /**
  * TECHMINES brand bar — identical across every portfolio project and styled like the
@@ -7,7 +8,7 @@ import Image from 'next/image'
  */
 export default function BrandBar({ project }: { project: string }) {
   return (
-    <header className="tm-brandbar sticky top-0 z-[60] h-11 px-4 flex items-center justify-between gap-3 select-none border-b border-line">
+    <header className="tm-brandbar sticky top-0 z-[60] h-11 px-4 flex items-center justify-between gap-3 select-none border-b border-line bg-black/90 backdrop-blur-md">
       <a
         href="https://techmines.github.io/"
         target="_blank"
@@ -15,13 +16,17 @@ export default function BrandBar({ project }: { project: string }) {
         className="group flex items-center gap-2.5 min-w-0 no-underline"
         aria-label="TECHMINES — Pranav Jangid's portfolio"
       >
-        <Image
-          src="/techmines-logo.jpg"
+        <img
+          src="/Nexora/techmines-logo.jpg"
           alt="TECHMINES logo"
           width={28}
           height={28}
-          priority
           className="w-7 h-7 object-cover border-2 border-[#FF2626] transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105"
+          onError={(e) => {
+            if (e.currentTarget.src.includes('/Nexora/techmines-logo.jpg')) {
+              e.currentTarget.src = '/techmines-logo.jpg';
+            }
+          }}
         />
         <span className="font-display font-bold uppercase tracking-[0.03em] text-base text-white">
           TECHMINES

@@ -24,8 +24,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${fontVariables}`}>
       <head>
-        <link rel="icon" href="/logo-mark.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/Nexora/logo-mark.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/Nexora/apple-touch-icon.png" />
       </head>
       <body className="antialiased min-h-screen text-white">
         <BrandBar project="Nexora — Resilience Intelligence" />

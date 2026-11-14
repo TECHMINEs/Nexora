@@ -8,7 +8,6 @@ import { FacilitySwitcher } from './FacilitySwitcher';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
-import Image from 'next/image';
 import BrandFooter from '@/components/brand/BrandFooter';
 import type { AppShellProps, FacilityId } from '@/lib/types';
 
@@ -40,7 +39,18 @@ export function AppShell({ children }: AppShellProps): JSX.Element {
             </SheetContent>
           </Sheet>
           <div className="flex items-center gap-2">
-            <Image src="/logo-mark.svg" alt="Nexora logo" width={28} height={28} className="w-7 h-7" unoptimized />
+            <img
+              src="/Nexora/logo-mark.svg"
+              alt="Nexora logo"
+              width={28}
+              height={28}
+              className="w-7 h-7"
+              onError={(e) => {
+                if (e.currentTarget.src.includes('/Nexora/logo-mark.svg')) {
+                  e.currentTarget.src = '/logo-mark.svg';
+                }
+              }}
+            />
             <span className="font-display font-bold text-base tracking-[0.03em] uppercase text-white">
               NEX<span className="text-[#FF2626]">ORA</span>
             </span>
@@ -55,7 +65,18 @@ export function AppShell({ children }: AppShellProps): JSX.Element {
         {/* Desktop Sidebar 240px */}
         <aside className="hidden md:flex flex-col sticky top-11 h-[calc(100dvh-2.75rem)] w-[240px] shrink-0 bg-black/80 backdrop-blur-xl border-r border-line no-print">
           <div className="p-4 border-b border-line flex items-center gap-3">
-            <Image src="/logo-mark.svg" alt="Nexora logo" width={40} height={40} className="w-10 h-10 flex-shrink-0" unoptimized />
+            <img
+              src="/Nexora/logo-mark.svg"
+              alt="Nexora logo"
+              width={40}
+              height={40}
+              className="w-10 h-10 flex-shrink-0"
+              onError={(e) => {
+                if (e.currentTarget.src.includes('/Nexora/logo-mark.svg')) {
+                  e.currentTarget.src = '/logo-mark.svg';
+                }
+              }}
+            />
             <div className="grid leading-none">
               <span className="font-display font-bold text-xl tracking-[0.03em] text-white uppercase">
                 Nex<span className="text-[#FF2626]">ora</span>
