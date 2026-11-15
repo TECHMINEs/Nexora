@@ -15,7 +15,7 @@ export function RiskTable({
   facilityId,
 }: RiskTableProps): JSX.Element {
   return (
-    <div className="border border-line rounded-md overflow-hidden bg-card">
+    <div className="border border-line rounded-md overflow-x-auto bg-card" role="region" aria-label="Detailed risk table, scroll horizontally on small screens">
       <Table className="min-w-[1100px]">
         <TableHeader className="bg-canvas">
           <TableRow>

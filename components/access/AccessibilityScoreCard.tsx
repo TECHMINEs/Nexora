@@ -10,11 +10,11 @@ export function AccessibilityScoreCard({
   result,
 }: AccessibilityScoreCardProps): JSX.Element {
   const factorNames: Record<string, string> = {
-    coverage: 'Coverage (P50 ≤ 20 min across capabilities)',
-    reliability: 'Reliability (P90 variance buffer)',
-    speed: 'Speed (Mean scaled 8 - 30 min)',
-    redundancy: 'Redundancy (Multiple designated access routes)',
-    capabilityMatch: 'Primary Capability Triage Match',
+    coverage: 'Response coverage',
+    reliability: 'Response reliability',
+    speed: 'Average response speed',
+    redundancy: 'Alternative access routes',
+    capabilityMatch: 'Right responder capability',
   };
 
   return (
@@ -37,12 +37,12 @@ export function AccessibilityScoreCard({
           </div>
         </div>
         <p className="text-xs text-muted-foreground max-w-xs">
-          Multi-factor synthesis of emergency transit feasibility, route redundancy, and capability coverage.
+          A comparative score out of 100 for how quickly and reliably responders could reach the sample site. Small samples may make it partial.
         </p>
       </div>
 
-      <div className="border border-line rounded-md overflow-hidden bg-card text-xs">
-        <Table>
+      <div className="border border-line rounded-md overflow-x-auto bg-card text-xs" role="region" aria-label="Accessibility factors, scroll horizontally on small screens">
+        <Table className="min-w-[580px]">
           <TableHeader className="bg-canvas">
             <TableRow>
               <TableHead className="text-xs">Subscore Factor</TableHead>
@@ -61,7 +61,7 @@ export function AccessibilityScoreCard({
                   {(sub.weight * 100).toFixed(0)}%
                 </TableCell>
                 <TableCell className="text-right font-mono font-bold text-brand-900">
-                  {sub.value !== null ? sub.value.toFixed(3) : 'null'}
+                  {sub.value !== null ? sub.value.toFixed(3) : 'Insufficient data'}
                 </TableCell>
                 <TableCell className="text-muted-foreground text-[11px]">{sub.note}</TableCell>
               </TableRow>

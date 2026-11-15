@@ -18,6 +18,7 @@ import {
   FileText,
   RotateCw,
   GitFork,
+  BookOpen,
 } from 'lucide-react';
 
 export function SideNav({ activeFacilityId }: SideNavProps): JSX.Element {
@@ -39,13 +40,14 @@ export function SideNav({ activeFacilityId }: SideNavProps): JSX.Element {
     { label: 'Portfolio', href: '/', icon: LayoutDashboard },
     { label: 'Replay Console', href: '/replay', icon: RotateCw },
     { label: 'Lifecycle & BCP', href: '/lifecycle', icon: GitFork },
+    { label: 'How the model works', href: '/methodology', icon: BookOpen },
   ];
 
   return (
     <nav className="w-full flex flex-col gap-6 p-4" aria-label="Nexora sections">
       <div className="space-y-1">
         <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground px-2">
-          Global
+          Overview & reference
         </span>
         <div className="flex flex-col gap-0.5">
           {globalLinks.map((item) => {
@@ -72,7 +74,7 @@ export function SideNav({ activeFacilityId }: SideNavProps): JSX.Element {
 
       <div className="space-y-1">
         <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground px-2">
-          Facility Dossier
+          Facility analysis
         </span>
         <div className="flex flex-col gap-0.5">
           {facilityLinks.map((item) => {

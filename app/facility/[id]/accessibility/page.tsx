@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useFacilityModel, useDemoStore } from '@/lib/store';
-import { ModuleTag } from '@/components/common/ModuleTag';
 import { SectionCard } from '@/components/common/SectionCard';
 import { SchematicMap } from '@/components/facility/SchematicMap';
 import { ResourceTable } from '@/components/access/ResourceTable';
@@ -12,7 +11,7 @@ import { IncidentSelector } from '@/components/access/IncidentSelector';
 import { Metric } from '@/components/common/Metric';
 import { EmptyState } from '@/components/common/EmptyState';
 import { InsufficientData } from '@/components/common/InsufficientData';
-import type { FacilityId, ModuleId } from '@/lib/types';
+import type { FacilityId } from '@/lib/types';
 
 export default function EmergencyAccessibilityPage({
   params,
@@ -25,7 +24,6 @@ export default function EmergencyAccessibilityPage({
   const { setIncidentType } = useDemoStore();
 
   const currentSelection = accessibility.selections[incidentType];
-  const modules: ModuleId[] = ['6.11'];
 
   // Check if any resource has insufficient P90 observations
   const hasInsufficientP90 = accessibility.resources.some((r) => r.insufficient.includes('P90'));
@@ -36,7 +34,7 @@ export default function EmergencyAccessibilityPage({
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-bold font-display text-ink">Emergency Accessibility</h1>
-            <ModuleTag id="6.11" />
+
           </div>
           <p className="text-xs text-muted-foreground">
             Response time decomposition, percentile transit distributions, and capability-matched resource dispatch.
@@ -117,8 +115,7 @@ export default function EmergencyAccessibilityPage({
       {/* Spatial Responder Overlay */}
       <SectionCard
         title="Emergency Responder Base Locations"
-        moduleIds={modules}
-        section="§45, §74.1"
+
         description="Spatial distribution of medical, municipal fire, and hazardous materials response stations."
       >
         <SchematicMap
@@ -133,8 +130,7 @@ export default function EmergencyAccessibilityPage({
       {/* Capability Matched Resource Table */}
       <SectionCard
         title="Responder Telemetry & Empirical Transit Percentiles"
-        moduleIds={['6.11']}
-        section="§45, §74.1, ASM-12"
+
         description="P50/P90/P95 response distributions calculated from partner GPS telemetry."
       >
         {currentSelection.selectedResourceId === null && incidentType === 'hazmat' ? (
@@ -154,8 +150,7 @@ export default function EmergencyAccessibilityPage({
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <SectionCard
           title="Response Time Breakdown"
-          moduleIds={['6.11']}
-          section="§45"
+
           description="Decomposed into call dispatch, crew turnout mobilization, and physical transit time."
         >
           <ResponseDecomposition stats={accessibility.resources} />
@@ -163,8 +158,7 @@ export default function EmergencyAccessibilityPage({
 
         <SectionCard
           title="Accessibility Subscore Synthesis"
-          moduleIds={['6.11']}
-          section="§45.1"
+
           description="Coverage, speed, reliability, route redundancy, and capability triage weighted factors."
         >
           <AccessibilityScoreCard result={accessibility} facilityId={facilityId} />

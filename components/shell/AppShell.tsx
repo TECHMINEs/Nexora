@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { DemoBanner } from './DemoBanner';
 import { SideNav } from './SideNav';
 import { FacilitySwitcher } from './FacilitySwitcher';
+import { GuidedPath } from './GuidedPath';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
@@ -99,6 +100,7 @@ export function AppShell({ children }: AppShellProps): JSX.Element {
         {/* Analysis canvas */}
         <main className="flex-1 min-w-0">
           <div className="max-w-[1500px] mx-auto p-4 sm:p-6 xl:p-8 space-y-7">
+            <GuidedPath facilityId={activeFacilityId} />
             {children}
           </div>
         </main>

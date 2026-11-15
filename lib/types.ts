@@ -387,7 +387,7 @@ export interface AssumptionDrawerProps { open: boolean; onOpenChange: (open: boo
 export interface SourceBadgeProps { sourceId: string }
 export interface ModuleTagProps { id: ModuleId }
 export interface BandBadgeProps { band: Band | AccessBand }
-export interface SectionCardProps { title: string; moduleIds: ModuleId[]; section: string; description?: string; actions?: ReactNode; children: ReactNode }
+export interface SectionCardProps { title: string; description?: string; actions?: ReactNode; children: ReactNode }
 export interface EmptyStateProps { title: string; reason: string; nextStep: string }
 export interface InsufficientDataProps { metric: string; required: string; available: string }
 export interface DisclaimerProps { variant: 'insurance' | 'official_source' | 'demo' }

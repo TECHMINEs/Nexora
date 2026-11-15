@@ -12,8 +12,8 @@ export function DriverList({ risk }: DriverListProps): JSX.Element {
         <span className="font-mono text-[10px]">Weight share</span>
       </div>
 
-      <div className="border border-line rounded-md overflow-hidden bg-card">
-        <Table>
+      <div className="border border-line rounded-md overflow-x-auto bg-card" role="region" aria-label="Risk drivers, scroll horizontally on small screens">
+        <Table className="min-w-[620px]">
           <TableHeader className="bg-canvas">
             <TableRow>
               <TableHead className="text-xs">Variable</TableHead>

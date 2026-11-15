@@ -13,7 +13,7 @@ export function PriorityQueue({
   facilityId,
 }: PriorityQueueProps): JSX.Element {
   return (
-    <div className="border border-line rounded-md overflow-hidden bg-card text-xs">
+    <div className="border border-line rounded-md overflow-x-auto bg-card text-xs" role="region" aria-label="Detailed action ranking, scroll horizontally on small screens">
       <Table className="min-w-[1240px]">
         <TableHeader className="bg-canvas">
           <TableRow>

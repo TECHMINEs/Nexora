@@ -17,13 +17,11 @@ export function ScenarioPicker({
             <TabsTrigger
               key={s.id}
               value={s.id}
-              className="text-xs data-[state=active]:bg-card data-[state=active]:font-semibold"
+              className="min-h-11 text-sm data-[state=active]:bg-card data-[state=active]:font-semibold"
             >
               <div className="flex flex-col items-start text-left">
                 <span>{s.name}</span>
-                <span className="font-mono text-[9px] text-muted-foreground uppercase">
-                  {s.id} &bull; {s.peril}
-                </span>
+                <span className="text-xs text-muted-foreground capitalize">{s.peril}</span>
               </div>
             </TabsTrigger>
           ))}

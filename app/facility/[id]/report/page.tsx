@@ -2,10 +2,8 @@
 
 import React from 'react';
 import { useFacilityModel } from '@/lib/store';
-import { ModuleTag } from '@/components/common/ModuleTag';
 import { ReportSection } from '@/components/report/ReportSection';
-import { AssumptionRegister } from '@/components/report/AssumptionRegister';
-import { SourceRegister } from '@/components/report/SourceRegister';
+import Link from 'next/link';
 import { ExportButtons } from '@/components/report/ExportButtons';
 import { RiskTable } from '@/components/risk/RiskTable';
 import { GapTable } from '@/components/insurance/GapTable';
@@ -34,8 +32,6 @@ export default function EvidenceReportPage({
     preparedness,
     outcome,
     replayStatus,
-    provenance,
-    assumptions,
     ledger,
   } = model;
 
@@ -52,7 +48,7 @@ export default function EvidenceReportPage({
             <h1 className="text-2xl font-bold font-display text-ink">
               Facility Resilience Dossier & Audit Report
             </h1>
-            <ModuleTag id="6.15" />
+
             <Badge variant="outline" className="font-mono text-xs">
               {facility.id}
             </Badge>
@@ -99,7 +95,7 @@ export default function EvidenceReportPage({
       </ReportSection>
 
       {/* Section 2: Hazard Decomposition */}
-      <ReportSection id="hazard-risk" title="2. Modelled Per-Hazard Decomposition (§9, §74)">
+      <ReportSection id="hazard-risk" title="2. Modelled Per-Hazard Decomposition">
         <RiskTable
           risks={risks}
           selectedHazard={risks[0]?.hazard ?? 'flood'}
@@ -109,7 +105,7 @@ export default function EvidenceReportPage({
       </ReportSection>
 
       {/* Section 3: Scenario Stress Testing */}
-      <ReportSection id="scenario-loss" title="3. Scenario Stress Testing Loss Decomposition (§42)">
+      <ReportSection id="scenario-loss" title="3. Scenario Stress Testing Loss Decomposition">
         <div className="space-y-2 text-xs">
           <div className="font-semibold text-ink">
             Active Scenario: {currentScenario.scenario.name} ({currentScenario.scenario.peril})
@@ -132,12 +128,12 @@ export default function EvidenceReportPage({
       </ReportSection>
 
       {/* Section 4: Insurance Adequacy */}
-      <ReportSection id="insurance-adequacy" title="4. Insurance Adequacy & Protection Gap (§73)">
+      <ReportSection id="insurance-adequacy" title="4. Insurance Adequacy & Protection Gap">
         <GapTable gap={insurance.maxExposure} facilityId={facilityId} />
       </ReportSection>
 
       {/* Section 5: Verified Controls & Evidence */}
-      <ReportSection id="ledger-evidence" title="5. Verified Physical Controls & Evidence Register (§44)">
+      <ReportSection id="ledger-evidence" title="5. Verified Physical Controls & Evidence Register">
         <div className="space-y-2 text-xs">
           <div className="border border-line rounded-md overflow-hidden bg-card">
             <table className="w-full text-left text-xs">
@@ -171,12 +167,12 @@ export default function EvidenceReportPage({
       </ReportSection>
 
       {/* Section 6: Emergency Accessibility */}
-      <ReportSection id="accessibility-telemetry" title="6. Emergency Accessibility & Dispatch Telemetry (§45)">
+      <ReportSection id="accessibility-telemetry" title="6. Emergency Accessibility & Dispatch Telemetry">
         <ResourceTable stats={accessibility.resources} facilityId={facilityId} />
       </ReportSection>
 
       {/* Section 7: Historical Outcome Recalibration */}
-      <ReportSection id="outcome-learning" title="7. Historical Outcome Learning & Recalibration (§6.15)">
+      <ReportSection id="outcome-learning" title="7. Historical Outcome Learning & Recalibration">
         <div className="p-4 bg-canvas rounded-lg border border-line space-y-3 text-xs">
           <div className="flex items-center justify-between pb-2 border-b border-line/60">
             <span className="font-semibold text-ink">
@@ -218,15 +214,9 @@ export default function EvidenceReportPage({
         </div>
       </ReportSection>
 
-      {/* Section 8: Assumption Register (Anchors #ASM-xx) */}
-      <ReportSection id="assumption-register" title="8. Technical Assumption Register (ASM-01 to ASM-27)">
-        <AssumptionRegister assumptions={assumptions} />
-      </ReportSection>
-
-      {/* Section 9: Source Register (§72.1) */}
-      <ReportSection id="source-register" title="9. Data Provenance & Source Licensing Breakdown (§72.1)">
-        <SourceRegister rows={provenance} />
-      </ReportSection>
+      <p className="border-t border-line pt-4 text-sm text-muted-foreground">
+        Need the model inputs and limitations? <Link href="/methodology" className="font-semibold text-brand-400 underline underline-offset-4">How the model works</Link>
+      </p>
     </div>
   );
 }

@@ -9,7 +9,7 @@ import type { GapTableProps } from '@/lib/types';
 
 export function GapTable({ gap, facilityId }: GapTableProps): JSX.Element {
   return (
-    <div className="border border-line rounded-md overflow-hidden bg-card text-xs">
+    <div className="border border-line rounded-md overflow-x-auto bg-card text-xs" role="region" aria-label="Insurance gap table, scroll horizontally on small screens">
       <Table className="min-w-[780px]">
         <TableHeader className="bg-canvas">
           <TableRow>

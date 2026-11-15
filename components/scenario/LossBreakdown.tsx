@@ -12,7 +12,7 @@ export function LossBreakdown({ view, facilityId }: LossBreakdownProps): JSX.Ele
 
   const chartData = [
     {
-      name: 'Gross Loss',
+      name: 'No controls',
       physical: gross.components.physical.value,
       inventory: gross.components.inventory.value,
       bi: gross.components.bi.value,
@@ -20,7 +20,7 @@ export function LossBreakdown({ view, facilityId }: LossBreakdownProps): JSX.Ele
       supply: gross.components.supplyChain.value,
     },
     {
-      name: 'Residual (Verified)',
+      name: 'Verified',
       physical: residual.components.physical.value,
       inventory: residual.components.inventory.value,
       bi: residual.components.bi.value,
@@ -28,7 +28,7 @@ export function LossBreakdown({ view, facilityId }: LossBreakdownProps): JSX.Ele
       supply: residual.components.supplyChain.value,
     },
     {
-      name: 'If Committed Verified',
+      name: 'Planned',
       physical: committed.components.physical.value,
       inventory: committed.components.inventory.value,
       bi: committed.components.bi.value,
@@ -40,10 +40,11 @@ export function LossBreakdown({ view, facilityId }: LossBreakdownProps): JSX.Ele
   return (
     <div className="space-y-4">
       {/* Chart */}
-      <div className="h-60 w-full pt-1">
+      <div className="w-full overflow-x-auto" role="region" aria-label="Loss comparison chart, scroll horizontally on small screens">
+      <div className="h-72 min-w-[620px] pt-1">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={chartData} margin={{ top: 10, right: 10, left: 20, bottom: 5 }}>
-            <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#FFFFFF' }} />
+          <BarChart data={chartData} margin={{ top: 10, right: 20, left: 24, bottom: 28 }}>
+            <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#FFFFFF' }} height={48} interval={0} />
             <YAxis
               tickFormatter={(v) => formatINR(v, { unit: 'cr', digits: 1 })}
               tick={{ fontSize: 11, fill: '#A3A3A3' }}
@@ -62,10 +63,11 @@ export function LossBreakdown({ view, facilityId }: LossBreakdownProps): JSX.Ele
           </BarChart>
         </ResponsiveContainer>
       </div>
+      </div>
 
       {/* Table Comparison */}
-      <div className="border border-line rounded-md overflow-hidden bg-card text-xs">
-        <Table>
+      <div className="border border-line rounded-md overflow-x-auto bg-card text-xs" role="region" aria-label="Detailed loss comparison, scroll horizontally on small screens">
+        <Table className="min-w-[760px]">
           <TableHeader className="bg-canvas">
             <TableRow>
               <TableHead className="text-xs">Component</TableHead>

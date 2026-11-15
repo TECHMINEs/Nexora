@@ -25,7 +25,7 @@ const fontVariables = `${fontDisplay.variable} ${fontBody.variable} ${fontMono.v
 
 export const metadata: Metadata = {
   title: 'NEXORA — Resilience Intelligence Infrastructure',
-  description: 'Pre-disaster facility resilience intelligence platform',
+  description: 'Explore illustrative factory disaster risks, likely losses, and actions that could reduce them.',
 };
 
 export default function RootLayout({

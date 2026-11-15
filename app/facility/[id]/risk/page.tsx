@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { useFacilityModel } from '@/lib/store';
-import { ModuleTag } from '@/components/common/ModuleTag';
 import { SectionCard } from '@/components/common/SectionCard';
 import { RiskTable } from '@/components/risk/RiskTable';
 import { DriverList } from '@/components/risk/DriverList';
@@ -13,7 +12,9 @@ import { EmptyState } from '@/components/common/EmptyState';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AlertTriangle } from 'lucide-react';
-import type { FacilityId, HazardType, ModuleId } from '@/lib/types';
+import type { FacilityId, HazardType } from '@/lib/types';
+import Link from 'next/link';
+import { formatScore100 } from '@/lib/format';
 
 export default function RiskExplorerPage({
   params,
@@ -27,7 +28,6 @@ export default function RiskExplorerPage({
   const [selectedHazard, setSelectedHazard] = useState<HazardType>(risks[0]?.hazard ?? 'flood');
 
   const selectedRisk = risks.find((r) => r.hazard === selectedHazard) ?? risks[0];
-  const modules: ModuleId[] = ['6.2', '6.3'];
 
   // Check if selected risk has low confidence
   const isLowConfidence = selectedRisk && selectedRisk.R.confidence < 0.5;
@@ -38,14 +38,31 @@ export default function RiskExplorerPage({
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-bold font-display text-ink">Risk Explorer</h1>
-            <ModuleTag id="6.2" />
-            <ModuleTag id="6.3" />
+
           </div>
-          <p className="text-xs text-muted-foreground">
-            Multi-hazard decomposition: Hazard (H) &times; Exposure (E) &times; Vulnerability (V) &times; Criticality (C) &times; (1 &minus; M).
-          </p>
+          <p className="text-sm text-muted-foreground">Choose a hazard to see its comparative risk and what lies in its footprint.</p>
         </div>
       </div>
+
+      <Tabs value={selectedHazard} onValueChange={(val) => setSelectedHazard(val as HazardType)}>
+        <TabsList className="flex h-auto w-full flex-wrap justify-start gap-1 bg-muted/50 p-1">
+          {risks.map((risk) => <TabsTrigger key={risk.hazard} value={risk.hazard} className="text-sm">{risk.label}</TabsTrigger>)}
+        </TabsList>
+      </Tabs>
+      <section className="border border-line bg-card p-5 sm:p-6">
+        <p className="font-mono text-xs font-bold uppercase tracking-widest text-brand-400">Selected hazard</p>
+        <h2 className="mt-1 font-display text-xl font-bold text-ink">{selectedRisk.label}</h2>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          Comparative risk: <strong className="text-ink">{formatScore100(selectedRisk.Rnorm.value, 0)} / 100</strong> · <strong className="text-ink">{selectedRisk.band}</strong>. This score compares sample hazards after verified controls; it is not an event probability.
+        </p>
+        <p className="mt-2 text-sm text-muted-foreground">{selectedRisk.exposure.exposedAssetIds.length} asset(s) appear in this modelled hazard footprint.</p>
+        {isLowConfidence && <p className="mt-2 text-sm text-white">This result has limited supporting data. Treat the ranking as exploratory.</p>}
+        <Link href={`/facility/${facilityId}/scenarios`} className="mt-5 inline-flex min-h-11 items-center justify-center border border-brand-500 bg-brand-500 px-5 py-2 font-display text-sm font-bold uppercase text-black hover:bg-white">Change a loss scenario →</Link>
+      </section>
+
+      <details className="border border-line bg-card p-4 sm:p-5">
+        <summary className="cursor-pointer font-display text-base font-bold text-ink">Explore risk calculations and exposed assets</summary>
+        <div className="mt-5 space-y-6">
 
       {/* Formula Strip Card */}
       <div className="p-3.5 bg-card border border-line rounded-lg shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-3">
@@ -85,7 +102,7 @@ export default function RiskExplorerPage({
           <AlertTriangle className="w-4 h-4 text-white" />
           <AlertTitle className="font-semibold">Low confidence risk assessment</AlertTitle>
           <AlertDescription>
-            The confidence for {selectedRisk.label} is below 0.50. Inspect the contributing data sources in the assumption drawer to review limitations.
+            The confidence for {selectedRisk.label} is below 0.50. Review the optional model guide for limitations.
           </AlertDescription>
         </Alert>
       )}
@@ -93,8 +110,7 @@ export default function RiskExplorerPage({
       {/* Multi-hazard Comparison Table */}
       <SectionCard
         title="Modelled Per-Hazard Decomposition"
-        moduleIds={modules}
-        section="§9, §40, §74"
+
         description="Click a row to select and filter spatial footprint and driver contributions."
       >
         <RiskTable
@@ -107,27 +123,11 @@ export default function RiskExplorerPage({
 
       {/* Hazard Specific Details */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <Tabs
-            value={selectedHazard}
-            onValueChange={(val) => setSelectedHazard(val as HazardType)}
-            className="w-full sm:w-auto"
-          >
-            <TabsList className="bg-muted/50 p-1">
-              {risks.map((r) => (
-                <TabsTrigger key={r.hazard} value={r.hazard} className="text-xs capitalize">
-                  {r.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </Tabs>
-        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <SectionCard
             title={`Hazard Footprint: ${selectedRisk.label}`}
-            moduleIds={['6.2']}
-            section="§6.2, §9"
+
             description="Active spatial zone overlay with respect to plant boundary."
           >
             <SchematicMap
@@ -141,8 +141,7 @@ export default function RiskExplorerPage({
 
           <SectionCard
             title={`Vulnerability Drivers: ${selectedRisk.label}`}
-            moduleIds={['6.3']}
-            section="§6.3, §40"
+
             description="Adaptive conditions weighting the overall vulnerability index V."
           >
             <DriverList risk={selectedRisk} facilityId={facilityId} />
@@ -151,8 +150,7 @@ export default function RiskExplorerPage({
 
         <SectionCard
           title={`Assets in ${selectedRisk.label} Footprint`}
-          moduleIds={['6.2']}
-          section="§9"
+
           description="Physical assets exposed to this specific hazard peril."
         >
           {selectedRisk.exposure.exposedAssetIds.length > 0 ? (
@@ -170,6 +168,8 @@ export default function RiskExplorerPage({
           )}
         </SectionCard>
       </div>
+        </div>
+      </details>
     </div>
   );
 }

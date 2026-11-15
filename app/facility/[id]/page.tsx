@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useFacilityModel } from '@/lib/store';
-import { ModuleTag } from '@/components/common/ModuleTag';
 import { SectionCard } from '@/components/common/SectionCard';
 import { Metric } from '@/components/common/Metric';
 import { SchematicMap } from '@/components/facility/SchematicMap';
@@ -11,8 +10,10 @@ import { StatusList } from '@/components/facility/StatusList';
 import { DriverList } from '@/components/risk/DriverList';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import type { FacilityId, ModuleId } from '@/lib/types';
+import type { FacilityId } from '@/lib/types';
 import { Users, Zap, Truck, ShieldAlert } from 'lucide-react';
+import Link from 'next/link';
+import { formatINR, formatScore100 } from '@/lib/format';
 
 export default function FacilityOverviewPage({
   params,
@@ -23,8 +24,6 @@ export default function FacilityOverviewPage({
   const model = useFacilityModel(facilityId);
   const { facility, completeness, preparedness, topRisk, contributionPerDay } = model;
 
-  const modules: ModuleId[] = ['6.1', '6.9'];
-
   // Top 3 drivers for top risk
   const topDrivers = {
     ...topRisk,
@@ -33,11 +32,18 @@ export default function FacilityOverviewPage({
 
   return (
     <div className="space-y-6">
-      {/* Module Tags Header */}
-      <div className="flex items-center gap-2">
-        <ModuleTag id="6.1" />
-        <ModuleTag id="6.9" />
-      </div>
+      <section className="border border-line bg-card p-5 sm:p-6">
+        <p className="font-mono text-xs font-bold uppercase tracking-widest text-brand-400">Facility selected</p>
+        <h2 className="mt-2 font-display text-xl font-bold text-ink">What could disrupt this factory?</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          The leading modelled hazard is <strong className="text-ink">{topRisk.label}</strong>. Its comparative risk score is <strong className="text-ink">{formatScore100(topRisk.Rnorm.value, 0)} / 100</strong>. This score ranks sample hazards; it is not the chance of a disaster.
+        </p>
+        <p className="mt-2 text-sm text-muted-foreground">The factory contributes about <strong className="text-ink">{formatINR(contributionPerDay.value)} per day</strong>, which helps explain why downtime matters in the next steps.</p>
+        <Link href={`/facility/${facilityId}/risk`} className="mt-5 inline-flex min-h-11 items-center justify-center border border-brand-500 bg-brand-500 px-5 py-2 font-display text-sm font-bold uppercase text-black hover:bg-white">Explore this facility&apos;s risks →</Link>
+      </section>
+      <details className="border border-line bg-card p-4 sm:p-5">
+        <summary className="cursor-pointer font-display text-base font-bold text-ink">Explore facility data and layout</summary>
+        <div className="mt-5 space-y-6">
 
       {/* KPI Strip */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
@@ -72,7 +78,7 @@ export default function FacilityOverviewPage({
           band={topRisk.band}
           size="md"
           facilityId={facilityId}
-          caption={`${topRisk.label} (H*E*V*C*(1-M))/5`}
+          caption={`${topRisk.label} · comparative score, not event probability`}
         />
       </div>
 
@@ -81,8 +87,7 @@ export default function FacilityOverviewPage({
         <div className="2xl:col-span-2 min-w-0 space-y-6">
           <SectionCard
             title="Facility Layout & Hazard Zones"
-            moduleIds={modules}
-            section="§6.1, §26"
+
             description="Geocoded spatial boundary with hazard footprints and access points."
           >
             <SchematicMap
@@ -96,8 +101,7 @@ export default function FacilityOverviewPage({
 
           <SectionCard
             title="Appendix A Onboarding Checklist"
-            moduleIds={modules}
-            section="Appendix A"
+
             description="Operational data readiness across physical, operational and financial domains."
           >
             <ChecklistTable
@@ -112,8 +116,7 @@ export default function FacilityOverviewPage({
           {/* Deck-style Status Snapshot */}
           <SectionCard
             title="Resilience Snapshot"
-            moduleIds={modules}
-            section="Deck s11"
+
             description="Pre-disaster posture summary"
           >
             <StatusList model={model} />
@@ -122,8 +125,7 @@ export default function FacilityOverviewPage({
           {/* Top Risk Drivers */}
           <SectionCard
             title={`Top Risk: ${topRisk.label}`}
-            moduleIds={['6.1']}
-            section="§40, §62"
+
             description="Primary vulnerability drivers contributing to exposure."
           >
             <DriverList risk={topDrivers} facilityId={facilityId} />
@@ -210,6 +212,8 @@ export default function FacilityOverviewPage({
           )}
         </div>
       </div>
+        </div>
+      </details>
     </div>
   );
 }

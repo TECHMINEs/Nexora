@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useDemoStore, useFacilityModel } from '@/lib/store';
-import { ModuleTag } from '@/components/common/ModuleTag';
 import { SectionCard } from '@/components/common/SectionCard';
 import { CaseToggle } from '@/components/replay/CaseToggle';
 import { ReplayTimeline } from '@/components/replay/ReplayTimeline';
@@ -14,7 +13,7 @@ import { AlertQualityChecks } from '@/components/monitoring/AlertQualityChecks';
 import { Disclaimer } from '@/components/common/Disclaimer';
 import { alertQualityChecks } from '@/lib/engines/monitoring';
 import { getReplayCase } from '@/data';
-import type { ModuleId, EventState } from '@/lib/types';
+import type { EventState } from '@/lib/types';
 
 export default function ReplayConsolePage(): JSX.Element {
   const { state, selectReplayCase, stepReplay, resetReplay } = useDemoStore();
@@ -24,8 +23,6 @@ export default function ReplayConsolePage(): JSX.Element {
   // Model of the facility referenced by the active replay case
   const model = useFacilityModel(currentCase.facilityId);
   const { thresholds, advisories, ledger, outcome } = model;
-
-  const modules: ModuleId[] = ['6.12', '6.15'];
 
   // Visited states list
   const visitedStates: EventState[] = ['NORMAL'];
@@ -43,8 +40,7 @@ export default function ReplayConsolePage(): JSX.Element {
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-bold font-display text-ink">Historical Event Replay</h1>
-            <ModuleTag id="6.12" />
-            <ModuleTag id="6.15" />
+
           </div>
           <p className="text-xs text-muted-foreground">
             Step-by-step playback testing early-warning rules, operational state transitions, and post-disaster model recalibration.
@@ -73,7 +69,6 @@ export default function ReplayConsolePage(): JSX.Element {
         <details className="text-xs text-muted-foreground">
           <summary className="cursor-pointer text-brand-400">Case selection &amp; source references</summary>
           <p className="mt-2 leading-relaxed">{currentCase.whyChosen}</p>
-          <p className="mt-1 font-mono">Source reference: {currentCase.section}</p>
         </details>
       </div>
 
@@ -89,8 +84,7 @@ export default function ReplayConsolePage(): JSX.Element {
       {/* State Machine Transition Diagram */}
       <SectionCard
         title="Event State Machine Propagation"
-        moduleIds={['6.12']}
-        section="Deck s10"
+
         description="Tracks escalation from normal baseline through watch, alert, incident, stabilisation, and post-mortem review."
       >
         <StateMachineDiagram
@@ -102,8 +96,7 @@ export default function ReplayConsolePage(): JSX.Element {
       {/* Telemetry Signals Chart */}
       <SectionCard
         title="Regional Signals vs Facility Thresholds"
-        moduleIds={modules}
-        section="§46, §70"
+
         description="Telemetry signals during the event window. Signal values are illustrative, not historical readings (ASM-24)."
       >
         <SignalChart
@@ -116,8 +109,7 @@ export default function ReplayConsolePage(): JSX.Element {
       {/* Triggered Advisories & Actions */}
       <SectionCard
         title="Time-Phased Triggered Advisories"
-        moduleIds={['6.12']}
-        section="§46"
+
         description="Window-specific instructions released to plant operations as signal thresholds were breached."
       >
         <AdvisoryList
@@ -137,8 +129,7 @@ export default function ReplayConsolePage(): JSX.Element {
       {/* Quality Checks */}
       <SectionCard
         title="Alert Quality Standards & Rule Audit"
-        moduleIds={['6.12']}
-        section="§46.1"
+
         description="Escalation sustained alert checks and suppression auditing."
       >
         <AlertQualityChecks checks={qualityChecks} />

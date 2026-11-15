@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { useDemoStore, useFacilityModel } from '@/lib/store';
-import { ModuleTag } from '@/components/common/ModuleTag';
 import { SectionCard } from '@/components/common/SectionCard';
 import { StateMachineDiagram } from '@/components/lifecycle/StateMachineDiagram';
 import { ModeCards } from '@/components/lifecycle/ModeCards';
@@ -11,7 +10,7 @@ import { DrillTable } from '@/components/lifecycle/DrillTable';
 import { Metric } from '@/components/common/Metric';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { FACILITY_IDS, getFacility } from '@/data';
-import type { FacilityId, ModuleId, EventState } from '@/lib/types';
+import type { FacilityId, EventState } from '@/lib/types';
 
 export default function LifecyclePage(): JSX.Element {
   const { state } = useDemoStore();
@@ -26,16 +25,13 @@ export default function LifecyclePage(): JSX.Element {
     if (!visitedStates.includes(l.to)) visitedStates.push(l.to);
   });
 
-  const modules: ModuleId[] = ['6.9', '6.10'];
-
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-bold font-display text-ink">Lifecycle & Event State Machine</h1>
-            <ModuleTag id="6.9" />
-            <ModuleTag id="6.10" />
+
           </div>
           <p className="text-xs text-muted-foreground">
             Four operating modes and a seven-state emergency escalation protocol with assigned role owners.
@@ -123,8 +119,7 @@ export default function LifecyclePage(): JSX.Element {
       {/* State Machine Transition Diagram */}
       <SectionCard
         title="Command Event State Machine"
-        moduleIds={['6.9']}
-        section="Deck s10"
+
         description="The seven sequential event states and designated role owners. Current state reflects active replay position."
       >
         <StateMachineDiagram
@@ -136,8 +131,7 @@ export default function LifecyclePage(): JSX.Element {
       {/* Four Operating Modes */}
       <SectionCard
         title="Continuous Operational Modes"
-        moduleIds={['6.9']}
-        section="Deck s7"
+
         description="Four operating phases across pre-disaster planning, active hazard mitigation, emergency response, and recovery learning."
       >
         <ModeCards facilityId={selectedFacilityId} current={currentReplayState} />
@@ -146,8 +140,7 @@ export default function LifecyclePage(): JSX.Element {
       {/* BCP Processes & Roles */}
       <SectionCard
         title="Business Continuity Plan (BCP) & Shift Roles"
-        moduleIds={modules}
-        section="§6.9, §40"
+
         description="Recovery Time Objectives (RTO), Maximum Tolerable Period of Disruption (MTPD), and designated emergency role holders."
       >
         <BcpPanel bcp={bcp} />
@@ -156,8 +149,7 @@ export default function LifecyclePage(): JSX.Element {
       {/* Testing & Drills Registry */}
       <SectionCard
         title="Testing & Emergency Evacuation Drills"
-        moduleIds={['6.10']}
-        section="§6.10, §26"
+
         description="Empirical drill timing, participant compliance, and speed effectiveness audits."
       >
         <DrillTable drills={drills} facilityId={selectedFacilityId} />

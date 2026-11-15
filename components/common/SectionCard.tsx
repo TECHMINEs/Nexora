@@ -1,12 +1,9 @@
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { ModuleTag } from './ModuleTag';
 import type { SectionCardProps } from '@/lib/types';
 
 export function SectionCard({
   title,
-  moduleIds,
-  section,
   description,
   actions,
   children,
@@ -21,13 +18,6 @@ export function SectionCard({
           </div>
           {actions && <div className="flex items-center gap-2 self-start sm:self-auto">{actions}</div>}
         </div>
-        <details className="pt-1 text-xs text-muted-foreground">
-          <summary className="w-fit cursor-pointer font-medium text-brand-400 hover:text-white">Method &amp; provenance</summary>
-          <div className="mt-2 flex flex-wrap items-center gap-2">
-            {moduleIds.map((mid) => <ModuleTag key={mid} id={mid} />)}
-            <span className="font-mono">Source reference: {section}</span>
-          </div>
-        </details>
       </CardHeader>
       <CardContent className="min-w-0 p-4 sm:p-5">{children}</CardContent>
     </Card>

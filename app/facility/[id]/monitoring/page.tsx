@@ -3,7 +3,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { useFacilityModel } from '@/lib/store';
-import { ModuleTag } from '@/components/common/ModuleTag';
 import { SectionCard } from '@/components/common/SectionCard';
 import { ThresholdTable } from '@/components/monitoring/ThresholdTable';
 import { AdvisoryList } from '@/components/monitoring/AdvisoryList';
@@ -12,7 +11,7 @@ import { Disclaimer } from '@/components/common/Disclaimer';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { alertQualityChecks } from '@/lib/engines/monitoring';
-import type { FacilityId, ModuleId } from '@/lib/types';
+import type { FacilityId } from '@/lib/types';
 import { PlayCircle } from 'lucide-react';
 
 export default function MonitoringPage({
@@ -23,8 +22,6 @@ export default function MonitoringPage({
   const facilityId = params.id as FacilityId;
   const model = useFacilityModel(facilityId);
   const { thresholds, advisories, replayStatus, replayCase, ledger } = model;
-
-  const modules: ModuleId[] = ['6.12'];
 
   // Current active step signals
   const latestSignals = replayStatus.latestStep ? replayStatus.latestStep.signals : null;
@@ -41,7 +38,7 @@ export default function MonitoringPage({
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-bold font-display text-ink">Monitoring & Early Warning</h1>
-            <ModuleTag id="6.12" />
+
           </div>
           <p className="text-xs text-muted-foreground">
             Operational translation of authoritative regional signals into facility-specific readiness windows.
@@ -79,8 +76,7 @@ export default function MonitoringPage({
       {/* Threshold Configuration vs Latest Telemetry */}
       <SectionCard
         title="Configured Facility Thresholds & Live Signal Status"
-        moduleIds={modules}
-        section="§46, ASM-22"
+
         description="Physical triggers calibrated to plant machinery elevation, storm wind speeds, and monomer stability."
       >
         <ThresholdTable thresholds={thresholds} latest={latestSignals} />
@@ -89,8 +85,7 @@ export default function MonitoringPage({
       {/* Windowed Advisories */}
       <SectionCard
         title="Time-Phased Facility Action Advisories"
-        moduleIds={['6.12']}
-        section="§46"
+
         description="Translates 7-day to 1-hour strategic windows into specific checklist verifications and control actuations."
       >
         <AdvisoryList
@@ -103,8 +98,7 @@ export default function MonitoringPage({
       {/* Quality Checks */}
       <SectionCard
         title="Alert Quality Standards & Escalation Audit"
-        moduleIds={['6.12']}
-        section="§46.1"
+
         description="Verification of relevance, actionability, source traceability, and anti-fatigue alert suppression."
       >
         <AlertQualityChecks checks={qualityChecks} />

@@ -8,7 +8,7 @@ import type { ResourceTableProps } from '@/lib/types';
 
 export function ResourceTable({ stats }: ResourceTableProps): JSX.Element {
   return (
-    <div className="border border-line rounded-md overflow-hidden bg-card text-xs">
+    <div className="border border-line rounded-md overflow-x-auto bg-card text-xs" role="region" aria-label="Response resource table, scroll horizontally on small screens">
       <Table className="min-w-[1080px]">
         <TableHeader className="bg-canvas">
           <TableRow>

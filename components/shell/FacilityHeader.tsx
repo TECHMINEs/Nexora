@@ -12,8 +12,8 @@ export function FacilityHeader({ facility }: FacilityHeaderProps): JSX.Element {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-card border-b border-line">
       <div className="space-y-0.5">
-        <h1 className="text-xl sm:text-2xl font-bold font-display leading-snug text-ink" title={`Source reference: ${facility.section}`}>{facility.name}</h1>
-        <p className="text-sm text-muted-foreground leading-relaxed" title={facility.archetype}>
+        <h1 className="text-xl sm:text-2xl font-bold font-display leading-snug text-ink">{facility.name}</h1>
+        <p className="text-sm text-muted-foreground leading-relaxed">
           {facility.archetype.replace(/\s*\([^)]*§[^)]*\)/g, '')} &bull; {facility.district}, {facility.state}
         </p>
       </div>

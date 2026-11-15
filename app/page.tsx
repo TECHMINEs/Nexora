@@ -3,7 +3,6 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { usePortfolio, useDemoStore } from '@/lib/store';
-import { ModuleTag } from '@/components/common/ModuleTag';
 import { SectionCard } from '@/components/common/SectionCard';
 import { Metric } from '@/components/common/Metric';
 import { TrackedCell } from '@/components/common/TrackedCell';
@@ -15,7 +14,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Cell } from 'recharts';
 import { formatINR } from '@/lib/format';
 import { RotateCcw } from 'lucide-react';
-import type { ModuleId } from '@/lib/types';
+import Link from 'next/link';
 
 export default function PortfolioPage(): JSX.Element {
   const router = useRouter();
@@ -29,15 +28,39 @@ export default function PortfolioPage(): JSX.Element {
     confidence: r.maxExposureGap.confidence,
   }));
 
-  const modules: ModuleId[] = ['6.14'];
-
   return (
     <div className="space-y-6">
+      <section className="border border-line bg-card p-5 sm:p-7">
+        <p className="font-mono text-xs font-bold uppercase tracking-widest text-brand-400">Illustrative factory walkthrough</p>
+        <h1 className="mt-2 max-w-3xl font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">Explore disaster risks, likely losses, and actions that could reduce them.</h1>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          Choose one of two fictional factories. Nexora calculates how hazards could affect its assets and operations, lets you change a loss scenario, and shows which controls or actions may help. Values are planning illustrations, not predictions for a real site.
+        </p>
+      </section>
+
+      <section aria-labelledby="choose-facility" className="space-y-3">
+        <div><h2 id="choose-facility" className="font-display text-xl font-bold text-ink">Choose a facility</h2><p className="text-sm text-muted-foreground">Start with either sample factory. You can switch later.</p></div>
+        <div className="grid gap-4 md:grid-cols-2">
+          {summary.rows.map((row) => (
+            <div key={row.facilityId} className="flex min-w-0 flex-col border border-line bg-card p-5">
+              <h3 className="font-display text-lg font-bold text-ink">{row.name}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">Leading modelled hazard: <strong className="text-ink">{row.topRisk.label}</strong></p>
+              <p className="mt-1 text-sm text-muted-foreground">Potential protection gap: <strong className="text-ink">{formatINR(row.maxExposureGap.value)}</strong></p>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">A protection gap compares estimated exposure with policy terms. It is not an insurance advice or coverage decision.</p>
+              <Link href={`/facility/${row.facilityId}`} className="mt-5 inline-flex min-h-11 items-center justify-center border border-brand-500 bg-brand-500 px-4 py-2 font-display text-sm font-bold uppercase text-black hover:bg-white">Explore this facility →</Link>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <details className="border border-line bg-card p-4 sm:p-5">
+        <summary className="cursor-pointer font-display text-base font-bold text-ink">Explore portfolio totals and comparisons</summary>
+        <div className="mt-5 space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-2xl font-bold font-display text-ink">Portfolio Intelligence</h1>
-            <ModuleTag id="6.14" />
+            <h2 className="text-2xl font-bold font-display text-ink">Portfolio totals</h2>
+
           </div>
           <p className="text-xs text-muted-foreground">
             Multi-facility pre-disaster exposure roll-up, action conversion and protection analysis.
@@ -102,8 +125,7 @@ export default function PortfolioPage(): JSX.Element {
       {/* Facilities Table */}
       <SectionCard
         title="Facility Resilience Posture"
-        moduleIds={modules}
-        section="§6.14"
+
         description="Click a row to navigate directly to the facility dossier."
       >
         <div className="border border-line overflow-x-auto" role="region" aria-label="Facility resilience table, scroll horizontally on small screens">
@@ -191,8 +213,7 @@ export default function PortfolioPage(): JSX.Element {
       {/* Gap Chart */}
       <SectionCard
         title="Potential Protection Gap by Facility"
-        moduleIds={modules}
-        section="§6.14, Deck s11"
+
         description="Unhedged pre-disaster exposure across building, machinery, stock, and business interruption."
       >
         <div className="h-64 w-full pt-2">
@@ -227,6 +248,8 @@ export default function PortfolioPage(): JSX.Element {
           <Disclaimer variant="insurance" />
         </div>
       </SectionCard>
+        </div>
+      </details>
     </div>
   );
 }

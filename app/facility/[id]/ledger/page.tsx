@@ -3,7 +3,6 @@
 import React, { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useFacilityModel, useDemoStore } from '@/lib/store';
-import { ModuleTag } from '@/components/common/ModuleTag';
 import { SectionCard } from '@/components/common/SectionCard';
 import { LedgerTable } from '@/components/ledger/LedgerTable';
 import { LedgerTransitionDialog } from '@/components/ledger/LedgerTransitionDialog';
@@ -13,7 +12,7 @@ import { Metric } from '@/components/common/Metric';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { formatDateIST } from '@/lib/format';
-import type { FacilityId, LedgerKind, ModuleId } from '@/lib/types';
+import type { FacilityId, LedgerKind } from '@/lib/types';
 
 function LedgerContent({ facilityId }: { facilityId: FacilityId }): JSX.Element {
   const model = useFacilityModel(facilityId);
@@ -28,7 +27,6 @@ function LedgerContent({ facilityId }: { facilityId: FacilityId }): JSX.Element 
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const selectedEntry = ledger.find((e) => e.id === selectedId) ?? ledger[0];
-  const modules: ModuleId[] = ['6.8'];
 
   // Latest evidence method if available
   const latestMethod = selectedEntry?.evidence[selectedEntry.evidence.length - 1]?.method ?? null;
@@ -39,7 +37,7 @@ function LedgerContent({ facilityId }: { facilityId: FacilityId }): JSX.Element 
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-bold font-display text-ink">Resilience Ledger</h1>
-            <ModuleTag id="6.8" />
+
           </div>
           <p className="text-xs text-muted-foreground">
             Auditable lifecycle state machine for physical controls and capital mitigations with cryptographic-grade evidence verification.
@@ -104,8 +102,7 @@ function LedgerContent({ facilityId }: { facilityId: FacilityId }): JSX.Element 
       {/* Main Ledger Table */}
       <SectionCard
         title="Control & Mitigation Registry"
-        moduleIds={modules}
-        section="§44, §44.1"
+
         description="Filter and click an action to inspect evidence hierarchy and execute state transitions."
         actions={
           <div className="flex items-center gap-1.5">
@@ -207,8 +204,7 @@ function LedgerContent({ facilityId }: { facilityId: FacilityId }): JSX.Element 
           <div className="space-y-4">
             <SectionCard
               title="Verification Standards"
-              moduleIds={['6.8']}
-              section="§44.1"
+
               description="Required evidence standards"
             >
               <VerificationHierarchy highlight={latestMethod} />

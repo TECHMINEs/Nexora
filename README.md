@@ -16,7 +16,7 @@
 
 </div>
 
-Nexora models how floods, cyclones, toxic releases and grid outages would hit a specific facility. It covers which assets fail, how failures cascade through dependencies, what the losses and insurance gap would be, and how quickly responders could get there. Every figure carries its sources, assumptions and a confidence score, so it can be defended in front of an insurer or a board.
+Nexora models how floods, cyclones, toxic releases and grid outages could affect an illustrative facility. It covers exposed assets, dependency chains, possible losses and insurance gaps, and response access. The frontend now guides visitors through choosing a factory, exploring a risk, changing a scenario, comparing losses, and reviewing actions. Calculation metadata and source assumptions remain in the data and engines; the optional **How the model works** page explains the method and limits without interrupting each result.
 
 > All facilities and figures in this build are **illustrative synthetic data**; the app shows a persistent demo banner.
 

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useFacilityModel, useDemoStore } from '@/lib/store';
-import { ModuleTag } from '@/components/common/ModuleTag';
 import { SectionCard } from '@/components/common/SectionCard';
 import { BasisSelector } from '@/components/insurance/BasisSelector';
 import { GapBars } from '@/components/insurance/GapBars';
@@ -12,7 +11,7 @@ import { Disclaimer } from '@/components/common/Disclaimer';
 import { Metric } from '@/components/common/Metric';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
-import type { FacilityId, ModuleId } from '@/lib/types';
+import type { FacilityId } from '@/lib/types';
 
 export default function InsuranceAdequacyPage({
   params,
@@ -25,7 +24,6 @@ export default function InsuranceAdequacyPage({
   const { setInsuranceBasis } = useDemoStore();
 
   const { active, policy } = insurance;
-  const modules: ModuleId[] = ['6.13', '6.6'];
 
   return (
     <div className="space-y-6">
@@ -33,8 +31,7 @@ export default function InsuranceAdequacyPage({
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-bold font-display text-ink">Insurance Adequacy</h1>
-            <ModuleTag id="6.6" />
-            <ModuleTag id="6.13" />
+
           </div>
           <p className="text-xs text-muted-foreground">
             Comparison of pre-disaster gross & residual asset exposures against extracted commercial policy schedules.
@@ -91,8 +88,7 @@ export default function InsuranceAdequacyPage({
       {/* Visual Gap Bars (Deck s11 Style) */}
       <SectionCard
         title="Exposure vs Usable Insurance Coverage"
-        moduleIds={modules}
-        section="§73, Deck s11"
+
         description="Teal indicates usable recovery within policy limits; red highlights the unhedged potential protection gap."
       >
         <GapBars gap={active} />
@@ -101,8 +97,7 @@ export default function InsuranceAdequacyPage({
       {/* Detailed Coverage Class Gap Table */}
       <SectionCard
         title="Protection Gap by Coverage Class"
-        moduleIds={['6.13']}
-        section="§43.1, §73.1"
+
         description="Detailed deduction breakdown accounting for sublimits, STFI limits, and BI time excess."
       >
         <GapTable gap={active} facilityId={facilityId} />
@@ -111,8 +106,7 @@ export default function InsuranceAdequacyPage({
       {/* Extracted Policy Schedule */}
       <SectionCard
         title="Extracted Policy Terms & Inclusions"
-        moduleIds={['6.13']}
-        section="§43, §43.1"
+
         description="Machine-extracted limits, deductibles, and indemnity periods subject to adviser verification."
       >
         <PolicyScheduleCard policy={policy} />
