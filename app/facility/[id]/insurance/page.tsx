@@ -12,6 +12,7 @@ import { Metric } from '@/components/common/Metric';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
 import type { FacilityId } from '@/lib/types';
+import { perilLabel } from '@/lib/format';
 
 export default function InsuranceAdequacyPage({
   params,
@@ -48,11 +49,11 @@ export default function InsuranceAdequacyPage({
 
       {/* Uninsured Peril Alert */}
       {!active.perilCovered && (
-        <Alert className="bg-red-950/40 border-red-500/40 text-red-950 text-xs">
+        <Alert className="border-red-500/40 bg-red-950/40 py-2 text-xs text-red-100">
           <AlertTriangle className="w-4 h-4 text-red-600" />
-          <AlertTitle className="font-bold">Uninsured Hazard Peril Detected</AlertTitle>
-          <AlertDescription>
-            Scenario peril ({active.peril}) is not a covered peril in the extracted commercial schedule; the full scenario loss is shown as a potential protection gap.
+          <AlertTitle className="font-bold">This scenario may be uninsured</AlertTitle>
+          <AlertDescription className="text-xs leading-relaxed">
+            {active.peril ? perilLabel(active.peril) : 'This hazard'} is not covered by the illustrative policy schedule. The full scenario loss is shown as a potential protection gap; review it with an adviser.
           </AlertDescription>
         </Alert>
       )}

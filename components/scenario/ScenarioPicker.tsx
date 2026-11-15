@@ -3,6 +3,7 @@
 import React from 'react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import type { ScenarioPickerProps } from '@/lib/types';
+import { perilLabel } from '@/lib/format';
 
 export function ScenarioPicker({
   scenarios,
@@ -21,7 +22,7 @@ export function ScenarioPicker({
             >
               <div className="flex flex-col items-start text-left">
                 <span>{s.name}</span>
-                <span className="text-xs text-muted-foreground capitalize">{s.peril}</span>
+                <span className="text-xs text-muted-foreground">{perilLabel(s.peril)}</span>
               </div>
             </TabsTrigger>
           ))}

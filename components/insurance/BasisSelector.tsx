@@ -3,6 +3,7 @@
 import React from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import type { BasisSelectorProps } from '@/lib/types';
+import { perilLabel } from '@/lib/format';
 
 export function BasisSelector({
   scenarios,
@@ -54,7 +55,7 @@ export function BasisSelector({
             <SelectContent>
               {scenarios.map((s) => (
                 <SelectItem key={s.id} value={s.id} className="text-xs">
-                  {s.name} ({s.peril})
+                  {s.name} ({perilLabel(s.peril)})
                 </SelectItem>
               ))}
             </SelectContent>

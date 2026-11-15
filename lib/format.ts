@@ -8,6 +8,7 @@ import type {
   IsoDateTime,
   LedgerState,
   MonitoringWindow,
+  Peril,
   Rupees,
   VerificationMethod,
 } from './types';
@@ -138,6 +139,19 @@ export function hazardLabel(h: HazardType): string {
       return 'Toxic release';
     case 'fire':
       return 'Fire';
+  }
+}
+
+export function perilLabel(peril: Peril): string {
+  switch (peril) {
+    case 'stfi':
+      return 'Storm, flood and inundation';
+    case 'fire_explosion':
+      return 'Fire or explosion';
+    case 'utility_failure':
+      return 'Utility failure';
+    case 'toxic_release':
+      return 'Toxic release';
   }
 }
 

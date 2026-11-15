@@ -2,7 +2,7 @@
   {
     "id": "amphan-2020", "title": "Cyclone Amphan replay, West Bengal (illustrative values)", "eventDate": "2020-05-20", "t0": "2020-05-20T15:00:00+05:30",
     "hazardClass": "hydromet", "facilityId": "fac-wb-metal",
-    "whyChosen": "Only case with a full dossier worked example (§62, §43.1); exercises exposure, BI plus supply-chain loss, STFI sublimit and BI time excess, 7 d to 1 h monitoring windows and outcome recalibration.",
+    "whyChosen": "A case with a worked example for estimated losses and insurance cover; exercises exposure, BI plus supply-chain loss, STFI sublimit and BI time excess, 7 d to 1 h monitoring windows and outcome recalibration.",
     "modulesExercised": ["6.2", "6.3", "6.5", "6.6", "6.7", "6.12", "6.13", "6.15"],
     "evidenceSummary": "Study estimate: ₹35,018 Cr total loss, ₹13,074 Cr indirect, ₹1,051 Cr insured; NDRF assisted evacuation of 8.13 lakh+ people and cleared 3,152.5 km of roads (§3.1, §35.1).",
     "steps": [
