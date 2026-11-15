@@ -56,7 +56,7 @@ export default function ScenarioStudioPage({
       <section id="results" className="scroll-mt-24 border border-line bg-card p-5 sm:p-6">
         <p className="font-mono text-xs font-bold uppercase tracking-widest text-brand-400">See what changes</p>
         <h2 className="mt-1 font-display text-xl font-bold text-ink">{scenario.name}: estimated loss</h2>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{scenario.description} Change a slider above to see these amounts recalculate. These are modelled sample losses, not a forecast.</p>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{scenario.description}. Change a slider above to see these amounts recalculate. These are modelled sample losses, not a forecast.</p>
         <div className="mt-5 grid gap-3 sm:grid-cols-3">
           <div className="border border-line bg-black/40 p-4"><p className="text-xs text-muted-foreground">Without controls</p><p className="mt-1 font-display text-2xl font-bold text-ink">{formatINR(currentView.gross.total.value)}</p></div>
           <div className="border border-brand-500 bg-brand-500/10 p-4"><p className="text-xs text-muted-foreground">With verified controls</p><p className="mt-1 font-display text-2xl font-bold text-ink">{formatINR(residual.total.value)}</p></div>

@@ -14,11 +14,11 @@ export function BasisSelector({
   const selectedScenarioId = basis.kind === 'scenario' ? basis.scenarioId : scenarios[0]?.id ?? '';
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-card border border-line rounded-lg text-xs">
-      <div className="flex items-center gap-4">
-        <span className="font-semibold text-ink">Assessment Basis:</span>
-        <div className="flex items-center gap-3">
-          <label className="flex items-center gap-1.5 cursor-pointer">
+    <div className="flex flex-col gap-4 rounded-lg border border-line bg-card p-4 text-xs lg:flex-row lg:items-center lg:justify-between">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+        <span className="shrink-0 font-semibold text-ink">Assessment Basis:</span>
+        <div className="grid gap-2 sm:grid-cols-2 sm:gap-4">
+          <label className="flex min-h-9 items-center gap-2 cursor-pointer">
             <input
               type="radio"
               name="basis_kind"
@@ -29,7 +29,7 @@ export function BasisSelector({
             <span className="font-medium text-ink">Max-Exposure Horizon (90d)</span>
           </label>
 
-          <label className="flex items-center gap-1.5 cursor-pointer">
+          <label className="flex min-h-9 items-center gap-2 cursor-pointer">
             <input
               type="radio"
               name="basis_kind"
@@ -43,13 +43,13 @@ export function BasisSelector({
       </div>
 
       {!isMaxExposure && (
-        <div className="flex items-center gap-2">
-          <span className="text-muted-foreground">Select Scenario:</span>
+        <div className="flex min-w-0 flex-col gap-2 sm:flex-row sm:items-center">
+          <span className="shrink-0 text-muted-foreground">Select Scenario:</span>
           <Select
             value={selectedScenarioId}
             onValueChange={(val) => onChange({ kind: 'scenario', scenarioId: val })}
           >
-            <SelectTrigger className="w-[200px] h-8 text-xs bg-canvas font-medium">
+            <SelectTrigger className="w-full min-w-0 h-10 text-xs bg-canvas font-medium sm:w-[260px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
