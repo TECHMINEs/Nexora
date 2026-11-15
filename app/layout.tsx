@@ -26,6 +26,14 @@ const fontVariables = `${fontDisplay.variable} ${fontBody.variable} ${fontMono.v
 export const metadata: Metadata = {
   title: 'NEXORA — Resilience Intelligence Infrastructure',
   description: 'Explore illustrative factory disaster risks, likely losses, and actions that could reduce them.',
+  icons: {
+    icon: [
+      { url: '/Nexora/techmines-logo.jpg?v=20261115', type: 'image/jpeg' },
+      { url: '/Nexora/favicon.ico?v=20261115', sizes: 'any', type: 'image/x-icon' },
+    ],
+    apple: [{ url: '/Nexora/apple-touch-icon.png?v=20261115', sizes: '180x180', type: 'image/png' }],
+  },
+  manifest: '/Nexora/site.webmanifest?v=20261115',
 };
 
 export default function RootLayout({
@@ -35,10 +43,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`dark ${fontVariables}`}>
-      <head>
-        <link rel="icon" href="/Nexora/logo-mark.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/Nexora/apple-touch-icon.png" />
-      </head>
       <body className="antialiased min-h-screen text-white">
         <BrandBar project="Nexora — Resilience Intelligence" />
 
