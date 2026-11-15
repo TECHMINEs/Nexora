@@ -1,4 +1,11 @@
 import Link from 'next/link';
+import { assumptions, sources } from '@/data';
+
+const plainText = (value: string) => value
+  .replace(/\s*\([^)]*§[^)]*\)/g, '')
+  .replace(/(?:KD\s*)?§\d+(?:\.\d+)?/g, '')
+  .replace(/\s{2,}/g, ' ')
+  .trim();
 
 const methods = [
   {
@@ -56,6 +63,32 @@ export default function MethodologyPage(): JSX.Element {
           <p><strong className="text-ink">Confidence:</strong> model metadata tracks source quality and verification method. Small samples and self-declared values lower confidence; they do not become precise because the UI displays a number.</p>
           <p>The complete assumption and source records remain in the repository data files for audit and development.</p>
         </div>
+      </details>
+      <details className="border border-line bg-card p-5">
+        <summary className="cursor-pointer font-display text-base font-bold text-ink">Detailed modelling inputs</summary>
+        <p className="mt-3 text-sm text-muted-foreground">These values are planning assumptions in the sample model, not observed values for a real facility.</p>
+        <div className="mt-4 grid gap-3 md:grid-cols-2">
+          {assumptions.map((assumption) => (
+            <div key={assumption.id} className="border border-line bg-black/40 p-4">
+              <h3 className="font-display text-sm font-bold text-ink">{plainText(assumption.label)}</h3>
+              <p className="mt-2 text-sm text-body">{plainText(assumption.value)}</p>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{plainText(assumption.rationale)}</p>
+            </div>
+          ))}
+        </div>
+      </details>
+      <details className="border border-line bg-card p-5">
+        <summary className="cursor-pointer font-display text-base font-bold text-ink">Sample data sources and limitations</summary>
+        <p className="mt-3 text-sm text-muted-foreground">Several records imitate the format of official or partner data but are illustrative. A source with uncertain reuse rights is excluded from model outputs.</p>
+        <ul className="mt-4 space-y-3">
+          {sources.map((source) => (
+            <li key={source.id} className="border border-line bg-black/40 p-4">
+              <p className="font-display text-sm font-bold text-ink">{plainText(source.name)}</p>
+              <p className="mt-1 text-xs capitalize text-muted-foreground">{source.authority} style · {source.licence === 'uncertain' ? 'reuse rights uncertain; excluded' : 'reuse rights recorded'}</p>
+              {source.knownLimitations && <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{plainText(source.knownLimitations)}</p>}
+            </li>
+          ))}
+        </ul>
       </details>
       <Link href="/" className="inline-flex border border-brand-500 bg-brand-500 px-5 py-3 font-display text-sm font-bold uppercase text-black hover:bg-white">Start the walkthrough →</Link>
     </div>
