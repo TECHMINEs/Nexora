@@ -41,7 +41,7 @@ export const BANNER_TEXT = 'Illustrative demo data — not a real facility';
 export const INSURANCE_DISCLAIMER =
   'Potential protection gap for discussion with a licensed adviser. We estimate exposure; we do not act as an insurer, intermediary or adviser and we do not assess whether cover is sufficient.';
 export const OFFICIAL_SOURCE_NOTICE =
-  'Official warnings and emergency instructions always override platform advisories. This prototype replays illustrative values and does not issue warnings.';
+  'Follow official emergency instructions. This illustrative replay does not issue warnings.';
 export const ROUTES = {
   portfolio: '/', replay: '/replay', lifecycle: '/lifecycle',
   facility: (id: string) => `/facility/${id}`,

@@ -145,11 +145,11 @@ export function hazardLabel(h: HazardType): string {
 export function perilLabel(peril: Peril): string {
   switch (peril) {
     case 'stfi':
-      return 'Storm, flood and inundation';
+      return 'Storm and flood';
     case 'fire_explosion':
       return 'Fire or explosion';
     case 'utility_failure':
-      return 'Utility failure';
+      return 'Utility outage';
     case 'toxic_release':
       return 'Toxic release';
   }

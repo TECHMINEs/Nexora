@@ -11,7 +11,8 @@ export function CaseToggle({ value, onChange }: CaseToggleProps): JSX.Element {
         variant={value === 'amphan-2020' ? 'default' : 'ghost'}
         size="sm"
         onClick={() => onChange('amphan-2020')}
-        className={`h-auto min-h-11 whitespace-normal px-3 py-2 text-center text-xs leading-snug font-semibold ${
+        aria-pressed={value === 'amphan-2020'}
+        className={`h-auto min-h-11 justify-start whitespace-normal px-3 py-2 text-left text-xs leading-snug font-semibold ${
           value === 'amphan-2020' ? 'bg-brand-500 text-black shadow-sm' : 'text-muted-foreground'
         }`}
       >
@@ -22,7 +23,8 @@ export function CaseToggle({ value, onChange }: CaseToggleProps): JSX.Element {
         variant={value === 'vizag-release-2020' ? 'default' : 'ghost'}
         size="sm"
         onClick={() => onChange('vizag-release-2020')}
-        className={`h-auto min-h-11 whitespace-normal px-3 py-2 text-center text-xs leading-snug font-semibold ${
+        aria-pressed={value === 'vizag-release-2020'}
+        className={`h-auto min-h-11 justify-start whitespace-normal px-3 py-2 text-left text-xs leading-snug font-semibold ${
           value === 'vizag-release-2020' ? 'bg-brand-500 text-black shadow-sm' : 'text-muted-foreground'
         }`}
       >

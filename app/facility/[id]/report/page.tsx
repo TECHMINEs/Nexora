@@ -12,7 +12,7 @@ import { TrackedCell } from '@/components/common/TrackedCell';
 import { Disclaimer } from '@/components/common/Disclaimer';
 import { Badge } from '@/components/ui/badge';
 import { MODEL_VERSION, DEMO_NOW } from '@/lib/constants';
-import { formatDateIST, perilLabel } from '@/lib/format';
+import { formatDateIST } from '@/lib/format';
 import type { FacilityId } from '@/lib/types';
 
 export default function EvidenceReportPage({
@@ -108,7 +108,7 @@ export default function EvidenceReportPage({
       <ReportSection id="scenario-loss" title="3. Scenario Stress Testing Loss Decomposition">
         <div className="space-y-2 text-xs">
           <div className="font-semibold text-ink">
-            Active Scenario: {currentScenario.scenario.name} ({perilLabel(currentScenario.scenario.peril)})
+            Active Scenario: {currentScenario.scenario.name}
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-3 bg-canvas rounded-lg border border-line">
             <div>
