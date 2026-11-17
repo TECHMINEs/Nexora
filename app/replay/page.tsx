@@ -20,17 +20,15 @@ export default function ReplayConsolePage(): JSX.Element {
   const replayState = state.replay;
   const currentCase = getReplayCase(replayState.caseId);
 
-  // Model of the facility referenced by the active replay case
   const model = useFacilityModel(currentCase.facilityId);
   const { thresholds, advisories, ledger, outcome } = model;
 
-  // Visited states list
   const visitedStates: EventState[] = ['NORMAL'];
   replayState.log.forEach((l) => {
     if (!visitedStates.includes(l.to)) visitedStates.push(l.to);
   });
 
-  const qualityChecks = alertQualityChecks(currentCase, replayState.log);
+  const qualityChecks = alertQualityChecks(replayState.log);
   const firedIds = replayState.log.flatMap((l) => l.advisoryIds);
   const isPostMortemReached = replayState.eventState === 'POST_MORTEM';
   const eventTime = new Intl.DateTimeFormat('en-IN', {

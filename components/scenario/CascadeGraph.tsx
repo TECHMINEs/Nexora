@@ -10,7 +10,6 @@ export function CascadeGraph({ cascade }: CascadeGraphProps): JSX.Element {
 
   const nodeMap = new Map(nodes.map((n) => [n.id, n]));
 
-  // Display top 5 chains
   const topChains = chains.slice(0, 5);
   const compoundChains = chains.filter((c) => c.compound);
 

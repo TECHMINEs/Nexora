@@ -39,7 +39,6 @@ export function effectiveScenario(
   const extraExpense = s.extraExpense;
   const recovery = s.recovery;
 
-  // Clone damage ratios
   const damageRatios: DamageRatio[] = s.damageRatios.map((dr) => ({ ...dr }));
 
   let includedEntries: LedgerEntry[] = [];
@@ -49,7 +48,6 @@ export function effectiveScenario(
     includedEntries = entries.filter((e) => e.facilityId === f.id && isCommitted(e));
   }
 
-  // Sort ascending by ID
   includedEntries.sort((a, b) => a.id.localeCompare(b.id));
 
   const appliedEntryIds: string[] = [];
@@ -91,7 +89,6 @@ export function effectiveScenario(
     }
   }
 
-  // Clamping
   downtimeDays = Math.max(0, downtimeDays);
   supplierInterruptionDays = Math.max(0, supplierInterruptionDays);
   supplierDependencyShare = Math.max(0, Math.min(1, supplierDependencyShare));
@@ -275,7 +272,6 @@ export function computeSensitivity(
     });
   }
 
-  // Ranking by swing descending
   const ranking = [...bands]
     .sort((a, b) => b.swing - a.swing)
     .map((b) => b.driver);

@@ -113,7 +113,7 @@ export default function FacilityOverviewPage({
         </div>
 
         <div className="min-w-0 space-y-6">
-          {/* Deck-style Status Snapshot */}
+          {/* Status snapshot */}
           <SectionCard
             title="Resilience Snapshot"
 

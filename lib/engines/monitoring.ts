@@ -5,7 +5,6 @@ import type {
   FacilityId,
   MonitoringThreshold,
   MonitoringWindow,
-  ReplayCase,
   SignalLevel,
   SignalReading,
   StateLogEntry,
@@ -56,10 +55,7 @@ export function advisoriesFor(
   return all.filter((a) => a.facilityId === facilityId && a.window === window);
 }
 
-export function alertQualityChecks(
-  replayCase: ReplayCase,
-  log: readonly StateLogEntry[]
-): AlertQualityCheck[] {
+export function alertQualityChecks(log: readonly StateLogEntry[]): AlertQualityCheck[] {
   let alertCount = 0;
   let sustained = false;
   let startStep = '';

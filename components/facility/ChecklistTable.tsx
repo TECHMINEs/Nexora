@@ -12,7 +12,7 @@ export function ChecklistTable({
   completeness,
   facilityId,
 }: ChecklistTableProps): JSX.Element {
-  // Routes to resolve incomplete items per spec
+  // Where each incomplete item gets resolved.
   const getDomainLink = (domain: string): string | null => {
     switch (domain) {
       case 'Insurance':

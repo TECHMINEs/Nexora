@@ -4,7 +4,6 @@ import type { FacilityModel, PortfolioRow, PortfolioSummary, Tracked } from '@/l
 
 export function buildPortfolio(models: readonly FacilityModel[]): PortfolioSummary {
   const rows: PortfolioRow[] = models.map((m) => {
-    // Top risk is already computed
     const topRisk = m.topRisk;
 
     // Open critical: open mitigations with priority score >= 0.40

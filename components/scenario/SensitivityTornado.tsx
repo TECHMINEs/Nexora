@@ -21,7 +21,6 @@ export function SensitivityTornado({ result }: SensitivityTornadoProps): JSX.Ele
     outside: b.baseOutsideBand,
   }));
 
-  // Sorted by swing desc
   chartData.sort((a, b) => b.swing - a.swing);
 
   return (

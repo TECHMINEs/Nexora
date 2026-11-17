@@ -86,7 +86,7 @@ export default function InsuranceAdequacyPage({
         />
       </div>
 
-      {/* Visual Gap Bars (Deck s11 Style) */}
+      {/* Gap bars */}
       <SectionCard
         title="Exposure vs Usable Insurance Coverage"
 

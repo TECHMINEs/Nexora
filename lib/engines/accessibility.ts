@@ -108,7 +108,6 @@ export function selectFastestCapable(
     currentTravelEstimateMin: r.currentTravelEstimateMin,
   }));
 
-  // Nearest overall
   const sortedByDist = [...resources].sort((a, b) => {
     if (a.distanceKm !== b.distanceKm) return a.distanceKm - b.distanceKm;
     if (a.currentTravelEstimateMin !== b.currentTravelEstimateMin) {
@@ -131,7 +130,6 @@ export function selectFastestCapable(
     };
   }
 
-  // Sort capable resources by fastest travel estimate
   const sortedCapable = [...capableResources].sort((a, b) => {
     if (a.currentTravelEstimateMin !== b.currentTravelEstimateMin) {
       return a.currentTravelEstimateMin - b.currentTravelEstimateMin;
@@ -179,17 +177,14 @@ export function computeAccessibility(
   const facilityResources = resources.filter((r) => r.facilityId === f.id);
   const resourceStatsList = facilityResources.map((r) => resourceStats(r, obs));
 
-  // Incidents
   const selections: Record<IncidentType, SelectionResult> = {
     medical: selectFastestCapable(facilityResources, resourceStatsList, 'medical'),
     fire: selectFastestCapable(facilityResources, resourceStatsList, 'fire'),
     hazmat: selectFastestCapable(facilityResources, resourceStatsList, 'hazmat'),
   };
 
-  // Capabilities required by facility
   const reqCaps = f.requiredCapabilities;
 
-  // Best resource per capability
   const bestPerCap: Record<Capability, ResourceStats | null> = {
     BLS: null,
     ALS: null,

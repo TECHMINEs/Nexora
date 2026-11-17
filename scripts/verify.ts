@@ -1,48 +1,12 @@
-import {
-  FACILITY_IDS,
-  byFacility,
-  dependencyEdges,
-  dependencyNodes,
-  drills,
-  getFacility,
-  getPolicy,
-  getReplayCase,
-  getSource,
-  hazardProfiles,
-  ledgerSeed,
-  observations,
-  responders,
-  scenarios as allScenarios,
-  sources,
-  thresholds,
-  assets as allAssets,
-} from '../data';
-import { computeAccessibility, resourceStats } from '../lib/engines/accessibility';
-import { enumerateChains, singlePointsOfFailure } from '../lib/engines/cascade';
-import { dataCompleteness } from '../lib/engines/completeness';
-import { computeExposure } from '../lib/engines/exposure';
-import { maxExposureGap, scenarioGap } from '../lib/engines/insurance';
+import { getReplayCase, getSource } from '../data';
 import { applyTransition, canTransition, hasEvidence, isCommitted } from '../lib/engines/ledger';
-import { alertQualityChecks, signalLevel } from '../lib/engines/monitoring';
-import { computeOutcome } from '../lib/engines/outcome';
+import { alertQualityChecks } from '../lib/engines/monitoring';
 import { buildPortfolio } from '../lib/engines/portfolio';
-import { drillResult, preparednessScore } from '../lib/engines/preparedness';
-import { computePriority, rankActions } from '../lib/engines/priority';
 import { provenanceScore } from '../lib/engines/provenance';
-import { computeMitigationFactor, computeRisk } from '../lib/engines/risk';
-import {
-  avoidedLossIfVerified,
-  computeScenarioLoss,
-  computeSensitivity,
-  contributionPerDay,
-  effectiveScenario,
-} from '../lib/engines/scenario';
 import { foldReplay, modeForState } from '../lib/engines/stateMachine';
-import { computeVulnerability } from '../lib/engines/vulnerability';
 import { formatINR } from '../lib/format';
 import { buildFacilityModel } from '../lib/model';
 import { initialDemoState } from '../lib/store';
-import type { DemoState, FacilityModel } from '../lib/types';
 
 let passed = 0;
 let failed = 0;
@@ -90,11 +54,9 @@ function approxRupees(id: string, actual: number, expected: number, tol = 100) {
   );
 }
 
-console.log('Running Nexora Resilience Verification...\n');
+console.log('Running verification\n');
 
-// ----------------------------------------------------
 // F-1 Provenance score (E-PV-1 .. E-PV-15)
-// ----------------------------------------------------
 const epvExpected: Record<string, { raw: number; factor: number; score: number }> = {
   'S-IMD-RAIN': { raw: 0.845, factor: 1, score: 0.845 },
   'S-CWC-FLOOD': { raw: 0.755, factor: 1, score: 0.755 },
@@ -129,9 +91,7 @@ const rainSrc = getSource('S-IMD-RAIN');
 const rainRes = provenanceScore(rainSrc);
 approx('E-PV-15-dataAgeHours', rainRes.dataAgeHours, 3.5, 0.01);
 
-// ----------------------------------------------------
 // F-3 / F-4 / F-6 Risk (E-RK-1 .. E-RK-6)
-// ----------------------------------------------------
 const demoState = initialDemoState();
 const modelA = buildFacilityModel('fac-wb-metal', demoState);
 const modelB = buildFacilityModel('fac-vz-polymer', demoState);
@@ -148,7 +108,6 @@ approx('E-RK-1-Rnorm', rkAFlood.Rnorm.value, 0.513);
 assert('E-RK-1-Band', rkAFlood.band === 'High', rkAFlood.band, 'High');
 approx('E-RK-1-Conf', rkAFlood.R.confidence, 0.684);
 
-// E checks
 assert('E-checks-A-flood', rkAFlood.exposure.exposedValue === 15_20_00_000);
 assert('E-checks-A-flood-total', rkAFlood.exposure.totalValue === 16_00_00_000);
 const topDriverAFlood = [...rkAFlood.drivers].sort((a, b) => b.share - a.share)[0];
@@ -218,9 +177,7 @@ approx('E-RK-6-Rnorm', rkBCyclone.Rnorm.value, 0.0748);
 assert('E-RK-6-Band', rkBCyclone.band === 'Low', rkBCyclone.band, 'Low');
 approx('E-RK-6-Conf', rkBCyclone.R.confidence, 0.684);
 
-// ----------------------------------------------------
 // F-8 Scenario loss (E-SC-1 .. E-SC-15)
-// ----------------------------------------------------
 const sa1 = modelA.scenarios.find((s) => s.scenario.id === 'sa1-rainfall')!;
 const sa2 = modelA.scenarios.find((s) => s.scenario.id === 'sa2-cyclone')!;
 const sa3 = modelA.scenarios.find((s) => s.scenario.id === 'sa3-grid-supplier')!;
@@ -253,9 +210,7 @@ approxRupees('E-SC-14-sb3-gross-total', sb3.gross.total.value, 3_49_75_000);
 approxRupees('E-SC-15-sb3-res-total', sb3.residual.total.value, 3_38_50_000);
 approxRupees('E-SC-15-sb3-comm-total', sb3.committed.total.value, 3_38_50_000);
 
-// ----------------------------------------------------
 // F-9 Sensitivity (E-SN-1 .. E-SN-8)
-// ----------------------------------------------------
 const sa1Sens = sa1.sensitivity;
 const sa1Dt = sa1Sens.bands.find((b) => b.driver === 'downtimeDays')!;
 approxRupees('E-SN-1-swing', sa1Dt.swing, 2_70_00_000);
@@ -298,9 +253,7 @@ assert(
     JSON.stringify(['downtimeDays', 'inventoryLossFraction', 'supplierInterruptionDays'])
 );
 
-// ----------------------------------------------------
 // F-10 Avoided loss if verified (E-AV-1 .. E-AV-8)
-// ----------------------------------------------------
 const av = (id: string) => {
   const pA = modelA.priorities.find((p) => p.entryId === id);
   if (pA) return pA.avoidedLoss.value;
@@ -318,9 +271,7 @@ approxRupees('E-AV-6-m-b-01', av('m-b-01'), 2_16_50_000);
 approxRupees('E-AV-7-m-b-02', av('m-b-02'), 45_00_000);
 approxRupees('E-AV-8-m-b-05', av('m-b-05'), 24_00_000);
 
-// ----------------------------------------------------
 // F-11 Insurance adequacy (E-IN-1 .. E-IN-8)
-// ----------------------------------------------------
 // E-IN-1: A max-exposure
 const inA = modelA.insurance.maxExposure;
 approxRupees('E-IN-1-L', inA.totals.exposure.value, 19_20_00_000);
@@ -370,9 +321,7 @@ approxRupees('E-IN-8-L', inBSb3.totals.exposure.value, 3_38_50_000);
 approxRupees('E-IN-8-I', inBSb3.totals.protection.value, 2_72_25_000);
 approxRupees('E-IN-8-G', inBSb3.totals.gap.value, 66_25_000);
 
-// ----------------------------------------------------
 // F-12 Priority (E-PQ-1 .. E-PQ-11)
-// ----------------------------------------------------
 const pA = modelA.priorities;
 assert('E-PQ-1-id', pA[0].entryId === 'm-a-02');
 approx('E-PQ-1-score', pA[0].score.value, 0.80);
@@ -399,9 +348,7 @@ approx('E-PQ-10-score', pB[4].score.value, 0.0768);
 assert('E-PQ-11-id', pB[5].entryId === 'm-b-06');
 approx('E-PQ-11-score', pB[5].score.value, 0.0576);
 
-// ----------------------------------------------------
 // F-13 Response times & F-14 Accessibility (E-AC-1 .. E-AC-14)
-// ----------------------------------------------------
 const rStatsA = modelA.accessibility.resources;
 const rStatsB = modelB.accessibility.resources;
 
@@ -483,9 +430,7 @@ const selBFire = modelB.accessibility.selections.fire;
 assert('E-AC-14-sel', selBFire.selectedResourceId === 'r-b-c');
 assert('E-AC-14-near', selBFire.nearestResourceId === 'r-b-a');
 
-// ----------------------------------------------------
 // F-16 Ledger (E-LG-1 .. E-LG-6)
-// ----------------------------------------------------
 const lA = modelA.ledger;
 const lB = modelB.ledger;
 
@@ -541,9 +486,7 @@ const bEv = bComm.filter(hasEvidence);
 assert('E-LG-6-b-comm', bComm.length === 3, bComm.length, 3);
 assert('E-LG-6-b-ev', bEv.length === 2, bEv.length, 2);
 
-// ----------------------------------------------------
 // F-17 Preparedness & drills (E-PR-1, E-PR-2, E-DR-1 .. E-DR-4)
-// ----------------------------------------------------
 approx('E-PR-1-prep', modelA.preparedness.value, 0.68);
 approx('E-PR-1-conf', modelA.preparedness.confidence, 0.6875);
 
@@ -568,9 +511,7 @@ const drB2 = modelB.drills.find((d) => d.drill.id === 'd-b-02')!;
 assert('E-DR-4-eff', drB2.effectiveness === null);
 assert('E-DR-4-overdue', drB2.overdue === true);
 
-// ----------------------------------------------------
 // F-18 Cascade (E-CA-1 .. E-CA-6)
-// ----------------------------------------------------
 const casA = modelA.cascade;
 assert('E-CA-1-chain-count', casA.chains.length === 8, casA.chains.length, 8);
 assert('E-CA-1-chain-top', casA.chains[0].id === 'h-rain>a-mcc-wet>p-cnc>f-revenue');
@@ -586,11 +527,9 @@ const bCompoundChains = casB.chains.filter((c) => c.compound);
 assert('E-CA-5-compound', bCompoundChains.length === 2);
 assert('E-CA-6-spof-nodes', casB.spof.map((s) => s.nodeId).sort().join(',') === 'a-tank,p-plant,p-release');
 
-// ----------------------------------------------------
 // F-19 Monitoring & state machine (E-RP-1 .. E-RP-5, E-MN-1, E-MN-2)
-// ----------------------------------------------------
 const amphanCase = getReplayCase('amphan-2020');
-const { eventState: amState, log: amLog } = foldReplay(amphanCase, 7);
+const { log: amLog } = foldReplay(amphanCase, 7);
 const expectedAmStates = [
   'WATCH',
   'ALERT',
@@ -639,12 +578,12 @@ assert(
 );
 
 // E-RP-5: alert quality checks
-const qAm = alertQualityChecks(amphanCase, amLog);
+const qAm = alertQualityChecks(amLog);
 assert('E-RP-5-am-all-pass', qAm.every((q) => q.pass));
 const escAm = qAm.find((q) => q.id === 'escalation')!;
 assert('E-RP-5-am-esc-detail', escAm.detail.includes('ALERT held 3 consecutive steps (am-2 to am-4)'));
 
-const qVz = alertQualityChecks(vizagCase, vzLog);
+const qVz = alertQualityChecks(vzLog);
 assert('E-RP-5-vz-all-pass', qVz.every((q) => q.pass));
 const escVz = qVz.find((q) => q.id === 'escalation')!;
 assert('E-RP-5-vz-esc-detail', escVz.detail === 'No sustained ALERT');
@@ -659,15 +598,11 @@ assert('E-MN-2-normal', JSON.stringify(modeForState('NORMAL')) === JSON.stringif
 assert('E-MN-2-alert', JSON.stringify(modeForState('ALERT')) === JSON.stringify(['respond']));
 assert('E-MN-2-recover', JSON.stringify(modeForState('RECOVER')) === JSON.stringify(['recover']));
 
-// ----------------------------------------------------
 // F-20 Completeness (E-CP-1, E-CP-2)
-// ----------------------------------------------------
 approx('E-CP-1-A', modelA.completeness.value, 0.911765);
 approx('E-CP-2-B', modelB.completeness.value, 0.882353);
 
-// ----------------------------------------------------
 // F-21 Outcome learning (E-RP-6a, E-RP-6b)
-// ----------------------------------------------------
 approxRupees('E-RP-6a-pred', modelA.outcome.predicted.value, 82_60_000);
 approxRupees('E-RP-6a-obs', modelA.outcome.observed.value, 95_00_000);
 approx('E-RP-6a-err', modelA.outcome.error, -0.130526);
@@ -680,9 +615,7 @@ approx('E-RP-6b-err', modelB.outcome.error, -0.107843);
 approxRupees('E-RP-6b-recal', modelB.outcome.recalibrated.value, 5_11_25_000);
 approx('E-RP-6b-recalErr', modelB.outcome.recalibratedError, 0.002451);
 
-// ----------------------------------------------------
 // F-22 Portfolio (E-PF-1 .. E-PF-7)
-// ----------------------------------------------------
 const portfolio = buildPortfolio([modelA, modelB]);
 const rowA = portfolio.rows.find((r) => r.facilityId === 'fac-wb-metal')!;
 const rowB = portfolio.rows.find((r) => r.facilityId === 'fac-vz-polymer')!;
@@ -719,9 +652,7 @@ approx('E-PF-6-actionConv', portfolio.actionConversion.value, 0.538462);
 approx('E-PF-7-meanPrep', portfolio.meanPreparedness.value, 0.67);
 approx('E-PF-7-meanPrepConf', portfolio.meanPreparedness.confidence, 0.6375);
 
-// ----------------------------------------------------
 // Interaction expectations (E-IX-1 .. E-IX-6)
-// ----------------------------------------------------
 // E-IX-1: m-a-04 implemented -> verified (document, verifier set)
 let state1 = structuredClone(demoState);
 const entryMa04 = state1.ledger.find((e) => e.id === 'm-a-04')!;
@@ -885,9 +816,9 @@ assert('E-IX-6-Band', rkToxic_ix6.band === 'Medium');
 const sb1_ix6 = modelB_ix6.scenarios.find((s) => s.scenario.id === 'sb1-release')!;
 approxRupees('E-IX-6-res', sb1_ix6.residual.total.value, 2_38_50_000);
 
-console.log(`\nVerification Complete! Passed: ${passed}, Failed: ${failed}`);
+console.log(`\nPassed: ${passed}, failed: ${failed}`);
 if (failed > 0) {
   process.exit(1);
 } else {
-  console.log('All tests passed perfectly! 100% golden test compliance.');
+  console.log('All checks passed.');
 }

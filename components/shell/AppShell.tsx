@@ -16,7 +16,6 @@ export function AppShell({ children }: AppShellProps): JSX.Element {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Extract active facility if on /facility/[id]
   const match = pathname.match(/^\/facility\/([^/]+)/);
   const activeFacilityId = (match && (match[1] === 'fac-wb-metal' || match[1] === 'fac-vz-polymer'))
     ? (match[1] as FacilityId)

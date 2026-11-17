@@ -11,7 +11,6 @@ export function AdvisoryList({
   firedIds,
   ledger,
 }: AdvisoryListProps): JSX.Element {
-  // Group by monitoring window
   const windowOrder: MonitoringWindow[] = ['7d', '72h', '24h', '6h', '1h', 'post_event'];
 
   const ledgerMap = new Map(ledger.map((l) => [l.id, l.title]));

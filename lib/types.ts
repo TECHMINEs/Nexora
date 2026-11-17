@@ -1,4 +1,4 @@
-// lib/types.ts — every domain, result, store and view type. No runtime code.
+// Domain, result, store and view types. No runtime code.
 import type { ReactNode } from 'react';
 
 // ---------- primitives ----------
@@ -377,7 +377,7 @@ export interface DemoStore {
 export type Children = { children: ReactNode };
 
 
-// ---------- Shared component prop interfaces (KIT_03 §2.8) ----------
+// ---------- shared component props ----------
 // common
 export interface MetricProps { label: string; tracked: Tracked; kind: FormatKind; band?: Band | AccessBand; size?: 'sm' | 'md' | 'lg'; caption?: string; facilityId?: FacilityId }
 export interface TrackedCellProps { tracked: Tracked; kind: FormatKind; facilityId?: FacilityId; align?: 'left' | 'right' }

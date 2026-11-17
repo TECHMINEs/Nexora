@@ -12,8 +12,8 @@ export function FacilitySwitcher({ currentId }: FacilitySwitcherProps): JSX.Elem
 
   const handleSelect = (nextId: FacilityId) => {
     if (nextId === currentId) return;
-    // preserve subroute
-    // pathname like /facility/fac-wb-metal/risk -> /facility/fac-vz-polymer/risk
+    // Keep the subroute when switching facility,
+    // e.g. /facility/fac-wb-metal/risk -> /facility/fac-vz-polymer/risk.
     const parts = pathname.split('/');
     if (parts[1] === 'facility' && parts[2]) {
       parts[2] = nextId;

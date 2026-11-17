@@ -14,7 +14,6 @@ export function SchematicMap({
   const [vbW, vbH] = layout.viewBox;
   const visiblePois = layout.pois.filter((poi) => showResponders || !poi.resourceId);
 
-  // Hazard styling
   const hazardColor = (hazard: string) => {
     switch (hazard) {
       case 'flood':

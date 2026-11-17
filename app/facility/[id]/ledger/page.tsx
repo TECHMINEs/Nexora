@@ -28,7 +28,6 @@ function LedgerContent({ facilityId }: { facilityId: FacilityId }): JSX.Element 
 
   const selectedEntry = ledger.find((e) => e.id === selectedId) ?? ledger[0];
 
-  // Latest evidence method if available
   const latestMethod = selectedEntry?.evidence[selectedEntry.evidence.length - 1]?.method ?? null;
 
   return (

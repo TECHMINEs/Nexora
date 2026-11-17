@@ -23,13 +23,11 @@ export default function MonitoringPage({
   const model = useFacilityModel(facilityId);
   const { thresholds, advisories, replayStatus, replayCase, ledger } = model;
 
-  // Current active step signals
   const latestSignals = replayStatus.latestStep ? replayStatus.latestStep.signals : null;
 
-  // Compute quality checks for facility replay
-  const qualityChecks = alertQualityChecks(replayCase, replayStatus.log);
+  const qualityChecks = alertQualityChecks(replayStatus.log);
 
-  // Collect all fired advisory IDs across the current replay state log
+  // Advisory IDs fired anywhere in the replay so far.
   const firedIds = replayStatus.log.flatMap((l) => l.advisoryIds);
 
   return (
